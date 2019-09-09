@@ -1,0 +1,5 @@
+.gradle
+.idea
+.openapi-generator-ignore
+.openapi-generator
+target
