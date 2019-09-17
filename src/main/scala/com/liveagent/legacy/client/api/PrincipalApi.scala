@@ -94,7 +94,7 @@ class PrincipalApi(baseUrl: String) {
    * 
    * @param sessionId 
    */
-  def resolveUserIdFromSession(sessionId: Option[String] = None)(implicit apiKey: ApiKeyValue): ApiRequest[UserId] =
+  def resolveUserIdFromSession(sessionId: String)(implicit apiKey: ApiKeyValue): ApiRequest[UserId] =
     ApiRequest[UserId](ApiMethods.POST, baseUrl, "/principal/resolveUserIdFromSession", "application/json")
       .withApiKey(apiKey, "apikey", HEADER)
       .withHeaderParam("sessionId", sessionId)
@@ -110,12 +110,12 @@ class PrincipalApi(baseUrl: String) {
    * Available security schemes:
    *   apikey (apiKey)
    * 
-   * @param browserId 
+   * @param visitorId 
    */
-  def resolveUserIdFromVisitorId(browserId: Option[String] = None)(implicit apiKey: ApiKeyValue): ApiRequest[UserId] =
+  def resolveUserIdFromVisitorId(visitorId: String)(implicit apiKey: ApiKeyValue): ApiRequest[UserId] =
     ApiRequest[UserId](ApiMethods.POST, baseUrl, "/principal/resolveUserIdFromVisitorId", "application/json")
       .withApiKey(apiKey, "apikey", HEADER)
-      .withHeaderParam("browserId", browserId)
+      .withHeaderParam("visitorId", visitorId)
       .withSuccessResponse[UserId](200)
       .withDefaultErrorResponse[ErrorResponse]
       
@@ -151,7 +151,7 @@ class PrincipalApi(baseUrl: String) {
    * @param username 
    * @param password 
    */
-  def validateCredentials(username: Option[String] = None, password: Option[String] = None)(implicit apiKey: ApiKeyValue): ApiRequest[UserId] =
+  def validateCredentials(username: String, password: String)(implicit apiKey: ApiKeyValue): ApiRequest[UserId] =
     ApiRequest[UserId](ApiMethods.POST, baseUrl, "/principal/validateCredentials", "application/json")
       .withApiKey(apiKey, "apikey", HEADER)
       .withHeaderParam("username", username)
