@@ -38,7 +38,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.liveagent.legacy</groupId>
   <artifactId>liveagent-client</artifactId>
-  <version>3.0.1</version>
+  <version>3.0.3</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -48,13 +48,13 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.liveagent.legacy:liveagent-client:3.0.1"
+compile "com.liveagent.legacy:liveagent-client:3.0.3"
 ```
 
 ### SBT users
 
 ```scala
-libraryDependencies += "com.liveagent.legacy" % "liveagent-client" % "3.0.1"
+libraryDependencies += "com.liveagent.legacy" % "liveagent-client" % "3.0.3"
 ```
 
 ## Getting Started
@@ -221,7 +221,10 @@ Class | Method | HTTP request | Description
 *PredefinedAnswersApi* | **updatePredefinedAnswer** | **PUT** /predefined_answers/{predefinedAnswerId} | Update predefined answer
 *PrincipalApi* | **getDepartments** | **GET** /principal/{principalId}/departments | Get principal departments
 *PrincipalApi* | **getRole** | **GET** /principal/{principalId}/role | Get principal role
-*PrincipalApi* | **getUserIdFromSession** | **POST** /principal/resolveUserIdFromSession | Get user id from session
+*PrincipalApi* | **resolveBrowser** | **POST** /principal/resolveBrowser | Resolve browser
+*PrincipalApi* | **resolveUserIdFromSession** | **POST** /principal/resolveUserIdFromSession | Get user id from session
+*PrincipalApi* | **resolveUserIdFromVisitorId** | **POST** /principal/resolveUserIdFromVisitorId | Get user id from visitor id
+*PrincipalApi* | **resolveVisitor** | **POST** /principal/resolveVisitor | Resolve visitor
 *PrincipalApi* | **validateCredentials** | **POST** /principal/validateCredentials | Validate principal credentials
 *QueueApi* | **getQueueBatch** | **GET** /queue/batch/{batchId} | Retrieves the batch status and remaining items to process
 *SettingsApi* | **getSettings** | **GET** /settings | Gets settings list
@@ -296,6 +299,8 @@ Class | Method | HTTP request | Description
  - [BillingInfo](BillingInfo.md)
  - [BillingMetric](BillingMetric.md)
  - [BillingStatus](BillingStatus.md)
+ - [Browser](Browser.md)
+ - [BrowserId](BrowserId.md)
  - [Call](Call.md)
  - [CallAgent](CallAgent.md)
  - [CallListItem](CallListItem.md)
@@ -381,6 +386,8 @@ Class | Method | HTTP request | Description
  - [Variation](Variation.md)
  - [VariationUpgrade](VariationUpgrade.md)
  - [VariationUpgrades](VariationUpgrades.md)
+ - [Visitor](Visitor.md)
+ - [VisitorId](VisitorId.md)
 
 
 ## Documentation for Authorization

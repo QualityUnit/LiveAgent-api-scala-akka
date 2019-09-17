@@ -40,12 +40,15 @@ openApiGenerate {
     outputDir = "$rootDir/".toString()
     groupId = "com.liveagent.legacy"
     id = "api-client"
-    version = "3.0.1"
+    version = "3.0.3"
     configOptions = [
             dateLibrary: "java8",
             mainPackage: "com.liveagent.legacy.client"
     ]
     systemProperties = [
             modelDocs: "false"
+    ]
+    additionalProperties = [
+            configKeyPath: "com.liveagent.legacy.client"
     ]
 }

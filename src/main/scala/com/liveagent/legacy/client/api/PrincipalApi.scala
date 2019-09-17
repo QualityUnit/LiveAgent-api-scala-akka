@@ -11,10 +11,14 @@
  */
 package com.liveagent.legacy.client.api
 
+import com.liveagent.legacy.client.model.Browser
+import com.liveagent.legacy.client.model.BrowserId
 import com.liveagent.legacy.client.model.Departments
 import com.liveagent.legacy.client.model.ErrorResponse
 import com.liveagent.legacy.client.model.Role
 import com.liveagent.legacy.client.model.UserId
+import com.liveagent.legacy.client.model.Visitor
+import com.liveagent.legacy.client.model.VisitorId
 import com.liveagent.legacy.client.core._
 import com.liveagent.legacy.client.core.CollectionFormats._
 import com.liveagent.legacy.client.core.ApiKeyLocations._
@@ -64,7 +68,25 @@ class PrincipalApi(baseUrl: String) {
 
   /**
    * Expected answers:
-   *   code 200 : UserId (Departments)
+   *   code 200 : Browser (BrowserId)
+   *   code 0 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   * 
+   * @param browserId 
+   */
+  def resolveBrowser(browserId: Option[BrowserId] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Browser] =
+    ApiRequest[Browser](ApiMethods.POST, baseUrl, "/principal/resolveBrowser", "application/json")
+      .withApiKey(apiKey, "apikey", HEADER)
+      .withBody(browserId)
+      .withSuccessResponse[Browser](200)
+      .withDefaultErrorResponse[ErrorResponse]
+      
+
+  /**
+   * Expected answers:
+   *   code 200 : UserId (UserId)
    *   code 0 : ErrorResponse (Error response)
    * 
    * Available security schemes:
@@ -72,7 +94,7 @@ class PrincipalApi(baseUrl: String) {
    * 
    * @param sessionId 
    */
-  def getUserIdFromSession(sessionId: Option[String] = None)(implicit apiKey: ApiKeyValue): ApiRequest[UserId] =
+  def resolveUserIdFromSession(sessionId: Option[String] = None)(implicit apiKey: ApiKeyValue): ApiRequest[UserId] =
     ApiRequest[UserId](ApiMethods.POST, baseUrl, "/principal/resolveUserIdFromSession", "application/json")
       .withApiKey(apiKey, "apikey", HEADER)
       .withHeaderParam("sessionId", sessionId)
@@ -81,10 +103,46 @@ class PrincipalApi(baseUrl: String) {
       
 
   /**
+   * Expected answers:
+   *   code 200 : UserId (UserId)
+   *   code 0 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   * 
+   * @param browserId 
+   */
+  def resolveUserIdFromVisitorId(browserId: Option[String] = None)(implicit apiKey: ApiKeyValue): ApiRequest[UserId] =
+    ApiRequest[UserId](ApiMethods.POST, baseUrl, "/principal/resolveUserIdFromVisitorId", "application/json")
+      .withApiKey(apiKey, "apikey", HEADER)
+      .withHeaderParam("browserId", browserId)
+      .withSuccessResponse[UserId](200)
+      .withDefaultErrorResponse[ErrorResponse]
+      
+
+  /**
+   * Expected answers:
+   *   code 200 : Visitor (Visitor)
+   *   code 0 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   * 
+   * @param visitorId 
+   */
+  def resolveVisitor(visitorId: VisitorId)(implicit apiKey: ApiKeyValue): ApiRequest[Visitor] =
+    ApiRequest[Visitor](ApiMethods.POST, baseUrl, "/principal/resolveVisitor", "application/json")
+      .withApiKey(apiKey, "apikey", HEADER)
+      .withBody(visitorId)
+      .withSuccessResponse[Visitor](200)
+      .withDefaultErrorResponse[ErrorResponse]
+      
+
+  /**
    * Validate principal credentials
    * 
    * Expected answers:
-   *   code 200 : UserId (User id)
+   *   code 200 : UserId (UserId)
    *   code 0 : ErrorResponse (Error response)
    * 
    * Available security schemes:
