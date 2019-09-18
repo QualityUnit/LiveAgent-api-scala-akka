@@ -112,10 +112,10 @@ class PrincipalApi(baseUrl: String) {
    * 
    * @param visitorId 
    */
-  def resolveUserIdFromVisitorId(visitorId: String)(implicit apiKey: ApiKeyValue): ApiRequest[UserId] =
+  def resolveUserIdFromVisitorId(visitorId: VisitorId)(implicit apiKey: ApiKeyValue): ApiRequest[UserId] =
     ApiRequest[UserId](ApiMethods.POST, baseUrl, "/principal/resolveUserIdFromVisitorId", "application/json")
       .withApiKey(apiKey, "apikey", HEADER)
-      .withHeaderParam("visitorId", visitorId)
+      .withBody(visitorId)
       .withSuccessResponse[UserId](200)
       .withDefaultErrorResponse[ErrorResponse]
       

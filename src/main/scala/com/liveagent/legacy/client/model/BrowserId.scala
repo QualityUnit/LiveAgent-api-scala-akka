@@ -16,7 +16,7 @@ import org.joda.time.DateTime
 import java.util.UUID
 
 case class BrowserId (
-  browserId: String
+  browserId: Option[String] = None
 ) extends ApiModel
 
 
