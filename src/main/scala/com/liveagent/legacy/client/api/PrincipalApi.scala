@@ -15,6 +15,7 @@ import com.liveagent.legacy.client.model.Browser
 import com.liveagent.legacy.client.model.BrowserId
 import com.liveagent.legacy.client.model.Departments
 import com.liveagent.legacy.client.model.ErrorResponse
+import com.liveagent.legacy.client.model.PrincipalCredentials
 import com.liveagent.legacy.client.model.Role
 import com.liveagent.legacy.client.model.UserId
 import com.liveagent.legacy.client.model.Visitor
@@ -148,14 +149,12 @@ class PrincipalApi(baseUrl: String) {
    * Available security schemes:
    *   apikey (apiKey)
    * 
-   * @param username 
-   * @param password 
+   * @param credentials 
    */
-  def validateCredentials(username: String, password: String)(implicit apiKey: ApiKeyValue): ApiRequest[UserId] =
+  def validateCredentials(credentials: PrincipalCredentials)(implicit apiKey: ApiKeyValue): ApiRequest[UserId] =
     ApiRequest[UserId](ApiMethods.POST, baseUrl, "/principal/validateCredentials", "application/json")
       .withApiKey(apiKey, "apikey", HEADER)
-      .withHeaderParam("username", username)
-      .withHeaderParam("password", password)
+      .withBody(credentials)
       .withSuccessResponse[UserId](200)
       .withDefaultErrorResponse[ErrorResponse]
       
