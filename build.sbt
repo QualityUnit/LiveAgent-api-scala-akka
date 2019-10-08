@@ -1,7 +1,12 @@
-version := "3.0.3"
+version := "3.0.4"
 name := "api-client"
 organization := "com.liveagent.legacy"
 scalaVersion := "2.12.8"
+
+resolvers += Resolver.url("LiveAgent Snapshots", url("s3://snapshots.mvn-repo.liveagent.com.s3.amazonaws.com"))(Resolver.ivyStylePatterns)
+publishMavenStyle := false
+publishTo := Some(Resolver.url("LiveAgent Snapshots", url("s3://snapshots.mvn-repo.liveagent.com.s3.amazonaws.com"))(Resolver.ivyStylePatterns))
+publishConfiguration := publishConfiguration.value.withOverwrite(true)
 
 libraryDependencies ++= Seq(
   "com.typesafe" % "config" % "1.3.3",
