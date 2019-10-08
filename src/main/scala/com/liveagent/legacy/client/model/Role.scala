@@ -16,6 +16,7 @@ import org.joda.time.DateTime
 import java.util.UUID
 
 case class Role (
+  /* - D - Admin - A - Agent - C - Customer */
   role: Option[RoleEnums.Role] = None
 ) extends ApiModel
 
@@ -23,6 +24,7 @@ object RoleEnums {
 
   type Role = Role.Value
   object Role extends Enumeration {
+    val `D` = Value("D")
     val `A` = Value("A")
     val `C` = Value("C")
   }
