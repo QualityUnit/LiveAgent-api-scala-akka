@@ -359,6 +359,7 @@ Class | Method | HTTP request | Description
  - [PredefinedAnswer](PredefinedAnswer.md)
  - [PrincipalCredentials](PrincipalCredentials.md)
  - [Role](Role.md)
+ - [SessionId](SessionId.md)
  - [Setting](Setting.md)
  - [Sla](Sla.md)
  - [SlaBusinessHours](SlaBusinessHours.md)

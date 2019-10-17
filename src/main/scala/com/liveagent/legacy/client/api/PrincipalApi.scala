@@ -17,6 +17,7 @@ import com.liveagent.legacy.client.model.Departments
 import com.liveagent.legacy.client.model.ErrorResponse
 import com.liveagent.legacy.client.model.PrincipalCredentials
 import com.liveagent.legacy.client.model.Role
+import com.liveagent.legacy.client.model.SessionId
 import com.liveagent.legacy.client.model.UserId
 import com.liveagent.legacy.client.model.Visitor
 import com.liveagent.legacy.client.model.VisitorId
@@ -95,10 +96,10 @@ class PrincipalApi(baseUrl: String) {
    * 
    * @param sessionId 
    */
-  def resolveUserIdFromSession(sessionId: String)(implicit apiKey: ApiKeyValue): ApiRequest[UserId] =
+  def resolveUserIdFromSession(sessionId: SessionId)(implicit apiKey: ApiKeyValue): ApiRequest[UserId] =
     ApiRequest[UserId](ApiMethods.POST, baseUrl, "/principal/resolveUserIdFromSession", "application/json")
       .withApiKey(apiKey, "apikey", HEADER)
-      .withHeaderParam("sessionId", sessionId)
+      .withBody(sessionId)
       .withSuccessResponse[UserId](200)
       .withDefaultErrorResponse[ErrorResponse]
       
