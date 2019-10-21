@@ -11,6 +11,7 @@
  */
 package com.liveagent.legacy.client.api
 
+import com.liveagent.legacy.client.core.ApiEnum
 import com.liveagent.legacy.client.model._
 import org.json4s._
 import scala.reflect.ClassTag
@@ -18,81 +19,72 @@ import scala.reflect.ClassTag
 object EnumsSerializers {
 
   def all: Seq[Serializer[_]] = Seq[Serializer[_]]() :+
-    new EnumNameSerializer(AgentEnums.Role) :+
-    new EnumNameSerializer(AgentEnums.Gender) :+
-    new EnumNameSerializer(ApiKeyEnums.`Type`) :+
-    new EnumNameSerializer(ApiKeyLoginEnums.`Type`) :+
-    new EnumNameSerializer(ApiKeyWithPrivilegesEnums.`Type`) :+
-    new EnumNameSerializer(BillingStatusEnums.Status) :+
-    new EnumNameSerializer(CallEnums.Direction) :+
-    new EnumNameSerializer(CallEnums.CalleeStatus) :+
-    new EnumNameSerializer(CallListItemEnums.`Type`) :+
-    new EnumNameSerializer(CallMessageEnums.`Type`) :+
-    new EnumNameSerializer(CallStatusEnums.Status) :+
-    new EnumNameSerializer(CallTransferResultEnums.CalleeStatus) :+
-    new EnumNameSerializer(CompanyEnums.`Type`) :+
-    new EnumNameSerializer(CompanyListItemEnums.`Type`) :+
-    new EnumNameSerializer(ContactEnums.`Type`) :+
-    new EnumNameSerializer(ContactListItemEnums.`Type`) :+
-    new EnumNameSerializer(CustomButtonEnums.Method) :+
-    new EnumNameSerializer(CustomButtonEnums.`Type`) :+
-    new EnumNameSerializer(CustomButtonEnums.Status) :+
-    new EnumNameSerializer(DiscountValueEnums.`Type`) :+
-    new EnumNameSerializer(DiscountValueEnums.ValueType) :+
-    new EnumNameSerializer(ExtensionEnums.Status) :+
-    new EnumNameSerializer(FilterEnums.Rtype) :+
-    new EnumNameSerializer(HostingInfoEnums.System) :+
-    new EnumNameSerializer(InvoiceEnums.Currency) :+
-    new EnumNameSerializer(IvrChoiceEnums.Dtmf) :+
-    new EnumNameSerializer(IvrStepEnums.`Type`) :+
-    new EnumNameSerializer(MessageEnums.`Type`) :+
-    new EnumNameSerializer(MessageEnums.Format) :+
-    new EnumNameSerializer(MessageGroupEnums.`Type`) :+
-    new EnumNameSerializer(MessageGroupEnums.Status) :+
-    new EnumNameSerializer(PaymentMethodEnums.PaymentType) :+
-    new EnumNameSerializer(PaymentProcessorTypeEnums.ProcessorType) :+
-    new EnumNameSerializer(PhoneDeviceEnums.`Type`) :+
-    new EnumNameSerializer(PhoneNumberEnums.`Type`) :+
-    new EnumNameSerializer(PhoneNumberEnums.Status) :+
-    new EnumNameSerializer(PredefinedAnswerEnums.Format) :+
-    new EnumNameSerializer(RoleEnums.Role) :+
-    new EnumNameSerializer(SettingEnums.Name) :+
-    new EnumNameSerializer(SubscriptionEnums.Status) :+
-    new EnumNameSerializer(TicketEnums.Status) :+
-    new EnumNameSerializer(TicketListItemEnums.Status) :+
-    new EnumNameSerializer(TicketListItemEnums.DoNotSendMail) :+
-    new EnumNameSerializer(TicketListItemEnums.UseTemplate) :+
-    new EnumNameSerializer(TicketListItemEnums.IsHtmlMessage) :+
-    new EnumNameSerializer(TicketUpdatableEnums.Status) :+
-    new EnumNameSerializer(UpgradeEnums.BillingPeriod) :+
-    new EnumNameSerializer(UserEnums.Role) :+
-    new EnumNameSerializer(VariationUpgradesEnums.Currency)
+    new EnumNameSerializer[AgentEnums.Role](AgentEnums.Role.fromString) :+
+    new EnumNameSerializer[AgentEnums.Gender](AgentEnums.Gender.fromString) :+
+    new EnumNameSerializer[ApiKeyEnums.`Type`](ApiKeyEnums.`Type`.fromString) :+
+    new EnumNameSerializer[ApiKeyLoginEnums.`Type`](ApiKeyLoginEnums.`Type`.fromString) :+
+    new EnumNameSerializer[ApiKeyWithPrivilegesEnums.`Type`](ApiKeyWithPrivilegesEnums.`Type`.fromString) :+
+    new EnumNameSerializer[BillingStatusEnums.Status](BillingStatusEnums.Status.fromString) :+
+    new EnumNameSerializer[CallEnums.Direction](CallEnums.Direction.fromString) :+
+    new EnumNameSerializer[CallEnums.CalleeStatus](CallEnums.CalleeStatus.fromString) :+
+    new EnumNameSerializer[CallListItemEnums.`Type`](CallListItemEnums.`Type`.fromString) :+
+    new EnumNameSerializer[CallMessageEnums.`Type`](CallMessageEnums.`Type`.fromString) :+
+    new EnumNameSerializer[CallStatusEnums.Status](CallStatusEnums.Status.fromString) :+
+    new EnumNameSerializer[CallTransferResultEnums.CalleeStatus](CallTransferResultEnums.CalleeStatus.fromString) :+
+    new EnumNameSerializer[CompanyEnums.`Type`](CompanyEnums.`Type`.fromString) :+
+    new EnumNameSerializer[CompanyListItemEnums.`Type`](CompanyListItemEnums.`Type`.fromString) :+
+    new EnumNameSerializer[ContactEnums.`Type`](ContactEnums.`Type`.fromString) :+
+    new EnumNameSerializer[ContactListItemEnums.`Type`](ContactListItemEnums.`Type`.fromString) :+
+    new EnumNameSerializer[CustomButtonEnums.Method](CustomButtonEnums.Method.fromString) :+
+    new EnumNameSerializer[CustomButtonEnums.`Type`](CustomButtonEnums.`Type`.fromString) :+
+    new EnumNameSerializer[CustomButtonEnums.Status](CustomButtonEnums.Status.fromString) :+
+    new EnumNameSerializer[DiscountValueEnums.`Type`](DiscountValueEnums.`Type`.fromString) :+
+    new EnumNameSerializer[DiscountValueEnums.ValueType](DiscountValueEnums.ValueType.fromString) :+
+    new EnumNameSerializer[ExtensionEnums.Status](ExtensionEnums.Status.fromString) :+
+    new EnumNameSerializer[FilterEnums.Rtype](FilterEnums.Rtype.fromString) :+
+    new EnumNameSerializer[HostingInfoEnums.System](HostingInfoEnums.System.fromString) :+
+    new EnumNameSerializer[InvoiceEnums.Currency](InvoiceEnums.Currency.fromString) :+
+    new EnumNameSerializer[IvrChoiceEnums.Dtmf](IvrChoiceEnums.Dtmf.fromString) :+
+    new EnumNameSerializer[IvrStepEnums.`Type`](IvrStepEnums.`Type`.fromString) :+
+    new EnumNameSerializer[MessageEnums.`Type`](MessageEnums.`Type`.fromString) :+
+    new EnumNameSerializer[MessageEnums.Format](MessageEnums.Format.fromString) :+
+    new EnumNameSerializer[MessageGroupEnums.`Type`](MessageGroupEnums.`Type`.fromString) :+
+    new EnumNameSerializer[MessageGroupEnums.Status](MessageGroupEnums.Status.fromString) :+
+    new EnumNameSerializer[PaymentMethodEnums.PaymentType](PaymentMethodEnums.PaymentType.fromString) :+
+    new EnumNameSerializer[PaymentProcessorTypeEnums.ProcessorType](PaymentProcessorTypeEnums.ProcessorType.fromString) :+
+    new EnumNameSerializer[PhoneDeviceEnums.`Type`](PhoneDeviceEnums.`Type`.fromString) :+
+    new EnumNameSerializer[PhoneNumberEnums.`Type`](PhoneNumberEnums.`Type`.fromString) :+
+    new EnumNameSerializer[PhoneNumberEnums.Status](PhoneNumberEnums.Status.fromString) :+
+    new EnumNameSerializer[PredefinedAnswerEnums.Format](PredefinedAnswerEnums.Format.fromString) :+
+    new EnumNameSerializer[RoleEnums.Role](RoleEnums.Role.fromString) :+
+    new EnumNameSerializer[SettingEnums.Name](SettingEnums.Name.fromString) :+
+    new EnumNameSerializer[SubscriptionEnums.Status](SubscriptionEnums.Status.fromString) :+
+    new EnumNameSerializer[TicketEnums.Status](TicketEnums.Status.fromString) :+
+    new EnumNameSerializer[TicketListItemEnums.Status](TicketListItemEnums.Status.fromString) :+
+    new EnumNameSerializer[TicketListItemEnums.DoNotSendMail](TicketListItemEnums.DoNotSendMail.fromString) :+
+    new EnumNameSerializer[TicketListItemEnums.UseTemplate](TicketListItemEnums.UseTemplate.fromString) :+
+    new EnumNameSerializer[TicketListItemEnums.IsHtmlMessage](TicketListItemEnums.IsHtmlMessage.fromString) :+
+    new EnumNameSerializer[TicketUpdatableEnums.Status](TicketUpdatableEnums.Status.fromString) :+
+    new EnumNameSerializer[UpgradeEnums.BillingPeriod](UpgradeEnums.BillingPeriod.fromString) :+
+    new EnumNameSerializer[UserEnums.Role](UserEnums.Role.fromString) :+
+    new EnumNameSerializer[VariationUpgradesEnums.Currency](VariationUpgradesEnums.Currency.fromString)
 
-  private class EnumNameSerializer[E <: Enumeration: ClassTag](enum: E)
-    extends Serializer[E#Value] {
+  private class EnumNameSerializer[E <: ApiEnum: ClassTag](deserializeMethod: String => E)
+    extends Serializer[E] {
     import JsonDSL._
 
-    val EnumerationClass: Class[E#Value] = classOf[E#Value]
-
-    def deserialize(implicit format: Formats):
-    PartialFunction[(TypeInfo, JValue), E#Value] = {
-      case (t @ TypeInfo(EnumerationClass, _), json) if isValid(json) =>
+    def deserialize(implicit format: Formats):  PartialFunction[(TypeInfo, JValue), E] = {
+      case (TypeInfo(clazz, _), json) if clazz == implicitly[ClassTag[E]].runtimeClass =>
         json match {
           case JString(value) =>
-            enum.withName(value)
+            deserializeMethod(value)
           case value =>
-            throw new MappingException(s"Can't convert $value to $EnumerationClass")
+            throw new MappingException(s"Can't convert $value to ${clazz.getName}")
         }
     }
 
-    private[this] def isValid(json: JValue) = json match {
-      case JString(value) if enum.values.exists(_.toString == value) => true
-      case _ => false
-    }
-
     def serialize(implicit format: Formats): PartialFunction[Any, JValue] = {
-      case i: E#Value => i.toString
+      case i: ApiEnum => i.value
     }
   }
-
 }

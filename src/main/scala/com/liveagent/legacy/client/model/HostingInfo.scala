@@ -11,9 +11,11 @@
  */
 package com.liveagent.legacy.client.model
 
-import com.liveagent.legacy.client.core.ApiModel
+import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
 import org.joda.time.DateTime
 import java.util.UUID
+
+import org.json4s.MappingException
 
 case class HostingInfo (
   isHosted: Option[Boolean] = None,
@@ -21,12 +23,21 @@ case class HostingInfo (
 ) extends ApiModel
 
 object HostingInfoEnums {
+    sealed trait System extends ApiEnum
 
-  type System = System.Value
-  object System extends Enumeration {
-    val Dp = Value("dp")
-    val Crm = Value("crm")
-  }
+    object System {
+        case object Dp extends System { val value = "dp" }
+        case object Crm extends System { val value = "crm" }
+
+        def fromString(value: String): System = value match {
+          case "dp" =>
+            System.Dp
+          case "crm" =>
+            System.Crm
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to System")
+        }
+    }
 
 }
 

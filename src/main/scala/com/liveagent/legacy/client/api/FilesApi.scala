@@ -35,9 +35,9 @@ class FilesApi(baseUrl: String) {
    * 
    * @param file 
    */
-  def uploadFile(file: Option[File] = None)(implicit apiKey: ApiKeyValue): ApiRequest[StoredFile] =
+  def uploadFile(file: Option[File] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[StoredFile] =
     ApiRequest[StoredFile](ApiMethods.POST, baseUrl, "/files", "multipart/form-data")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withFormParam("file", file)
       .withSuccessResponse[StoredFile](200)
       .withDefaultErrorResponse[ErrorResponse]

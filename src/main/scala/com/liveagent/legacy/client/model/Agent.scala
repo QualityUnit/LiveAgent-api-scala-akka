@@ -11,9 +11,11 @@
  */
 package com.liveagent.legacy.client.model
 
-import com.liveagent.legacy.client.core.ApiModel
+import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
 import org.joda.time.DateTime
 import java.util.UUID
+
+import org.json4s.MappingException
 
 case class Agent (
   id: Option[String] = None,
@@ -30,20 +32,43 @@ case class Agent (
 ) extends ApiModel
 
 object AgentEnums {
+    sealed trait Role extends ApiEnum
 
-  type Role = Role.Value
-  type Gender = Gender.Value
-  object Role extends Enumeration {
-    val Owner = Value("owner")
-    val Admin = Value("admin")
-    val Agent = Value("agent")
-  }
+    object Role {
+        case object Owner extends Role { val value = "owner" }
+        case object Admin extends Role { val value = "admin" }
+        case object Agent extends Role { val value = "agent" }
 
-  object Gender extends Enumeration {
-    val `M` = Value("M")
-    val `F` = Value("F")
-    val `X` = Value("X")
-  }
+        def fromString(value: String): Role = value match {
+          case "owner" =>
+            Role.Owner
+          case "admin" =>
+            Role.Admin
+          case "agent" =>
+            Role.Agent
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to Role")
+        }
+    }
+
+    sealed trait Gender extends ApiEnum
+
+    object Gender {
+        case object `M` extends Gender { val value = "M" }
+        case object `F` extends Gender { val value = "F" }
+        case object `X` extends Gender { val value = "X" }
+
+        def fromString(value: String): Gender = value match {
+          case "M" =>
+            Gender.`M`
+          case "F" =>
+            Gender.`F`
+          case "X" =>
+            Gender.`X`
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to Gender")
+        }
+    }
 
 }
 

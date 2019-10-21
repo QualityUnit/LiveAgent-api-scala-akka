@@ -38,9 +38,9 @@ class DevicesApi(baseUrl: String) {
    * 
    * @param device 
    */
-  def createDevice(device: Option[Device] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Device] =
+  def createDevice(device: Option[Device] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Device] =
     ApiRequest[Device](ApiMethods.POST, baseUrl, "/devices", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(device)
       .withSuccessResponse[Device](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -58,9 +58,9 @@ class DevicesApi(baseUrl: String) {
    * @param departmentId 
    * @param plan 
    */
-  def createDeviceDepartmentPlans(deviceId: Int, departmentId: String, plan: Option[DeviceDepartmentPlanList] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Seq[DeviceDepartmentPlan]] =
+  def createDeviceDepartmentPlans(deviceId: Int, departmentId: String, plan: Option[DeviceDepartmentPlanList] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[DeviceDepartmentPlan]] =
     ApiRequest[Seq[DeviceDepartmentPlan]](ApiMethods.POST, baseUrl, "/devices/{deviceId}/departments/{departmentId}/plans", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(plan)
       .withPathParam("deviceId", deviceId)
       .withPathParam("departmentId", departmentId)
@@ -79,9 +79,9 @@ class DevicesApi(baseUrl: String) {
    * 
    * @param deviceId 
    */
-  def deleteDevice(deviceId: Int)(implicit apiKey: ApiKeyValue): ApiRequest[Any] =
+  def deleteDevice(deviceId: Int)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.DELETE, baseUrl, "/devices/{deviceId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("deviceId", deviceId)
       .withSuccessResponse[Any](200)
       .withErrorResponse[ErrorResponse](404)
@@ -102,9 +102,9 @@ class DevicesApi(baseUrl: String) {
    * @param deviceId 
    * @param departmentId 
    */
-  def deleteDeviceDepartment(deviceId: Int, departmentId: String)(implicit apiKey: ApiKeyValue): ApiRequest[Any] =
+  def deleteDeviceDepartment(deviceId: Int, departmentId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.DELETE, baseUrl, "/devices/{deviceId}/departments/{departmentId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("deviceId", deviceId)
       .withPathParam("departmentId", departmentId)
       .withSuccessResponse[Any](200)
@@ -126,9 +126,9 @@ class DevicesApi(baseUrl: String) {
    * @param deviceId 
    * @param departmentId 
    */
-  def deleteDeviceDepartmentPlans(deviceId: Int, departmentId: String)(implicit apiKey: ApiKeyValue): ApiRequest[Any] =
+  def deleteDeviceDepartmentPlans(deviceId: Int, departmentId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.DELETE, baseUrl, "/devices/{deviceId}/departments/{departmentId}/plans", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("deviceId", deviceId)
       .withPathParam("departmentId", departmentId)
       .withSuccessResponse[Any](200)
@@ -149,9 +149,9 @@ class DevicesApi(baseUrl: String) {
    * @param deviceId 
    * @param device 
    */
-  def deleteDeviceDepartments(deviceId: Int, device: Option[DeviceDepartmentList] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Any] =
+  def deleteDeviceDepartments(deviceId: Int, device: Option[DeviceDepartmentList] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.DELETE, baseUrl, "/devices/{deviceId}/departments", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(device)
       .withPathParam("deviceId", deviceId)
       .withSuccessResponse[Any](200)
@@ -169,9 +169,9 @@ class DevicesApi(baseUrl: String) {
    * 
    * @param deviceId 
    */
-  def getDevice(deviceId: Int)(implicit apiKey: ApiKeyValue): ApiRequest[Device] =
+  def getDevice(deviceId: Int)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Device] =
     ApiRequest[Device](ApiMethods.GET, baseUrl, "/devices/{deviceId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("deviceId", deviceId)
       .withSuccessResponse[Device](200)
       .withErrorResponse[ErrorResponse](404)
@@ -190,9 +190,9 @@ class DevicesApi(baseUrl: String) {
    * @param deviceId 
    * @param departmentId 
    */
-  def getDeviceDepartment(deviceId: Int, departmentId: String)(implicit apiKey: ApiKeyValue): ApiRequest[DeviceDepartment] =
+  def getDeviceDepartment(deviceId: Int, departmentId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[DeviceDepartment] =
     ApiRequest[DeviceDepartment](ApiMethods.GET, baseUrl, "/devices/{deviceId}/departments/{departmentId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("deviceId", deviceId)
       .withPathParam("departmentId", departmentId)
       .withSuccessResponse[DeviceDepartment](200)
@@ -212,9 +212,9 @@ class DevicesApi(baseUrl: String) {
    * @param deviceId 
    * @param departmentId 
    */
-  def getDeviceDepartmentPlan(deviceId: Int, departmentId: String)(implicit apiKey: ApiKeyValue): ApiRequest[Seq[DeviceDepartmentPlan]] =
+  def getDeviceDepartmentPlan(deviceId: Int, departmentId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[DeviceDepartmentPlan]] =
     ApiRequest[Seq[DeviceDepartmentPlan]](ApiMethods.GET, baseUrl, "/devices/{deviceId}/departments/{departmentId}/plans", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("deviceId", deviceId)
       .withPathParam("departmentId", departmentId)
       .withSuccessResponse[Seq[DeviceDepartmentPlan]](200)
@@ -241,9 +241,9 @@ class DevicesApi(baseUrl: String) {
    * @param sortFields 'Sort fields (json object {column:direction, ...}).'<br> Direction can be:<br> - \"ASC\" (ascending)<br> - \"DESC\" (descending) If _sortFields is defined, _sortField and _sortDir is ignored.
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
    */
-  def getDeviceDepartments(deviceId: Int, page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, sortFields: Option[String] = None, filters: Option[String] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Seq[DeviceDepartment]] =
+  def getDeviceDepartments(deviceId: Int, page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, sortFields: Option[String] = None, filters: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[DeviceDepartment]] =
     ApiRequest[Seq[DeviceDepartment]](ApiMethods.GET, baseUrl, "/devices/{deviceId}/departments", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withQueryParam("_page", page)
       .withQueryParam("_perPage", perPage)
       .withQueryParam("_from", from)
@@ -269,9 +269,9 @@ class DevicesApi(baseUrl: String) {
    * 
    * @param departmentId 
    */
-  def getDeviceDepartmentsByDepartmentId(departmentId: String)(implicit apiKey: ApiKeyValue): ApiRequest[Seq[DeviceDepartment]] =
+  def getDeviceDepartmentsByDepartmentId(departmentId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[DeviceDepartment]] =
     ApiRequest[Seq[DeviceDepartment]](ApiMethods.GET, baseUrl, "/devices/departments/{departmentId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("departmentId", departmentId)
       .withSuccessResponse[Seq[DeviceDepartment]](200)
       .withErrorResponse[ErrorResponse](404)
@@ -294,9 +294,9 @@ class DevicesApi(baseUrl: String) {
    * @param sortField Sorting field
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
    */
-  def getDevicesList(page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Seq[Device]] =
+  def getDevicesList(page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[Device]] =
     ApiRequest[Seq[Device]](ApiMethods.GET, baseUrl, "/devices", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withQueryParam("_page", page)
       .withQueryParam("_perPage", perPage)
       .withQueryParam("_from", from)
@@ -316,9 +316,9 @@ class DevicesApi(baseUrl: String) {
    * Available security schemes:
    *   apikey (apiKey)
    */
-  def getMyMobileDevicesList()(implicit apiKey: ApiKeyValue): ApiRequest[Seq[Device]] =
+  def getMyMobileDevicesList()(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[Device]] =
     ApiRequest[Seq[Device]](ApiMethods.GET, baseUrl, "/devices/_app_/", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withSuccessResponse[Seq[Device]](200)
       .withDefaultErrorResponse[ErrorResponse]
       
@@ -335,9 +335,9 @@ class DevicesApi(baseUrl: String) {
    * @param deviceId 
    * @param device 
    */
-  def updateDevice(deviceId: Int, device: Option[Device] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Device] =
+  def updateDevice(deviceId: Int, device: Option[Device] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Device] =
     ApiRequest[Device](ApiMethods.PUT, baseUrl, "/devices/{deviceId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(device)
       .withPathParam("deviceId", deviceId)
       .withSuccessResponse[Device](200)
@@ -358,9 +358,9 @@ class DevicesApi(baseUrl: String) {
    * @param departmentId 
    * @param deviceDepartment 
    */
-  def updateDeviceDepartment(deviceId: Int, departmentId: String, deviceDepartment: Option[DeviceDepartment] = None)(implicit apiKey: ApiKeyValue): ApiRequest[DeviceDepartment] =
+  def updateDeviceDepartment(deviceId: Int, departmentId: String, deviceDepartment: Option[DeviceDepartment] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[DeviceDepartment] =
     ApiRequest[DeviceDepartment](ApiMethods.PUT, baseUrl, "/devices/{deviceId}/departments/{departmentId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(deviceDepartment)
       .withPathParam("deviceId", deviceId)
       .withPathParam("departmentId", departmentId)
@@ -382,9 +382,9 @@ class DevicesApi(baseUrl: String) {
    * @param departmentId 
    * @param deviceDepartmentPlan 
    */
-  def updateDeviceDepartmentPlan(deviceId: Int, departmentId: String, deviceDepartmentPlan: Option[DeviceDepartmentPlan] = None)(implicit apiKey: ApiKeyValue): ApiRequest[DeviceDepartmentPlan] =
+  def updateDeviceDepartmentPlan(deviceId: Int, departmentId: String, deviceDepartmentPlan: Option[DeviceDepartmentPlan] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[DeviceDepartmentPlan] =
     ApiRequest[DeviceDepartmentPlan](ApiMethods.PUT, baseUrl, "/devices/{deviceId}/departments/{departmentId}/plans", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(deviceDepartmentPlan)
       .withPathParam("deviceId", deviceId)
       .withPathParam("departmentId", departmentId)
@@ -403,9 +403,9 @@ class DevicesApi(baseUrl: String) {
    * 
    * @param deviceDepartments 
    */
-  def updateDeviceDepartments(deviceDepartments: Option[DeviceDepartmentList] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Seq[DeviceDepartment]] =
+  def updateDeviceDepartments(deviceDepartments: Option[DeviceDepartmentList] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[DeviceDepartment]] =
     ApiRequest[Seq[DeviceDepartment]](ApiMethods.PUT, baseUrl, "/devices/departments/update", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(deviceDepartments)
       .withSuccessResponse[Seq[DeviceDepartment]](200)
       .withDefaultErrorResponse[ErrorResponse]

@@ -11,9 +11,11 @@
  */
 package com.liveagent.legacy.client.model
 
-import com.liveagent.legacy.client.core.ApiModel
+import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
 import org.joda.time.DateTime
 import java.util.UUID
+
+import org.json4s.MappingException
 
 case class Upgrade (
   variationId: String,
@@ -23,11 +25,18 @@ case class Upgrade (
 ) extends ApiModel
 
 object UpgradeEnums {
+    sealed trait BillingPeriod extends ApiEnum
 
-  type BillingPeriod = BillingPeriod.Value
-  object BillingPeriod extends Enumeration {
-    val `1m` = Value("1m")
-  }
+    object BillingPeriod {
+        case object `1m` extends BillingPeriod { val value = "1m" }
+
+        def fromString(value: String): BillingPeriod = value match {
+          case "1m" =>
+            BillingPeriod.`1m`
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to BillingPeriod")
+        }
+    }
 
 }
 

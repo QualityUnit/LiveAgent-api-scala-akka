@@ -37,9 +37,9 @@ class QueueApi(baseUrl: String) {
    * 
    * @param batchId 
    */
-  def getQueueBatch(batchId: String)(implicit apiKey: ApiKeyValue): ApiRequest[Batch] =
+  def getQueueBatch(batchId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Batch] =
     ApiRequest[Batch](ApiMethods.GET, baseUrl, "/queue/batch/{batchId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("batchId", batchId)
       .withSuccessResponse[Batch](200)
       .withErrorResponse[ErrorResponse](404)

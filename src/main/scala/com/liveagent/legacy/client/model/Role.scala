@@ -11,9 +11,11 @@
  */
 package com.liveagent.legacy.client.model
 
-import com.liveagent.legacy.client.core.ApiModel
+import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
 import org.joda.time.DateTime
 import java.util.UUID
+
+import org.json4s.MappingException
 
 case class Role (
   /* - D - Admin - A - Agent - C - Customer */
@@ -21,13 +23,24 @@ case class Role (
 ) extends ApiModel
 
 object RoleEnums {
+    sealed trait Role extends ApiEnum
 
-  type Role = Role.Value
-  object Role extends Enumeration {
-    val `D` = Value("D")
-    val `A` = Value("A")
-    val `C` = Value("C")
-  }
+    object Role {
+        case object `D` extends Role { val value = "D" }
+        case object `A` extends Role { val value = "A" }
+        case object `C` extends Role { val value = "C" }
+
+        def fromString(value: String): Role = value match {
+          case "D" =>
+            Role.`D`
+          case "A" =>
+            Role.`A`
+          case "C" =>
+            Role.`C`
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to Role")
+        }
+    }
 
 }
 

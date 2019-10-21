@@ -1,0 +1,34 @@
+{{>licenseInfo}}
+package {{apiPackage}}
+
+import com.liveagent.legacy.client.core.ApiEnum
+{{#models.0}}
+import {{modelPackage}}._
+{{/models.0}}
+import org.json4s._
+import scala.reflect.ClassTag
+
+object EnumsSerializers {
+
+  def all: Seq[Serializer[_]] = Seq[Serializer[_]](){{#models}}{{#model}}{{#hasEnums}}{{#vars}}{{#isEnum}} :+
+    new EnumNameSerializer[{{classname}}Enums.{{datatypeWithEnum}}]({{classname}}Enums.{{datatypeWithEnum}}.fromString){{/isEnum}}{{/vars}}{{/hasEnums}}{{/model}}{{/models}}
+
+  private class EnumNameSerializer[E <: ApiEnum: ClassTag](deserializeMethod: String => E)
+    extends Serializer[E] {
+    import JsonDSL._
+
+    def deserialize(implicit format: Formats):  PartialFunction[(TypeInfo, JValue), E] = {
+      case (TypeInfo(clazz, _), json) if clazz == implicitly[ClassTag[E]].runtimeClass =>
+        json match {
+          case JString(value) =>
+            deserializeMethod(value)
+          case value =>
+            throw new MappingException(s"Can't convert $value to ${clazz.getName}")
+        }
+    }
+
+    def serialize(implicit format: Formats): PartialFunction[Any, JValue] = {
+      case i: ApiEnum => i.value
+    }
+  }
+}

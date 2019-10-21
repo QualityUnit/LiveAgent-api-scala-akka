@@ -54,9 +54,9 @@ class SubscriptionsApi(baseUrl: String) {
    * @param subscriptionId 
    * @param body 
    */
-  def changeAddons(subscriptionId: String, body: Option[AddonList] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Seq[Addon]] =
+  def changeAddons(subscriptionId: String, body: Option[AddonList] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[Addon]] =
     ApiRequest[Seq[Addon]](ApiMethods.PUT, baseUrl, "/subscriptions/{subscriptionId}/addons/", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(body)
       .withPathParam("subscriptionId", subscriptionId)
       .withSuccessResponse[Seq[Addon]](200)
@@ -76,9 +76,9 @@ class SubscriptionsApi(baseUrl: String) {
    * @param subscriptionId 
    * @param body 
    */
-  def changePlan(subscriptionId: String, body: Option[Upgrade] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Any] =
+  def changePlan(subscriptionId: String, body: Option[Upgrade] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.POST, baseUrl, "/subscriptions/{subscriptionId}/_upgrade", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(body)
       .withPathParam("subscriptionId", subscriptionId)
       .withSuccessResponse[Any](200)
@@ -97,9 +97,9 @@ class SubscriptionsApi(baseUrl: String) {
    * 
    * @param subscriptionId 
    */
-  def getActiveAddons(subscriptionId: String)(implicit apiKey: ApiKeyValue): ApiRequest[Seq[Addon]] =
+  def getActiveAddons(subscriptionId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[Addon]] =
     ApiRequest[Seq[Addon]](ApiMethods.GET, baseUrl, "/subscriptions/{subscriptionId}/addons/", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("subscriptionId", subscriptionId)
       .withSuccessResponse[Seq[Addon]](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -117,9 +117,9 @@ class SubscriptionsApi(baseUrl: String) {
    * 
    * @param subscriptionId 
    */
-  def getBillingInfo(subscriptionId: String)(implicit apiKey: ApiKeyValue): ApiRequest[Customer] =
+  def getBillingInfo(subscriptionId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Customer] =
     ApiRequest[Customer](ApiMethods.GET, baseUrl, "/subscriptions/{subscriptionId}/billingInfo", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("subscriptionId", subscriptionId)
       .withSuccessResponse[Customer](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -137,9 +137,9 @@ class SubscriptionsApi(baseUrl: String) {
    * 
    * @param subscriptionId 
    */
-  def getBillingMetrics(subscriptionId: String)(implicit apiKey: ApiKeyValue): ApiRequest[Seq[BillingMetric]] =
+  def getBillingMetrics(subscriptionId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[BillingMetric]] =
     ApiRequest[Seq[BillingMetric]](ApiMethods.GET, baseUrl, "/subscriptions/{subscriptionId}/billingMetrics", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("subscriptionId", subscriptionId)
       .withSuccessResponse[Seq[BillingMetric]](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -157,9 +157,9 @@ class SubscriptionsApi(baseUrl: String) {
    * 
    * @param subscriptionId 
    */
-  def getBillingStatus(subscriptionId: String)(implicit apiKey: ApiKeyValue): ApiRequest[BillingStatus] =
+  def getBillingStatus(subscriptionId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[BillingStatus] =
     ApiRequest[BillingStatus](ApiMethods.GET, baseUrl, "/subscriptions/{subscriptionId}/billingStatus", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("subscriptionId", subscriptionId)
       .withSuccessResponse[BillingStatus](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -177,9 +177,9 @@ class SubscriptionsApi(baseUrl: String) {
    * 
    * @param subscriptionId 
    */
-  def getDomainInfo(subscriptionId: String)(implicit apiKey: ApiKeyValue): ApiRequest[Domain] =
+  def getDomainInfo(subscriptionId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Domain] =
     ApiRequest[Domain](ApiMethods.GET, baseUrl, "/subscriptions/{subscriptionId}/domain", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("subscriptionId", subscriptionId)
       .withSuccessResponse[Domain](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -197,9 +197,9 @@ class SubscriptionsApi(baseUrl: String) {
    * 
    * @param subscriptionId 
    */
-  def getPaymentMethod(subscriptionId: String)(implicit apiKey: ApiKeyValue): ApiRequest[PaymentInfo] =
+  def getPaymentMethod(subscriptionId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[PaymentInfo] =
     ApiRequest[PaymentInfo](ApiMethods.GET, baseUrl, "/subscriptions/{subscriptionId}/paymentMethod", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("subscriptionId", subscriptionId)
       .withSuccessResponse[PaymentInfo](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -219,9 +219,9 @@ class SubscriptionsApi(baseUrl: String) {
    * @param paymentType 
    * @param country 
    */
-  def getPaymentProcessor(subscriptionId: String, paymentType: String, country: Option[String] = None)(implicit apiKey: ApiKeyValue): ApiRequest[PaymentProcessorType] =
+  def getPaymentProcessor(subscriptionId: String, paymentType: String, country: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[PaymentProcessorType] =
     ApiRequest[PaymentProcessorType](ApiMethods.GET, baseUrl, "/subscriptions/{subscriptionId}/paymentProcessor", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withQueryParam("paymentType", paymentType)
       .withQueryParam("country", country)
       .withPathParam("subscriptionId", subscriptionId)
@@ -241,9 +241,9 @@ class SubscriptionsApi(baseUrl: String) {
    * 
    * @param subscriptionId 
    */
-  def getSubscription(subscriptionId: String)(implicit apiKey: ApiKeyValue): ApiRequest[Subscription] =
+  def getSubscription(subscriptionId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Subscription] =
     ApiRequest[Subscription](ApiMethods.GET, baseUrl, "/subscriptions/{subscriptionId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("subscriptionId", subscriptionId)
       .withSuccessResponse[Subscription](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -261,9 +261,9 @@ class SubscriptionsApi(baseUrl: String) {
    * 
    * @param subscriptionId 
    */
-  def getSubscriptionAttributes(subscriptionId: String)(implicit apiKey: ApiKeyValue): ApiRequest[Seq[AttributeSimple]] =
+  def getSubscriptionAttributes(subscriptionId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[AttributeSimple]] =
     ApiRequest[Seq[AttributeSimple]](ApiMethods.GET, baseUrl, "/subscriptions/{subscriptionId}/attributes/", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("subscriptionId", subscriptionId)
       .withSuccessResponse[Seq[AttributeSimple]](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -281,9 +281,9 @@ class SubscriptionsApi(baseUrl: String) {
    * 
    * @param subscriptionId 
    */
-  def getSubscriptionDiscounts(subscriptionId: String)(implicit apiKey: ApiKeyValue): ApiRequest[Seq[DiscountValue]] =
+  def getSubscriptionDiscounts(subscriptionId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[DiscountValue]] =
     ApiRequest[Seq[DiscountValue]](ApiMethods.GET, baseUrl, "/subscriptions/{subscriptionId}/discounts", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("subscriptionId", subscriptionId)
       .withSuccessResponse[Seq[DiscountValue]](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -308,9 +308,9 @@ class SubscriptionsApi(baseUrl: String) {
    * @param from Result set start. Takes precedence over _page.
    * @param to Result set end. Used only if _from is used.
    */
-  def getSubscriptionInvoices(subscriptionId: String, page: Option[Int] = None, perPage: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None, from: Option[Int] = None, to: Option[Int] = None)(implicit apiKey: ApiKeyValue): ApiRequest[InvoiceList] =
+  def getSubscriptionInvoices(subscriptionId: String, page: Option[Int] = None, perPage: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None, from: Option[Int] = None, to: Option[Int] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[InvoiceList] =
     ApiRequest[InvoiceList](ApiMethods.GET, baseUrl, "/subscriptions/{subscriptionId}/invoices/", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withQueryParam("_page", page)
       .withQueryParam("_perPage", perPage)
       .withQueryParam("_sortDir", sortDir)
@@ -337,9 +337,9 @@ class SubscriptionsApi(baseUrl: String) {
    * @param country 
    * @param vatId 
    */
-  def getUpgradeVariations(subscriptionId: String, country: Option[String] = None, vatId: Option[String] = None)(implicit apiKey: ApiKeyValue): ApiRequest[VariationUpgrades] =
+  def getUpgradeVariations(subscriptionId: String, country: Option[String] = None, vatId: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[VariationUpgrades] =
     ApiRequest[VariationUpgrades](ApiMethods.GET, baseUrl, "/subscriptions/{subscriptionId}/upgradeVariations", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withQueryParam("country", country)
       .withQueryParam("vatId", vatId)
       .withPathParam("subscriptionId", subscriptionId)
@@ -359,9 +359,9 @@ class SubscriptionsApi(baseUrl: String) {
    * 
    * @param subscriptionId 
    */
-  def resumeBilling(subscriptionId: String)(implicit apiKey: ApiKeyValue): ApiRequest[Any] =
+  def resumeBilling(subscriptionId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.POST, baseUrl, "/subscriptions/{subscriptionId}/_cancelStop", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("subscriptionId", subscriptionId)
       .withSuccessResponse[Any](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -380,9 +380,9 @@ class SubscriptionsApi(baseUrl: String) {
    * @param subscriptionId 
    * @param body 
    */
-  def setBillingInfo(subscriptionId: String, body: Option[BillingInfo] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Any] =
+  def setBillingInfo(subscriptionId: String, body: Option[BillingInfo] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.PUT, baseUrl, "/subscriptions/{subscriptionId}/billingInfo", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(body)
       .withPathParam("subscriptionId", subscriptionId)
       .withSuccessResponse[Any](200)
@@ -402,9 +402,9 @@ class SubscriptionsApi(baseUrl: String) {
    * @param subscriptionId 
    * @param body Domain can be sent anytime. Custom domain can be sent by itself or along with both certificate and key.
    */
-  def setCustomDomain(subscriptionId: String, body: Option[Domain] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Any] =
+  def setCustomDomain(subscriptionId: String, body: Option[Domain] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.PUT, baseUrl, "/subscriptions/{subscriptionId}/domain", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(body)
       .withPathParam("subscriptionId", subscriptionId)
       .withSuccessResponse[Any](200)
@@ -424,9 +424,9 @@ class SubscriptionsApi(baseUrl: String) {
    * @param subscriptionId 
    * @param body 
    */
-  def setPaymentMethod(subscriptionId: String, body: Option[PaymentMethod] = None)(implicit apiKey: ApiKeyValue): ApiRequest[PaymentInfo] =
+  def setPaymentMethod(subscriptionId: String, body: Option[PaymentMethod] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[PaymentInfo] =
     ApiRequest[PaymentInfo](ApiMethods.PUT, baseUrl, "/subscriptions/{subscriptionId}/paymentMethod", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(body)
       .withPathParam("subscriptionId", subscriptionId)
       .withSuccessResponse[PaymentInfo](200)
@@ -446,9 +446,9 @@ class SubscriptionsApi(baseUrl: String) {
    * @param subscriptionId 
    * @param body 
    */
-  def setSubscriptionUsage(subscriptionId: String, body: Option[UsageData] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Any] =
+  def setSubscriptionUsage(subscriptionId: String, body: Option[UsageData] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.PUT, baseUrl, "/subscriptions/{subscriptionId}/usage", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(body)
       .withPathParam("subscriptionId", subscriptionId)
       .withSuccessResponse[Any](200)
@@ -468,9 +468,9 @@ class SubscriptionsApi(baseUrl: String) {
    * @param subscriptionId 
    * @param reason Reason for stopping
    */
-  def stopBilling(subscriptionId: String, reason: Option[StopReason] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Any] =
+  def stopBilling(subscriptionId: String, reason: Option[StopReason] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.POST, baseUrl, "/subscriptions/{subscriptionId}/_stop", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(reason)
       .withPathParam("subscriptionId", subscriptionId)
       .withSuccessResponse[Any](200)
@@ -489,9 +489,9 @@ class SubscriptionsApi(baseUrl: String) {
    * 
    * @param subscriptionId 
    */
-  def updateApplication(subscriptionId: String)(implicit apiKey: ApiKeyValue): ApiRequest[Any] =
+  def updateApplication(subscriptionId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.POST, baseUrl, "/subscriptions/{subscriptionId}/_update", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("subscriptionId", subscriptionId)
       .withSuccessResponse[Any](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -512,9 +512,9 @@ class SubscriptionsApi(baseUrl: String) {
    * @param subscriptionId 
    * @param body 
    */
-  def validateBillingInfo(subscriptionId: String, body: Option[BillingInfo] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Any] =
+  def validateBillingInfo(subscriptionId: String, body: Option[BillingInfo] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.POST, baseUrl, "/subscriptions/{subscriptionId}/_validateBillingInfo", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(body)
       .withPathParam("subscriptionId", subscriptionId)
       .withSuccessResponse[Any](200)

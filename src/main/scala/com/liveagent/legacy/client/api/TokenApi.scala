@@ -37,9 +37,9 @@ class TokenApi(baseUrl: String) {
    * @param username Username
    * @param password Password
    */
-  def getAccessToken(username: String, password: String)(implicit apiKey: ApiKeyValue): ApiRequest[Token] =
+  def getAccessToken(username: String, password: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Token] =
     ApiRequest[Token](ApiMethods.GET, baseUrl, "/token", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withQueryParam("username", username)
       .withQueryParam("password", password)
       .withSuccessResponse[Token](200)

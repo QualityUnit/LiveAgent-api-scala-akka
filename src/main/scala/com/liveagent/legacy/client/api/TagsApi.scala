@@ -36,9 +36,9 @@ class TagsApi(baseUrl: String) {
    * 
    * @param tag 
    */
-  def createTag(tag: Option[Tag] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Tag] =
+  def createTag(tag: Option[Tag] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Tag] =
     ApiRequest[Tag](ApiMethods.POST, baseUrl, "/tags", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(tag)
       .withSuccessResponse[Tag](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -56,9 +56,9 @@ class TagsApi(baseUrl: String) {
    * 
    * @param tagId 
    */
-  def deleteTag(tagId: String)(implicit apiKey: ApiKeyValue): ApiRequest[Any] =
+  def deleteTag(tagId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.DELETE, baseUrl, "/tags/{tagId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("tagId", tagId)
       .withSuccessResponse[Any](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -75,9 +75,9 @@ class TagsApi(baseUrl: String) {
    * 
    * @param tagId 
    */
-  def getTagById(tagId: String)(implicit apiKey: ApiKeyValue): ApiRequest[Seq[Tag]] =
+  def getTagById(tagId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[Tag]] =
     ApiRequest[Seq[Tag]](ApiMethods.GET, baseUrl, "/tags/{tagId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("tagId", tagId)
       .withSuccessResponse[Seq[Tag]](200)
       .withErrorResponse[ErrorResponse](404)
@@ -97,9 +97,9 @@ class TagsApi(baseUrl: String) {
    * @param from Result set start. Takes precedence over _page.
    * @param to Result set end. Used only if _from is used.
    */
-  def getTagsList(page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Seq[Tag]] =
+  def getTagsList(page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[Tag]] =
     ApiRequest[Seq[Tag]](ApiMethods.GET, baseUrl, "/tags", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withQueryParam("_page", page)
       .withQueryParam("_perPage", perPage)
       .withQueryParam("_from", from)
@@ -120,9 +120,9 @@ class TagsApi(baseUrl: String) {
    * @param tagId 
    * @param tag 
    */
-  def updateTag(tagId: String, tag: Option[Tag] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Seq[Tag]] =
+  def updateTag(tagId: String, tag: Option[Tag] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[Tag]] =
     ApiRequest[Seq[Tag]](ApiMethods.PUT, baseUrl, "/tags/{tagId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(tag)
       .withPathParam("tagId", tagId)
       .withSuccessResponse[Seq[Tag]](200)

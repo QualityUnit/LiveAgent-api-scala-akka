@@ -11,9 +11,11 @@
  */
 package com.liveagent.legacy.client.model
 
-import com.liveagent.legacy.client.core.ApiModel
+import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
 import org.joda.time.DateTime
 import java.util.UUID
+
+import org.json4s.MappingException
 
 case class CallTransferResult (
   /* O - online, F - offline */
@@ -25,12 +27,21 @@ case class CallTransferResult (
 ) extends ApiModel
 
 object CallTransferResultEnums {
+    sealed trait CalleeStatus extends ApiEnum
 
-  type CalleeStatus = CalleeStatus.Value
-  object CalleeStatus extends Enumeration {
-    val `O` = Value("O")
-    val `F` = Value("F")
-  }
+    object CalleeStatus {
+        case object `O` extends CalleeStatus { val value = "O" }
+        case object `F` extends CalleeStatus { val value = "F" }
+
+        def fromString(value: String): CalleeStatus = value match {
+          case "O" =>
+            CalleeStatus.`O`
+          case "F" =>
+            CalleeStatus.`F`
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to CalleeStatus")
+        }
+    }
 
 }
 

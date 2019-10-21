@@ -11,9 +11,11 @@
  */
 package com.liveagent.legacy.client.model
 
-import com.liveagent.legacy.client.core.ApiModel
+import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
 import org.joda.time.DateTime
 import java.util.UUID
+
+import org.json4s.MappingException
 
 case class CustomButton (
   id: Option[String] = None,
@@ -29,24 +31,53 @@ case class CustomButton (
 ) extends ApiModel
 
 object CustomButtonEnums {
+    sealed trait Method extends ApiEnum
 
-  type Method = Method.Value
-  type `Type` = `Type`.Value
-  type Status = Status.Value
-  object Method extends Enumeration {
-    val GET = Value("GET")
-    val POST = Value("POST")
-  }
+    object Method {
+        case object GET extends Method { val value = "GET" }
+        case object POST extends Method { val value = "POST" }
 
-  object `Type` extends Enumeration {
-    val `E` = Value("E")
-    val `B` = Value("B")
-  }
+        def fromString(value: String): Method = value match {
+          case "GET" =>
+            Method.GET
+          case "POST" =>
+            Method.POST
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to Method")
+        }
+    }
 
-  object Status extends Enumeration {
-    val `A` = Value("A")
-    val `I` = Value("I")
-  }
+    sealed trait `Type` extends ApiEnum
+
+    object `Type` {
+        case object `E` extends `Type` { val value = "E" }
+        case object `B` extends `Type` { val value = "B" }
+
+        def fromString(value: String): `Type` = value match {
+          case "E" =>
+            `Type`.`E`
+          case "B" =>
+            `Type`.`B`
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to `Type`")
+        }
+    }
+
+    sealed trait Status extends ApiEnum
+
+    object Status {
+        case object `A` extends Status { val value = "A" }
+        case object `I` extends Status { val value = "I" }
+
+        def fromString(value: String): Status = value match {
+          case "A" =>
+            Status.`A`
+          case "I" =>
+            Status.`I`
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to Status")
+        }
+    }
 
 }
 

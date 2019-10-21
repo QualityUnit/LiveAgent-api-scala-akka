@@ -69,6 +69,8 @@ object ApiMethods {
  */
 trait ApiModel
 
+trait ApiEnum { def value: String }
+
 /**
  * Single trait defining a credential that can be transformed to a paramName / paramValue tupple
  */

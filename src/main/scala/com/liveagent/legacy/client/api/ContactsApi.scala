@@ -36,9 +36,9 @@ class ContactsApi(baseUrl: String) {
    * 
    * @param contact 
    */
-  def createContact(contact: Option[Contact] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Contact] =
+  def createContact(contact: Option[Contact] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Contact] =
     ApiRequest[Contact](ApiMethods.POST, baseUrl, "/contacts", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(contact)
       .withSuccessResponse[Contact](200)
       .withErrorResponse[ErrorResponse](400)
@@ -59,9 +59,9 @@ class ContactsApi(baseUrl: String) {
    * @param contactId 
    * @param deleteTickets <u>true</u>: Delete customer from all lists and also delete all his tickets.<br> <u>false</u>: Delete customer from all lists but leave his tickets intact.
    */
-  def deleteContact(contactId: String, deleteTickets: Boolean)(implicit apiKey: ApiKeyValue): ApiRequest[Any] =
+  def deleteContact(contactId: String, deleteTickets: Boolean)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.DELETE, baseUrl, "/contacts/{contactId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withQueryParam("deleteTickets", deleteTickets)
       .withPathParam("contactId", contactId)
       .withSuccessResponse[Any](200)
@@ -85,9 +85,9 @@ class ContactsApi(baseUrl: String) {
    * @param sortField Sorting field
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
    */
-  def getContactsList(page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Seq[ContactListItem]] =
+  def getContactsList(page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[ContactListItem]] =
     ApiRequest[Seq[ContactListItem]](ApiMethods.GET, baseUrl, "/contacts", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withQueryParam("_page", page)
       .withQueryParam("_perPage", perPage)
       .withQueryParam("_from", from)
@@ -110,9 +110,9 @@ class ContactsApi(baseUrl: String) {
    * 
    * @param contactId 
    */
-  def getSpecificContact(contactId: String)(implicit apiKey: ApiKeyValue): ApiRequest[Contact] =
+  def getSpecificContact(contactId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Contact] =
     ApiRequest[Contact](ApiMethods.GET, baseUrl, "/contacts/{contactId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("contactId", contactId)
       .withSuccessResponse[Contact](200)
       .withErrorResponse[ErrorResponse](404)
@@ -131,9 +131,9 @@ class ContactsApi(baseUrl: String) {
    * @param contactId 
    * @param contact 
    */
-  def patchContact(contactId: String, contact: Option[Contact] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Contact] =
+  def patchContact(contactId: String, contact: Option[Contact] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Contact] =
     ApiRequest[Contact](ApiMethods.PATCH, baseUrl, "/contacts/{contactId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(contact)
       .withPathParam("contactId", contactId)
       .withSuccessResponse[Contact](200)
@@ -153,9 +153,9 @@ class ContactsApi(baseUrl: String) {
    * @param contactId 
    * @param registrationEmail 
    */
-  def registerContact(contactId: String, registrationEmail: String)(implicit apiKey: ApiKeyValue): ApiRequest[Contact] =
+  def registerContact(contactId: String, registrationEmail: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Contact] =
     ApiRequest[Contact](ApiMethods.PUT, baseUrl, "/contacts/{contactId}/_register", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withQueryParam("registration_email", registrationEmail)
       .withPathParam("contactId", contactId)
       .withSuccessResponse[Contact](200)
@@ -175,9 +175,9 @@ class ContactsApi(baseUrl: String) {
    * @param contactId 
    * @param contact 
    */
-  def updateContact(contactId: String, contact: Option[Contact] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Contact] =
+  def updateContact(contactId: String, contact: Option[Contact] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Contact] =
     ApiRequest[Contact](ApiMethods.PUT, baseUrl, "/contacts/{contactId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(contact)
       .withPathParam("contactId", contactId)
       .withSuccessResponse[Contact](200)

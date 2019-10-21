@@ -37,9 +37,9 @@ class InvoicesApi(baseUrl: String) {
    * 
    * @param invoiceNumber 
    */
-  def dowloadInvoice(invoiceNumber: String)(implicit apiKey: ApiKeyValue): ApiRequest[File] =
+  def dowloadInvoice(invoiceNumber: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[File] =
     ApiRequest[File](ApiMethods.POST, baseUrl, "/invoices/{invoiceNumber}/_download", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("invoiceNumber", invoiceNumber)
       .withSuccessResponse[File](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -63,9 +63,9 @@ class InvoicesApi(baseUrl: String) {
    * @param from Result set start. Takes precedence over _page.
    * @param to Result set end. Used only if _from is used.
    */
-  def getInvoices(page: Option[Int] = None, perPage: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None, from: Option[Int] = None, to: Option[Int] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Seq[Invoice]] =
+  def getInvoices(page: Option[Int] = None, perPage: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None, from: Option[Int] = None, to: Option[Int] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[Invoice]] =
     ApiRequest[Seq[Invoice]](ApiMethods.GET, baseUrl, "/invoices/", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withQueryParam("_page", page)
       .withQueryParam("_perPage", perPage)
       .withQueryParam("_sortDir", sortDir)

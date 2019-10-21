@@ -38,9 +38,9 @@ class AgentsApi(baseUrl: String) {
    * 
    * @param agent 
    */
-  def convertRegisteredVisitor(agent: Option[Agent] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Agent] =
+  def convertRegisteredVisitor(agent: Option[Agent] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Agent] =
     ApiRequest[Agent](ApiMethods.POST, baseUrl, "/agents/convert", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(agent)
       .withSuccessResponse[Agent](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -58,9 +58,9 @@ class AgentsApi(baseUrl: String) {
    * 
    * @param userId 
    */
-  def deleteAgent(userId: String)(implicit apiKey: ApiKeyValue): ApiRequest[Any] =
+  def deleteAgent(userId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.DELETE, baseUrl, "/agents/{userId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("userId", userId)
       .withSuccessResponse[Any](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -78,9 +78,9 @@ class AgentsApi(baseUrl: String) {
    * 
    * @param userId 
    */
-  def getAgent(userId: String)(implicit apiKey: ApiKeyValue): ApiRequest[Agent] =
+  def getAgent(userId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Agent] =
     ApiRequest[Agent](ApiMethods.GET, baseUrl, "/agents/{userId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("userId", userId)
       .withSuccessResponse[Agent](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -99,9 +99,9 @@ class AgentsApi(baseUrl: String) {
    * 
    * @param userId 
    */
-  def getAgentStatuses(userId: String)(implicit apiKey: ApiKeyValue): ApiRequest[Seq[AgentStatus]] =
+  def getAgentStatuses(userId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[AgentStatus]] =
     ApiRequest[Seq[AgentStatus]](ApiMethods.GET, baseUrl, "/agents/{userId}/status", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("userId", userId)
       .withSuccessResponse[Seq[AgentStatus]](200)
       .withErrorResponse[ErrorResponse](404)
@@ -126,9 +126,9 @@ class AgentsApi(baseUrl: String) {
    * @param from Result set start. Takes precedence over _page.
    * @param to Result set end. Used only if _from is used.
    */
-  def getAgents(page: Option[Int] = None, perPage: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None, from: Option[Int] = None, to: Option[Int] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Seq[Agent]] =
+  def getAgents(page: Option[Int] = None, perPage: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None, from: Option[Int] = None, to: Option[Int] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[Agent]] =
     ApiRequest[Seq[Agent]](ApiMethods.GET, baseUrl, "/agents/", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withQueryParam("_page", page)
       .withQueryParam("_perPage", perPage)
       .withQueryParam("_sortDir", sortDir)
@@ -158,9 +158,9 @@ class AgentsApi(baseUrl: String) {
    * @param from Result set start. Takes precedence over _page.
    * @param to Result set end. Used only if _from is used.
    */
-  def getAgentsActivity(page: Option[Int] = None, perPage: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None, from: Option[Int] = None, to: Option[Int] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Seq[AgentActivity]] =
+  def getAgentsActivity(page: Option[Int] = None, perPage: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None, from: Option[Int] = None, to: Option[Int] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[AgentActivity]] =
     ApiRequest[Seq[AgentActivity]](ApiMethods.GET, baseUrl, "/agents/activity", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withQueryParam("_page", page)
       .withQueryParam("_perPage", perPage)
       .withQueryParam("_sortDir", sortDir)
@@ -186,9 +186,9 @@ class AgentsApi(baseUrl: String) {
    * 
    * @param userId 
    */
-  def loginAgent(userId: String)(implicit apiKey: ApiKeyValue): ApiRequest[ErrorResponse] =
+  def loginAgent(userId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[ErrorResponse] =
     ApiRequest[ErrorResponse](ApiMethods.POST, baseUrl, "/agents/{userId}/_login", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("userId", userId)
       .withErrorResponse[Unit](302)
       .withDefaultSuccessResponse[ErrorResponse]
@@ -206,9 +206,9 @@ class AgentsApi(baseUrl: String) {
    * 
    * @param userId 
    */
-  def logoutAgent(userId: String)(implicit apiKey: ApiKeyValue): ApiRequest[Any] =
+  def logoutAgent(userId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.POST, baseUrl, "/agents/{userId}/_logout", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("userId", userId)
       .withSuccessResponse[Any](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -226,9 +226,9 @@ class AgentsApi(baseUrl: String) {
    * 
    * @param userId 
    */
-  def pauseAgent(userId: String)(implicit apiKey: ApiKeyValue): ApiRequest[Any] =
+  def pauseAgent(userId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.POST, baseUrl, "/agents/{userId}/_pause", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("userId", userId)
       .withSuccessResponse[Any](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -246,9 +246,9 @@ class AgentsApi(baseUrl: String) {
    * 
    * @param agent 
    */
-  def undeleteAgent(agent: Option[Agent] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Agent] =
+  def undeleteAgent(agent: Option[Agent] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Agent] =
     ApiRequest[Agent](ApiMethods.POST, baseUrl, "/agents/undelete", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(agent)
       .withSuccessResponse[Agent](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -267,9 +267,9 @@ class AgentsApi(baseUrl: String) {
    * @param userId 
    * @param agent 
    */
-  def updateAgent(userId: String, agent: Option[Agent] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Agent] =
+  def updateAgent(userId: String, agent: Option[Agent] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Agent] =
     ApiRequest[Agent](ApiMethods.PUT, baseUrl, "/agents/{userId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(agent)
       .withPathParam("userId", userId)
       .withSuccessResponse[Agent](200)

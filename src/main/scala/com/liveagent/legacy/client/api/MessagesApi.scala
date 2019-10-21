@@ -37,9 +37,9 @@ class MessagesApi(baseUrl: String) {
    * @param from Result set start. Takes precedence over _page.
    * @param to Result set end. Used only if _from is used.
    */
-  def getMessage(messageId: Int, from: Option[Int] = None, to: Option[Int] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Message] =
+  def getMessage(messageId: Int, from: Option[Int] = None, to: Option[Int] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Message] =
     ApiRequest[Message](ApiMethods.GET, baseUrl, "/messages/{messageId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withQueryParam("_from", from)
       .withQueryParam("_to", to)
       .withPathParam("messageId", messageId)

@@ -11,9 +11,11 @@
  */
 package com.liveagent.legacy.client.model
 
-import com.liveagent.legacy.client.core.ApiModel
+import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
 import org.joda.time.DateTime
 import java.util.UUID
+
+import org.json4s.MappingException
 
 case class DiscountValue (
   name: Option[String] = None,
@@ -23,19 +25,40 @@ case class DiscountValue (
 ) extends ApiModel
 
 object DiscountValueEnums {
+    sealed trait `Type` extends ApiEnum
 
-  type `Type` = `Type`.Value
-  type ValueType = ValueType.Value
-  object `Type` extends Enumeration {
-    val OneTime = Value("one_time")
-    val CurrentPlan = Value("current_plan")
-    val Permanent = Value("permanent")
-  }
+    object `Type` {
+        case object OneTime extends `Type` { val value = "one_time" }
+        case object CurrentPlan extends `Type` { val value = "current_plan" }
+        case object Permanent extends `Type` { val value = "permanent" }
 
-  object ValueType extends Enumeration {
-    val PerCent = Value("per_cent")
-    val Constant = Value("constant")
-  }
+        def fromString(value: String): `Type` = value match {
+          case "one_time" =>
+            `Type`.OneTime
+          case "current_plan" =>
+            `Type`.CurrentPlan
+          case "permanent" =>
+            `Type`.Permanent
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to `Type`")
+        }
+    }
+
+    sealed trait ValueType extends ApiEnum
+
+    object ValueType {
+        case object PerCent extends ValueType { val value = "per_cent" }
+        case object Constant extends ValueType { val value = "constant" }
+
+        def fromString(value: String): ValueType = value match {
+          case "per_cent" =>
+            ValueType.PerCent
+          case "constant" =>
+            ValueType.Constant
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to ValueType")
+        }
+    }
 
 }
 

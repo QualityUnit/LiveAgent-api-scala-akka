@@ -36,9 +36,9 @@ class VariationsApi(baseUrl: String) {
    * 
    * @param variationId 
    */
-  def getVariation(variationId: String)(implicit apiKey: ApiKeyValue): ApiRequest[Variation] =
+  def getVariation(variationId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Variation] =
     ApiRequest[Variation](ApiMethods.GET, baseUrl, "/variations/{variationId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("variationId", variationId)
       .withSuccessResponse[Variation](200)
       .withDefaultErrorResponse[ErrorResponse]

@@ -36,9 +36,9 @@ class GroupsApi(baseUrl: String) {
    * 
    * @param group 
    */
-  def createGroup(group: Option[Group] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Group] =
+  def createGroup(group: Option[Group] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Group] =
     ApiRequest[Group](ApiMethods.POST, baseUrl, "/groups", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(group)
       .withSuccessResponse[Group](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -56,9 +56,9 @@ class GroupsApi(baseUrl: String) {
    * 
    * @param groupId 
    */
-  def deleteGroup(groupId: String)(implicit apiKey: ApiKeyValue): ApiRequest[Any] =
+  def deleteGroup(groupId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.DELETE, baseUrl, "/groups/{groupId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("groupId", groupId)
       .withSuccessResponse[Any](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -75,9 +75,9 @@ class GroupsApi(baseUrl: String) {
    * 
    * @param groupId 
    */
-  def getGroupById(groupId: String)(implicit apiKey: ApiKeyValue): ApiRequest[Seq[Group]] =
+  def getGroupById(groupId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[Group]] =
     ApiRequest[Seq[Group]](ApiMethods.GET, baseUrl, "/groups/{groupId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("groupId", groupId)
       .withSuccessResponse[Seq[Group]](200)
       .withErrorResponse[ErrorResponse](404)
@@ -97,9 +97,9 @@ class GroupsApi(baseUrl: String) {
    * @param from Result set start. Takes precedence over _page.
    * @param to Result set end. Used only if _from is used.
    */
-  def getGroupsList(page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Seq[Group]] =
+  def getGroupsList(page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[Group]] =
     ApiRequest[Seq[Group]](ApiMethods.GET, baseUrl, "/groups", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withQueryParam("_page", page)
       .withQueryParam("_perPage", perPage)
       .withQueryParam("_from", from)
@@ -120,9 +120,9 @@ class GroupsApi(baseUrl: String) {
    * @param groupId 
    * @param group 
    */
-  def updateGroup(groupId: String, group: Option[Group] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Seq[Group]] =
+  def updateGroup(groupId: String, group: Option[Group] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[Group]] =
     ApiRequest[Seq[Group]](ApiMethods.PUT, baseUrl, "/groups/{groupId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(group)
       .withPathParam("groupId", groupId)
       .withSuccessResponse[Seq[Group]](200)

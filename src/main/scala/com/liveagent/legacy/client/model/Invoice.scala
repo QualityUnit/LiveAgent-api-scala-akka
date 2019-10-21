@@ -11,9 +11,11 @@
  */
 package com.liveagent.legacy.client.model
 
-import com.liveagent.legacy.client.core.ApiModel
+import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
 import org.joda.time.DateTime
 import java.util.UUID
+
+import org.json4s.MappingException
 
 case class Invoice (
   subscriptionId: Option[String] = None,
@@ -32,12 +34,21 @@ case class Invoice (
 ) extends ApiModel
 
 object InvoiceEnums {
+    sealed trait Currency extends ApiEnum
 
-  type Currency = Currency.Value
-  object Currency extends Enumeration {
-    val USD = Value("USD")
-    val EUR = Value("EUR")
-  }
+    object Currency {
+        case object USD extends Currency { val value = "USD" }
+        case object EUR extends Currency { val value = "EUR" }
+
+        def fromString(value: String): Currency = value match {
+          case "USD" =>
+            Currency.USD
+          case "EUR" =>
+            Currency.EUR
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to Currency")
+        }
+    }
 
 }
 

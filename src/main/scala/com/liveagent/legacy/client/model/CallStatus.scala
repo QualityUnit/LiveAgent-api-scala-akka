@@ -11,9 +11,11 @@
  */
 package com.liveagent.legacy.client.model
 
-import com.liveagent.legacy.client.core.ApiModel
+import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
 import org.joda.time.DateTime
 import java.util.UUID
+
+import org.json4s.MappingException
 
 case class CallStatus (
   /* O (callee offline), Q (waiting in queue), R (ringing to an agent), C (calling with an agent), F (finished) */
@@ -23,15 +25,30 @@ case class CallStatus (
 ) extends ApiModel
 
 object CallStatusEnums {
+    sealed trait Status extends ApiEnum
 
-  type Status = Status.Value
-  object Status extends Enumeration {
-    val `O` = Value("O")
-    val `Q` = Value("Q")
-    val `R` = Value("R")
-    val `C` = Value("C")
-    val `F` = Value("F")
-  }
+    object Status {
+        case object `O` extends Status { val value = "O" }
+        case object `Q` extends Status { val value = "Q" }
+        case object `R` extends Status { val value = "R" }
+        case object `C` extends Status { val value = "C" }
+        case object `F` extends Status { val value = "F" }
+
+        def fromString(value: String): Status = value match {
+          case "O" =>
+            Status.`O`
+          case "Q" =>
+            Status.`Q`
+          case "R" =>
+            Status.`R`
+          case "C" =>
+            Status.`C`
+          case "F" =>
+            Status.`F`
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to Status")
+        }
+    }
 
 }
 

@@ -11,9 +11,11 @@
  */
 package com.liveagent.legacy.client.model
 
-import com.liveagent.legacy.client.core.ApiModel
+import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
 import org.joda.time.DateTime
 import java.util.UUID
+
+import org.json4s.MappingException
 
 case class PhoneDevice (
   id: String,
@@ -31,15 +33,30 @@ case class PhoneDevice (
 ) extends ApiModel
 
 object PhoneDeviceEnums {
+    sealed trait `Type` extends ApiEnum
 
-  type `Type` = `Type`.Value
-  object `Type` extends Enumeration {
-    val `A` = Value("A")
-    val `S` = Value("S")
-    val `E` = Value("E")
-    val `W` = Value("W")
-    val `I` = Value("I")
-  }
+    object `Type` {
+        case object `A` extends `Type` { val value = "A" }
+        case object `S` extends `Type` { val value = "S" }
+        case object `E` extends `Type` { val value = "E" }
+        case object `W` extends `Type` { val value = "W" }
+        case object `I` extends `Type` { val value = "I" }
+
+        def fromString(value: String): `Type` = value match {
+          case "A" =>
+            `Type`.`A`
+          case "S" =>
+            `Type`.`S`
+          case "E" =>
+            `Type`.`E`
+          case "W" =>
+            `Type`.`W`
+          case "I" =>
+            `Type`.`I`
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to `Type`")
+        }
+    }
 
 }
 

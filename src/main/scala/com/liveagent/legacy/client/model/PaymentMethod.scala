@@ -11,9 +11,11 @@
  */
 package com.liveagent.legacy.client.model
 
-import com.liveagent.legacy.client.core.ApiModel
+import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
 import org.joda.time.DateTime
 import java.util.UUID
+
+import org.json4s.MappingException
 
 case class PaymentMethod (
   paymentType: PaymentMethodEnums.PaymentType,
@@ -22,12 +24,21 @@ case class PaymentMethod (
 ) extends ApiModel
 
 object PaymentMethodEnums {
+    sealed trait PaymentType extends ApiEnum
 
-  type PaymentType = PaymentType.Value
-  object PaymentType extends Enumeration {
-    val Card = Value("card")
-    val Paypal = Value("paypal")
-  }
+    object PaymentType {
+        case object Card extends PaymentType { val value = "card" }
+        case object Paypal extends PaymentType { val value = "paypal" }
+
+        def fromString(value: String): PaymentType = value match {
+          case "card" =>
+            PaymentType.Card
+          case "paypal" =>
+            PaymentType.Paypal
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to PaymentType")
+        }
+    }
 
 }
 

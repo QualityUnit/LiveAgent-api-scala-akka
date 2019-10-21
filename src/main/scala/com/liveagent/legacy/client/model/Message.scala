@@ -11,9 +11,11 @@
  */
 package com.liveagent.legacy.client.model
 
-import com.liveagent.legacy.client.core.ApiModel
+import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
 import org.joda.time.DateTime
 import java.util.UUID
+
+import org.json4s.MappingException
 
 case class Message (
   id: Option[String] = None,
@@ -28,50 +30,133 @@ case class Message (
 ) extends ApiModel
 
 object MessageEnums {
+    sealed trait `Type` extends ApiEnum
 
-  type `Type` = `Type`.Value
-  type Format = Format.Value
-  object `Type` extends Enumeration {
-    val `M` = Value("M")
-    val `Y` = Value("Y")
-    val `Q` = Value("Q")
-    val `I` = Value("I")
-    val `F` = Value("F")
-    val `T` = Value("T")
-    val `E` = Value("E")
-    val `D` = Value("D")
-    val `H` = Value("H")
-    val `R` = Value("R")
-    val `S` = Value("S")
-    val `U` = Value("U")
-    val `G` = Value("G")
-    val `V` = Value("V")
-    val `1` = Value("1")
-    val `N` = Value("N")
-    val `L` = Value("L")
-    val `Z` = Value("Z")
-    val `A` = Value("A")
-    val `O` = Value("O")
-    val `J` = Value("J")
-    val `B` = Value("B")
-    val `W` = Value("W")
-    val `P` = Value("P")
-    val `C` = Value("C")
-    val `K` = Value("K")
-    val `X` = Value("X")
-    val `0` = Value("0")
-    val `2` = Value("2")
-    val `3` = Value("3")
-  }
+    object `Type` {
+        case object `M` extends `Type` { val value = "M" }
+        case object `Y` extends `Type` { val value = "Y" }
+        case object `Q` extends `Type` { val value = "Q" }
+        case object `I` extends `Type` { val value = "I" }
+        case object `F` extends `Type` { val value = "F" }
+        case object `T` extends `Type` { val value = "T" }
+        case object `E` extends `Type` { val value = "E" }
+        case object `D` extends `Type` { val value = "D" }
+        case object `H` extends `Type` { val value = "H" }
+        case object `R` extends `Type` { val value = "R" }
+        case object `S` extends `Type` { val value = "S" }
+        case object `U` extends `Type` { val value = "U" }
+        case object `G` extends `Type` { val value = "G" }
+        case object `V` extends `Type` { val value = "V" }
+        case object `1` extends `Type` { val value = "1" }
+        case object `N` extends `Type` { val value = "N" }
+        case object `L` extends `Type` { val value = "L" }
+        case object `Z` extends `Type` { val value = "Z" }
+        case object `A` extends `Type` { val value = "A" }
+        case object `O` extends `Type` { val value = "O" }
+        case object `J` extends `Type` { val value = "J" }
+        case object `B` extends `Type` { val value = "B" }
+        case object `W` extends `Type` { val value = "W" }
+        case object `P` extends `Type` { val value = "P" }
+        case object `C` extends `Type` { val value = "C" }
+        case object `K` extends `Type` { val value = "K" }
+        case object `X` extends `Type` { val value = "X" }
+        case object `0` extends `Type` { val value = "0" }
+        case object `2` extends `Type` { val value = "2" }
+        case object `3` extends `Type` { val value = "3" }
 
-  object Format extends Enumeration {
-    val `T` = Value("T")
-    val `H` = Value("H")
-    val `J` = Value("J")
-    val `X` = Value("X")
-    val `Y` = Value("Y")
-    val `Z` = Value("Z")
-  }
+        def fromString(value: String): `Type` = value match {
+          case "M" =>
+            `Type`.`M`
+          case "Y" =>
+            `Type`.`Y`
+          case "Q" =>
+            `Type`.`Q`
+          case "I" =>
+            `Type`.`I`
+          case "F" =>
+            `Type`.`F`
+          case "T" =>
+            `Type`.`T`
+          case "E" =>
+            `Type`.`E`
+          case "D" =>
+            `Type`.`D`
+          case "H" =>
+            `Type`.`H`
+          case "R" =>
+            `Type`.`R`
+          case "S" =>
+            `Type`.`S`
+          case "U" =>
+            `Type`.`U`
+          case "G" =>
+            `Type`.`G`
+          case "V" =>
+            `Type`.`V`
+          case "1" =>
+            `Type`.`1`
+          case "N" =>
+            `Type`.`N`
+          case "L" =>
+            `Type`.`L`
+          case "Z" =>
+            `Type`.`Z`
+          case "A" =>
+            `Type`.`A`
+          case "O" =>
+            `Type`.`O`
+          case "J" =>
+            `Type`.`J`
+          case "B" =>
+            `Type`.`B`
+          case "W" =>
+            `Type`.`W`
+          case "P" =>
+            `Type`.`P`
+          case "C" =>
+            `Type`.`C`
+          case "K" =>
+            `Type`.`K`
+          case "X" =>
+            `Type`.`X`
+          case "0" =>
+            `Type`.`0`
+          case "2" =>
+            `Type`.`2`
+          case "3" =>
+            `Type`.`3`
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to `Type`")
+        }
+    }
+
+    sealed trait Format extends ApiEnum
+
+    object Format {
+        case object `T` extends Format { val value = "T" }
+        case object `H` extends Format { val value = "H" }
+        case object `J` extends Format { val value = "J" }
+        case object `X` extends Format { val value = "X" }
+        case object `Y` extends Format { val value = "Y" }
+        case object `Z` extends Format { val value = "Z" }
+
+        def fromString(value: String): Format = value match {
+          case "T" =>
+            Format.`T`
+          case "H" =>
+            Format.`H`
+          case "J" =>
+            Format.`J`
+          case "X" =>
+            Format.`X`
+          case "Y" =>
+            Format.`Y`
+          case "Z" =>
+            Format.`Z`
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to Format")
+        }
+    }
 
 }
 

@@ -11,9 +11,11 @@
  */
 package com.liveagent.legacy.client.model
 
-import com.liveagent.legacy.client.core.ApiModel
+import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
 import org.joda.time.DateTime
 import java.util.UUID
+
+import org.json4s.MappingException
 
 case class CallMessage (
   /* T (text), H (html), A (audio - url to audio file or fileId), S (system), N (note), NF (note file) */
@@ -23,16 +25,33 @@ case class CallMessage (
 ) extends ApiModel
 
 object CallMessageEnums {
+    sealed trait `Type` extends ApiEnum
 
-  type `Type` = `Type`.Value
-  object `Type` extends Enumeration {
-    val `T` = Value("T")
-    val `H` = Value("H")
-    val `A` = Value("A")
-    val `S` = Value("S")
-    val `N` = Value("N")
-    val NF = Value("NF")
-  }
+    object `Type` {
+        case object `T` extends `Type` { val value = "T" }
+        case object `H` extends `Type` { val value = "H" }
+        case object `A` extends `Type` { val value = "A" }
+        case object `S` extends `Type` { val value = "S" }
+        case object `N` extends `Type` { val value = "N" }
+        case object NF extends `Type` { val value = "NF" }
+
+        def fromString(value: String): `Type` = value match {
+          case "T" =>
+            `Type`.`T`
+          case "H" =>
+            `Type`.`H`
+          case "A" =>
+            `Type`.`A`
+          case "S" =>
+            `Type`.`S`
+          case "N" =>
+            `Type`.`N`
+          case "NF" =>
+            `Type`.NF
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to `Type`")
+        }
+    }
 
 }
 

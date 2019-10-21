@@ -11,9 +11,11 @@
  */
 package com.liveagent.legacy.client.model
 
-import com.liveagent.legacy.client.core.ApiModel
+import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
 import org.joda.time.DateTime
 import java.util.UUID
+
+import org.json4s.MappingException
 
 case class PaymentProcessorType (
   processorType: Option[PaymentProcessorTypeEnums.ProcessorType] = None,
@@ -21,12 +23,21 @@ case class PaymentProcessorType (
 ) extends ApiModel
 
 object PaymentProcessorTypeEnums {
+    sealed trait ProcessorType extends ApiEnum
 
-  type ProcessorType = ProcessorType.Value
-  object ProcessorType extends Enumeration {
-    val Braintree = Value("Braintree")
-    val Stripe = Value("Stripe")
-  }
+    object ProcessorType {
+        case object Braintree extends ProcessorType { val value = "Braintree" }
+        case object Stripe extends ProcessorType { val value = "Stripe" }
+
+        def fromString(value: String): ProcessorType = value match {
+          case "Braintree" =>
+            ProcessorType.Braintree
+          case "Stripe" =>
+            ProcessorType.Stripe
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to ProcessorType")
+        }
+    }
 
 }
 

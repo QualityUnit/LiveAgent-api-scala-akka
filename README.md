@@ -1,4 +1,4 @@
-# liveagent-client
+# api-client
 
 LiveAgent API
 - API version: 3.0.0
@@ -37,7 +37,7 @@ Add this dependency to your project's POM:
 ```xml
 <dependency>
   <groupId>com.liveagent.legacy</groupId>
-  <artifactId>liveagent-client</artifactId>
+  <artifactId>api-client</artifactId>
   <version>3.0.3</version>
   <scope>compile</scope>
 </dependency>
@@ -48,13 +48,13 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.liveagent.legacy:liveagent-client:3.0.3"
+compile "com.liveagent.legacy:api-client:3.0.3"
 ```
 
 ### SBT users
 
 ```scala
-libraryDependencies += "com.liveagent.legacy" % "liveagent-client" % "3.0.3"
+libraryDependencies += "com.liveagent.legacy" % "api-client" % "3.0.3"
 ```
 
 ## Getting Started

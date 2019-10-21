@@ -11,9 +11,11 @@
  */
 package com.liveagent.legacy.client.model
 
-import com.liveagent.legacy.client.core.ApiModel
+import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
 import org.joda.time.DateTime
 import java.util.UUID
+
+import org.json4s.MappingException
 
 case class TicketUpdatable (
   ownerContactid: Option[String] = None,
@@ -26,20 +28,45 @@ case class TicketUpdatable (
 ) extends ApiModel
 
 object TicketUpdatableEnums {
+    sealed trait Status extends ApiEnum
 
-  type Status = Status.Value
-  object Status extends Enumeration {
-    val `I` = Value("I")
-    val `N` = Value("N")
-    val `T` = Value("T")
-    val `P` = Value("P")
-    val `R` = Value("R")
-    val `X` = Value("X")
-    val `B` = Value("B")
-    val `A` = Value("A")
-    val `C` = Value("C")
-    val `W` = Value("W")
-  }
+    object Status {
+        case object `I` extends Status { val value = "I" }
+        case object `N` extends Status { val value = "N" }
+        case object `T` extends Status { val value = "T" }
+        case object `P` extends Status { val value = "P" }
+        case object `R` extends Status { val value = "R" }
+        case object `X` extends Status { val value = "X" }
+        case object `B` extends Status { val value = "B" }
+        case object `A` extends Status { val value = "A" }
+        case object `C` extends Status { val value = "C" }
+        case object `W` extends Status { val value = "W" }
+
+        def fromString(value: String): Status = value match {
+          case "I" =>
+            Status.`I`
+          case "N" =>
+            Status.`N`
+          case "T" =>
+            Status.`T`
+          case "P" =>
+            Status.`P`
+          case "R" =>
+            Status.`R`
+          case "X" =>
+            Status.`X`
+          case "B" =>
+            Status.`B`
+          case "A" =>
+            Status.`A`
+          case "C" =>
+            Status.`C`
+          case "W" =>
+            Status.`W`
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to Status")
+        }
+    }
 
 }
 

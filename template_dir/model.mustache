@@ -1,0 +1,48 @@
+{{>licenseInfo}}
+package {{package}}
+
+import {{mainPackage}}.core.{ApiEnum, ApiModel}
+import org.joda.time.DateTime
+import java.util.UUID
+
+import org.json4s.MappingException
+
+{{#models}}
+{{#model}}
+case class {{classname}} (
+  {{#vars}}
+  {{#description}}
+  /* {{{description}}} */
+  {{/description}}
+  {{{name}}}: {{^required}}Option[{{/required}}{{^isEnum}}{{dataType}}{{/isEnum}}{{#isEnum}}{{classname}}Enums.{{datatypeWithEnum}}{{/isEnum}}{{^required}}] = None{{/required}}{{#hasMore}},{{/hasMore}}
+  {{/vars}}
+) extends ApiModel
+
+{{#hasEnums}}
+object {{classname}}Enums {
+    {{#vars}}
+    {{#isEnum}}
+    sealed trait {{datatypeWithEnum}} extends ApiEnum
+
+    object {{datatypeWithEnum}} {
+    {{#_enum}}
+        case object {{#fnEnumEntry}}{{.}}{{/fnEnumEntry}} extends {{datatypeWithEnum}} { val value = "{{.}}" }
+    {{/_enum}}
+
+        def fromString(value: String): {{datatypeWithEnum}} = value match {
+    {{#_enum}}
+          case "{{.}}" =>
+            {{datatypeWithEnum}}.{{#fnEnumEntry}}{{.}}{{/fnEnumEntry}}
+    {{/_enum}}
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to {{datatypeWithEnum}}")
+        }
+    }
+
+    {{/isEnum}}
+    {{/vars}}
+}
+{{/hasEnums}}
+{{/model}}
+{{/models}}
+

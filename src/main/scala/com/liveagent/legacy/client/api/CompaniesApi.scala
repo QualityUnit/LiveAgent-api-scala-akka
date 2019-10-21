@@ -36,9 +36,9 @@ class CompaniesApi(baseUrl: String) {
    * 
    * @param company 
    */
-  def createCompany(company: Option[Company] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Company] =
+  def createCompany(company: Option[Company] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Company] =
     ApiRequest[Company](ApiMethods.POST, baseUrl, "/companies", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(company)
       .withSuccessResponse[Company](200)
       .withErrorResponse[ErrorResponse](400)
@@ -59,9 +59,9 @@ class CompaniesApi(baseUrl: String) {
    * @param companyId 
    * @param deleteTickets <u>true</u>: Delete company from all lists and also delete all its tickets.<br> <u>false</u>: Delete company from all lists but leave its tickets intact.
    */
-  def deleteCompany(companyId: String, deleteTickets: Boolean)(implicit apiKey: ApiKeyValue): ApiRequest[Any] =
+  def deleteCompany(companyId: String, deleteTickets: Boolean)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.DELETE, baseUrl, "/companies/{companyId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withQueryParam("deleteTickets", deleteTickets)
       .withPathParam("companyId", companyId)
       .withSuccessResponse[Any](200)
@@ -85,9 +85,9 @@ class CompaniesApi(baseUrl: String) {
    * @param sortField Sorting field
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
    */
-  def getCompaniesList(page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Seq[CompanyListItem]] =
+  def getCompaniesList(page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[CompanyListItem]] =
     ApiRequest[Seq[CompanyListItem]](ApiMethods.GET, baseUrl, "/companies", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withQueryParam("_page", page)
       .withQueryParam("_perPage", perPage)
       .withQueryParam("_from", from)
@@ -110,9 +110,9 @@ class CompaniesApi(baseUrl: String) {
    * 
    * @param companyId 
    */
-  def getSpecificCompany(companyId: String)(implicit apiKey: ApiKeyValue): ApiRequest[Company] =
+  def getSpecificCompany(companyId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Company] =
     ApiRequest[Company](ApiMethods.GET, baseUrl, "/companies/{companyId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("companyId", companyId)
       .withSuccessResponse[Company](200)
       .withErrorResponse[ErrorResponse](404)
@@ -131,9 +131,9 @@ class CompaniesApi(baseUrl: String) {
    * @param companyId 
    * @param company 
    */
-  def updateCompany(companyId: String, company: Option[Company] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Company] =
+  def updateCompany(companyId: String, company: Option[Company] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Company] =
     ApiRequest[Company](ApiMethods.PUT, baseUrl, "/companies/{companyId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(company)
       .withPathParam("companyId", companyId)
       .withSuccessResponse[Company](200)

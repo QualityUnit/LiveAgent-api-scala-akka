@@ -11,9 +11,11 @@
  */
 package com.liveagent.legacy.client.model
 
-import com.liveagent.legacy.client.core.ApiModel
+import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
 import org.joda.time.DateTime
 import java.util.UUID
+
+import org.json4s.MappingException
 
 case class Call (
   id: String,
@@ -44,20 +46,43 @@ case class Call (
 ) extends ApiModel
 
 object CallEnums {
+    sealed trait Direction extends ApiEnum
 
-  type Direction = Direction.Value
-  type CalleeStatus = CalleeStatus.Value
-  object Direction extends Enumeration {
-    val In = Value("in")
-    val Out = Value("out")
-    val Int = Value("int")
-  }
+    object Direction {
+        case object In extends Direction { val value = "in" }
+        case object Out extends Direction { val value = "out" }
+        case object Int extends Direction { val value = "int" }
 
-  object CalleeStatus extends Enumeration {
-    val `O` = Value("O")
-    val `F` = Value("F")
-    val `U` = Value("U")
-  }
+        def fromString(value: String): Direction = value match {
+          case "in" =>
+            Direction.In
+          case "out" =>
+            Direction.Out
+          case "int" =>
+            Direction.Int
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to Direction")
+        }
+    }
+
+    sealed trait CalleeStatus extends ApiEnum
+
+    object CalleeStatus {
+        case object `O` extends CalleeStatus { val value = "O" }
+        case object `F` extends CalleeStatus { val value = "F" }
+        case object `U` extends CalleeStatus { val value = "U" }
+
+        def fromString(value: String): CalleeStatus = value match {
+          case "O" =>
+            CalleeStatus.`O`
+          case "F" =>
+            CalleeStatus.`F`
+          case "U" =>
+            CalleeStatus.`U`
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to CalleeStatus")
+        }
+    }
 
 }
 

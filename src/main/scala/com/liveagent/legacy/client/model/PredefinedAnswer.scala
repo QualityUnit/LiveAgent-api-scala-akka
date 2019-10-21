@@ -11,9 +11,11 @@
  */
 package com.liveagent.legacy.client.model
 
-import com.liveagent.legacy.client.core.ApiModel
+import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
 import org.joda.time.DateTime
 import java.util.UUID
+
+import org.json4s.MappingException
 
 case class PredefinedAnswer (
   id: String,
@@ -27,12 +29,21 @@ case class PredefinedAnswer (
 ) extends ApiModel
 
 object PredefinedAnswerEnums {
+    sealed trait Format extends ApiEnum
 
-  type Format = Format.Value
-  object Format extends Enumeration {
-    val `T` = Value("T")
-    val `H` = Value("H")
-  }
+    object Format {
+        case object `T` extends Format { val value = "T" }
+        case object `H` extends Format { val value = "H" }
+
+        def fromString(value: String): Format = value match {
+          case "T" =>
+            Format.`T`
+          case "H" =>
+            Format.`H`
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to Format")
+        }
+    }
 
 }
 

@@ -37,9 +37,9 @@ class MailAccountApi(baseUrl: String) {
    * 
    * @param mailAccountId 
    */
-  def getMailAccount(mailAccountId: String)(implicit apiKey: ApiKeyValue): ApiRequest[MailAccount] =
+  def getMailAccount(mailAccountId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[MailAccount] =
     ApiRequest[MailAccount](ApiMethods.GET, baseUrl, "/mail_accounts/{mailAccountId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("mailAccountId", mailAccountId)
       .withSuccessResponse[MailAccount](200)
       .withErrorResponse[ErrorResponse](404)
@@ -63,9 +63,9 @@ class MailAccountApi(baseUrl: String) {
    * @param sortField Sorting field
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
    */
-  def getMailAccountList(page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Seq[MailAccount]] =
+  def getMailAccountList(page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[MailAccount]] =
     ApiRequest[Seq[MailAccount]](ApiMethods.GET, baseUrl, "/mail_accounts", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withQueryParam("_page", page)
       .withQueryParam("_perPage", perPage)
       .withQueryParam("_from", from)

@@ -42,9 +42,9 @@ class PrincipalApi(baseUrl: String) {
    * 
    * @param principalId Principal id
    */
-  def getDepartments(principalId: String)(implicit apiKey: ApiKeyValue): ApiRequest[Departments] =
+  def getDepartments(principalId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Departments] =
     ApiRequest[Departments](ApiMethods.GET, baseUrl, "/principal/{principalId}/departments", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("principalId", principalId)
       .withSuccessResponse[Departments](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -60,9 +60,9 @@ class PrincipalApi(baseUrl: String) {
    * 
    * @param principalId Principal id
    */
-  def getRole(principalId: String)(implicit apiKey: ApiKeyValue): ApiRequest[Role] =
+  def getRole(principalId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Role] =
     ApiRequest[Role](ApiMethods.GET, baseUrl, "/principal/{principalId}/role", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("principalId", principalId)
       .withSuccessResponse[Role](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -78,9 +78,9 @@ class PrincipalApi(baseUrl: String) {
    * 
    * @param browserId 
    */
-  def resolveBrowser(browserId: Option[BrowserId] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Browser] =
+  def resolveBrowser(browserId: Option[BrowserId] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Browser] =
     ApiRequest[Browser](ApiMethods.POST, baseUrl, "/principal/resolveBrowser", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(browserId)
       .withSuccessResponse[Browser](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -96,9 +96,9 @@ class PrincipalApi(baseUrl: String) {
    * 
    * @param sessionId 
    */
-  def resolveUserIdFromSession(sessionId: SessionId)(implicit apiKey: ApiKeyValue): ApiRequest[UserId] =
+  def resolveUserIdFromSession(sessionId: SessionId)(implicit apiKeyValue: ApiKeyValue): ApiRequest[UserId] =
     ApiRequest[UserId](ApiMethods.POST, baseUrl, "/principal/resolveUserIdFromSession", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(sessionId)
       .withSuccessResponse[UserId](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -114,9 +114,9 @@ class PrincipalApi(baseUrl: String) {
    * 
    * @param visitorId 
    */
-  def resolveUserIdFromVisitorId(visitorId: VisitorId)(implicit apiKey: ApiKeyValue): ApiRequest[UserId] =
+  def resolveUserIdFromVisitorId(visitorId: VisitorId)(implicit apiKeyValue: ApiKeyValue): ApiRequest[UserId] =
     ApiRequest[UserId](ApiMethods.POST, baseUrl, "/principal/resolveUserIdFromVisitorId", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(visitorId)
       .withSuccessResponse[UserId](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -132,9 +132,9 @@ class PrincipalApi(baseUrl: String) {
    * 
    * @param visitorId 
    */
-  def resolveVisitor(visitorId: VisitorId)(implicit apiKey: ApiKeyValue): ApiRequest[Visitor] =
+  def resolveVisitor(visitorId: VisitorId)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Visitor] =
     ApiRequest[Visitor](ApiMethods.POST, baseUrl, "/principal/resolveVisitor", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(visitorId)
       .withSuccessResponse[Visitor](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -152,9 +152,9 @@ class PrincipalApi(baseUrl: String) {
    * 
    * @param credentials 
    */
-  def validateCredentials(credentials: PrincipalCredentials)(implicit apiKey: ApiKeyValue): ApiRequest[UserId] =
+  def validateCredentials(credentials: PrincipalCredentials)(implicit apiKeyValue: ApiKeyValue): ApiRequest[UserId] =
     ApiRequest[UserId](ApiMethods.POST, baseUrl, "/principal/validateCredentials", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(credentials)
       .withSuccessResponse[UserId](200)
       .withDefaultErrorResponse[ErrorResponse]

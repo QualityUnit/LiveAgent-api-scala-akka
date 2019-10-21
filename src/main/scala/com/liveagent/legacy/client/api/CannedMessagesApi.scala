@@ -36,9 +36,9 @@ class CannedMessagesApi(baseUrl: String) {
    * 
    * @param cannedMessage 
    */
-  def createCannedMessage(cannedMessage: Option[CannedMessage] = None)(implicit apiKey: ApiKeyValue): ApiRequest[CannedMessage] =
+  def createCannedMessage(cannedMessage: Option[CannedMessage] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[CannedMessage] =
     ApiRequest[CannedMessage](ApiMethods.POST, baseUrl, "/canned_messages", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(cannedMessage)
       .withSuccessResponse[CannedMessage](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -56,9 +56,9 @@ class CannedMessagesApi(baseUrl: String) {
    * 
    * @param cannedMessageId 
    */
-  def deleteCannedMessage(cannedMessageId: String)(implicit apiKey: ApiKeyValue): ApiRequest[Any] =
+  def deleteCannedMessage(cannedMessageId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.DELETE, baseUrl, "/canned_messages/{cannedMessageId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("cannedMessageId", cannedMessageId)
       .withSuccessResponse[Any](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -75,9 +75,9 @@ class CannedMessagesApi(baseUrl: String) {
    * 
    * @param cannedMessageId 
    */
-  def getCannedMessage(cannedMessageId: String)(implicit apiKey: ApiKeyValue): ApiRequest[CannedMessage] =
+  def getCannedMessage(cannedMessageId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[CannedMessage] =
     ApiRequest[CannedMessage](ApiMethods.GET, baseUrl, "/canned_messages/{cannedMessageId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("cannedMessageId", cannedMessageId)
       .withSuccessResponse[CannedMessage](200)
       .withErrorResponse[ErrorResponse](404)
@@ -100,9 +100,9 @@ class CannedMessagesApi(baseUrl: String) {
    * @param sortField Sorting field
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
    */
-  def getCannedMessagesList(page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None)(implicit apiKey: ApiKeyValue): ApiRequest[Seq[CannedMessage]] =
+  def getCannedMessagesList(page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[CannedMessage]] =
     ApiRequest[Seq[CannedMessage]](ApiMethods.GET, baseUrl, "/canned_messages", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withQueryParam("_page", page)
       .withQueryParam("_perPage", perPage)
       .withQueryParam("_from", from)
@@ -127,9 +127,9 @@ class CannedMessagesApi(baseUrl: String) {
    * @param cannedMessageId 
    * @param cannedMessage 
    */
-  def updateCannedMessage(cannedMessageId: String, cannedMessage: Option[CannedMessage] = None)(implicit apiKey: ApiKeyValue): ApiRequest[CannedMessage] =
+  def updateCannedMessage(cannedMessageId: String, cannedMessage: Option[CannedMessage] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[CannedMessage] =
     ApiRequest[CannedMessage](ApiMethods.PUT, baseUrl, "/canned_messages/{cannedMessageId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(cannedMessage)
       .withPathParam("cannedMessageId", cannedMessageId)
       .withSuccessResponse[CannedMessage](200)

@@ -47,9 +47,9 @@ class PhoneNumbersApi(baseUrl: String) {
    * @param providerid 
    * @param ivr 
    */
-  def addNumber(`type`: String, number: String, status: String, dialOutPrefix: Option[Int] = None, recordCall: Option[Boolean] = None, name: Option[String] = None, departmentid: Option[String] = None, hostSettings: Option[String] = None, host: Option[String] = None, port: Option[String] = None, user: Option[String] = None, password: Option[String] = None, providerid: Option[String] = None, ivr: Option[String] = None)(implicit apiKey: ApiKeyValue): ApiRequest[PhoneNumber] =
+  def addNumber(`type`: String, number: String, status: String, dialOutPrefix: Option[Int] = None, recordCall: Option[Boolean] = None, name: Option[String] = None, departmentid: Option[String] = None, hostSettings: Option[String] = None, host: Option[String] = None, port: Option[String] = None, user: Option[String] = None, password: Option[String] = None, providerid: Option[String] = None, ivr: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[PhoneNumber] =
     ApiRequest[PhoneNumber](ApiMethods.POST, baseUrl, "/phone_numbers", "application/x-www-form-urlencoded")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withFormParam("type", `type`)
       .withFormParam("dial_out_prefix", dialOutPrefix)
       .withFormParam("record_call", recordCall)
@@ -79,9 +79,9 @@ class PhoneNumbersApi(baseUrl: String) {
    * 
    * @param phoneNumberId 
    */
-  def getPhoneNumber(phoneNumberId: String)(implicit apiKey: ApiKeyValue): ApiRequest[PhoneNumber] =
+  def getPhoneNumber(phoneNumberId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[PhoneNumber] =
     ApiRequest[PhoneNumber](ApiMethods.GET, baseUrl, "/phone_numbers/{phoneNumberId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("phoneNumberId", phoneNumberId)
       .withSuccessResponse[PhoneNumber](200)
       .withErrorResponse[ErrorResponse](404)
@@ -103,9 +103,9 @@ class PhoneNumbersApi(baseUrl: String) {
    * @param cursor used for iteration throght resultset. Cursor identifies specific page in resultset.
    * @param additionalObjects Additional objects
    */
-  def getPhoneNumbersList(perPage: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None, cursor: Option[String] = None, additionalObjects: Seq[String])(implicit apiKey: ApiKeyValue): ApiRequest[Seq[PhoneNumber]] =
+  def getPhoneNumbersList(perPage: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None, cursor: Option[String] = None, additionalObjects: Seq[String])(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[PhoneNumber]] =
     ApiRequest[Seq[PhoneNumber]](ApiMethods.GET, baseUrl, "/phone_numbers", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withQueryParam("_perPage", perPage)
       .withQueryParam("_sortDir", sortDir)
       .withQueryParam("_sortField", sortField)
@@ -127,9 +127,9 @@ class PhoneNumbersApi(baseUrl: String) {
    * 
    * @param phoneNumberId 
    */
-  def removePhoneNumber(phoneNumberId: String)(implicit apiKey: ApiKeyValue): ApiRequest[Any] =
+  def removePhoneNumber(phoneNumberId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.DELETE, baseUrl, "/phone_numbers/{phoneNumberId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("phoneNumberId", phoneNumberId)
       .withSuccessResponse[Any](200)
       .withErrorResponse[ErrorResponse](404)
@@ -148,9 +148,9 @@ class PhoneNumbersApi(baseUrl: String) {
    * @param phoneNumberId 
    * @param phoneNumber 
    */
-  def updatePhoneNumber(phoneNumberId: String, phoneNumber: PhoneNumber)(implicit apiKey: ApiKeyValue): ApiRequest[PhoneNumber] =
+  def updatePhoneNumber(phoneNumberId: String, phoneNumber: PhoneNumber)(implicit apiKeyValue: ApiKeyValue): ApiRequest[PhoneNumber] =
     ApiRequest[PhoneNumber](ApiMethods.PUT, baseUrl, "/phone_numbers/{phoneNumberId}", "application/json")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withBody(phoneNumber)
       .withPathParam("phoneNumberId", phoneNumberId)
       .withSuccessResponse[PhoneNumber](200)
@@ -170,9 +170,9 @@ class PhoneNumbersApi(baseUrl: String) {
    * @param phoneNumberId 
    * @param status A - Active, I - Inactive
    */
-  def updatePhoneNumberStatus(phoneNumberId: String, status: String)(implicit apiKey: ApiKeyValue): ApiRequest[PhoneNumber] =
+  def updatePhoneNumberStatus(phoneNumberId: String, status: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[PhoneNumber] =
     ApiRequest[PhoneNumber](ApiMethods.PUT, baseUrl, "/phone_numbers/{phoneNumberId}/status", "application/x-www-form-urlencoded")
-      .withApiKey(apiKey, "apikey", HEADER)
+      .withApiKey(apiKeyValue, "apikey", HEADER)
       .withFormParam("status", status)
       .withPathParam("phoneNumberId", phoneNumberId)
       .withSuccessResponse[PhoneNumber](200)

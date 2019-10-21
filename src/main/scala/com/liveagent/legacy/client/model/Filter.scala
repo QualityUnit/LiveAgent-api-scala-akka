@@ -11,9 +11,11 @@
  */
 package com.liveagent.legacy.client.model
 
-import com.liveagent.legacy.client.core.ApiModel
+import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
 import org.joda.time.DateTime
 import java.util.UUID
+
+import org.json4s.MappingException
 
 case class Filter (
   filterId: Option[String] = None,
@@ -30,13 +32,24 @@ case class Filter (
 ) extends ApiModel
 
 object FilterEnums {
+    sealed trait Rtype extends ApiEnum
 
-  type Rtype = Rtype.Value
-  object Rtype extends Enumeration {
-    val `C` = Value("C")
-    val `S` = Value("S")
-    val `P` = Value("P")
-  }
+    object Rtype {
+        case object `C` extends Rtype { val value = "C" }
+        case object `S` extends Rtype { val value = "S" }
+        case object `P` extends Rtype { val value = "P" }
+
+        def fromString(value: String): Rtype = value match {
+          case "C" =>
+            Rtype.`C`
+          case "S" =>
+            Rtype.`S`
+          case "P" =>
+            Rtype.`P`
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to Rtype")
+        }
+    }
 
 }
 

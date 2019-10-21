@@ -11,9 +11,11 @@
  */
 package com.liveagent.legacy.client.model
 
-import com.liveagent.legacy.client.core.ApiModel
+import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
 import org.joda.time.DateTime
 import java.util.UUID
+
+import org.json4s.MappingException
 
 case class IvrStep (
   /* P - play message (URL in params), R - ring to agent (optional departmentId in params), V - redirect to voicemail, D - choice (choices), G - goto (IVR name in params), T - transfer (optional ivr settings in choices {\"1\":\"online\",\"0\":\"offline\",\"9\":\"queue\"}), F - fetch next IVR steps from URL in params, I - wait for DTMF input and then fetch next IVR steps from URL in params */
@@ -23,18 +25,39 @@ case class IvrStep (
 ) extends ApiModel
 
 object IvrStepEnums {
+    sealed trait `Type` extends ApiEnum
 
-  type `Type` = `Type`.Value
-  object `Type` extends Enumeration {
-    val `P` = Value("P")
-    val `R` = Value("R")
-    val `V` = Value("V")
-    val `D` = Value("D")
-    val `G` = Value("G")
-    val `T` = Value("T")
-    val `F` = Value("F")
-    val `I` = Value("I")
-  }
+    object `Type` {
+        case object `P` extends `Type` { val value = "P" }
+        case object `R` extends `Type` { val value = "R" }
+        case object `V` extends `Type` { val value = "V" }
+        case object `D` extends `Type` { val value = "D" }
+        case object `G` extends `Type` { val value = "G" }
+        case object `T` extends `Type` { val value = "T" }
+        case object `F` extends `Type` { val value = "F" }
+        case object `I` extends `Type` { val value = "I" }
+
+        def fromString(value: String): `Type` = value match {
+          case "P" =>
+            `Type`.`P`
+          case "R" =>
+            `Type`.`R`
+          case "V" =>
+            `Type`.`V`
+          case "D" =>
+            `Type`.`D`
+          case "G" =>
+            `Type`.`G`
+          case "T" =>
+            `Type`.`T`
+          case "F" =>
+            `Type`.`F`
+          case "I" =>
+            `Type`.`I`
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to `Type`")
+        }
+    }
 
 }
 

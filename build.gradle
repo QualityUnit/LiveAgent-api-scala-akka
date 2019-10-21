@@ -1,6 +1,3 @@
-group 'com.liveagent.legacy.api'
-version '1.0-SNAPSHOT'
-
 buildscript {
     repositories {
         mavenLocal()
@@ -23,6 +20,9 @@ buildscript {
 
 apply plugin: 'org.openapi.generator'
 
+group 'com.liveagent.legacy.api'
+version '1.0-SNAPSHOT'
+
 openApiMeta {
     generatorName = "Sample"
     packageName = "org.openapitools.example"
@@ -35,6 +35,27 @@ openApiValidate {
 
 // Builds a akka-scala client by default.
 openApiGenerate {
+    generatorName = "scala-akka"
+    inputSpec = "$rootDir/../LiveAgent/codegen/descriptor/liveagent.yaml".toString()
+    outputDir = "$rootDir/".toString()
+    groupId = "com.liveagent.legacy"
+    id = "api-client"
+    templateDir = "$rootDir/template_dir/"
+    version = "3.0.3"
+    configOptions = [
+            dateLibrary: "java8",
+            mainPackage: "com.liveagent.legacy.client"
+    ]
+    systemProperties = [
+            modelDocs: "false"
+    ]
+    additionalProperties = [
+            configKeyPath: "com.liveagent.legacy.client"
+    ]
+}
+
+// Builds a akka-scala client by default.
+task original(type: org.openapitools.generator.gradle.plugin.tasks.GenerateTask) {
     generatorName = "scala-akka"
     inputSpec = "$rootDir/../LiveAgent/codegen/descriptor/liveagent.yaml".toString()
     outputDir = "$rootDir/".toString()

@@ -11,9 +11,11 @@
  */
 package com.liveagent.legacy.client.model
 
-import com.liveagent.legacy.client.core.ApiModel
+import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
 import org.joda.time.DateTime
 import java.util.UUID
+
+import org.json4s.MappingException
 
 case class Subscription (
   id: String,
@@ -38,15 +40,30 @@ case class Subscription (
 ) extends ApiModel
 
 object SubscriptionEnums {
+    sealed trait Status extends ApiEnum
 
-  type Status = Status.Value
-  object Status extends Enumeration {
-    val `I` = Value("I")
-    val `A` = Value("A")
-    val `S` = Value("S")
-    val `T` = Value("T")
-    val `D` = Value("D")
-  }
+    object Status {
+        case object `I` extends Status { val value = "I" }
+        case object `A` extends Status { val value = "A" }
+        case object `S` extends Status { val value = "S" }
+        case object `T` extends Status { val value = "T" }
+        case object `D` extends Status { val value = "D" }
+
+        def fromString(value: String): Status = value match {
+          case "I" =>
+            Status.`I`
+          case "A" =>
+            Status.`A`
+          case "S" =>
+            Status.`S`
+          case "T" =>
+            Status.`T`
+          case "D" =>
+            Status.`D`
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to Status")
+        }
+    }
 
 }
 

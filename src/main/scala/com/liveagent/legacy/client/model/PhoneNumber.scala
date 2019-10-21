@@ -11,9 +11,11 @@
  */
 package com.liveagent.legacy.client.model
 
-import com.liveagent.legacy.client.core.ApiModel
+import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
 import org.joda.time.DateTime
 import java.util.UUID
+
+import org.json4s.MappingException
 
 case class PhoneNumber (
   id: String,
@@ -42,22 +44,49 @@ case class PhoneNumber (
 ) extends ApiModel
 
 object PhoneNumberEnums {
+    sealed trait `Type` extends ApiEnum
 
-  type `Type` = `Type`.Value
-  type Status = Status.Value
-  object `Type` extends Enumeration {
-    val `A` = Value("A")
-    val `C` = Value("C")
-    val `T` = Value("T")
-    val TO = Value("T-O")
-    val `D` = Value("D")
-    val `S` = Value("S")
-  }
+    object `Type` {
+        case object `A` extends `Type` { val value = "A" }
+        case object `C` extends `Type` { val value = "C" }
+        case object `T` extends `Type` { val value = "T" }
+        case object TO extends `Type` { val value = "T-O" }
+        case object `D` extends `Type` { val value = "D" }
+        case object `S` extends `Type` { val value = "S" }
 
-  object Status extends Enumeration {
-    val `A` = Value("A")
-    val `I` = Value("I")
-  }
+        def fromString(value: String): `Type` = value match {
+          case "A" =>
+            `Type`.`A`
+          case "C" =>
+            `Type`.`C`
+          case "T" =>
+            `Type`.`T`
+          case "T-O" =>
+            `Type`.TO
+          case "D" =>
+            `Type`.`D`
+          case "S" =>
+            `Type`.`S`
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to `Type`")
+        }
+    }
+
+    sealed trait Status extends ApiEnum
+
+    object Status {
+        case object `A` extends Status { val value = "A" }
+        case object `I` extends Status { val value = "I" }
+
+        def fromString(value: String): Status = value match {
+          case "A" =>
+            Status.`A`
+          case "I" =>
+            Status.`I`
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to Status")
+        }
+    }
 
 }
 

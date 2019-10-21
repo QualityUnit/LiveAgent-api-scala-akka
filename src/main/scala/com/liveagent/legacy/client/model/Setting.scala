@@ -11,9 +11,11 @@
  */
 package com.liveagent.legacy.client.model
 
-import com.liveagent.legacy.client.core.ApiModel
+import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
 import org.joda.time.DateTime
 import java.util.UUID
+
+import org.json4s.MappingException
 
 case class Setting (
   name: Option[SettingEnums.Name] = None,
@@ -21,17 +23,36 @@ case class Setting (
 ) extends ApiModel
 
 object SettingEnums {
+    sealed trait Name extends ApiEnum
 
-  type Name = Name.Value
-  object Name extends Enumeration {
-    val TIMEZONE = Value("TIMEZONE")
-    val RegionalSettingsIsDefault = Value("regional_settings_is_default")
-    val Dateformat = Value("dateformat")
-    val Timeformat = Value("timeformat")
-    val Shorttimeformat = Value("shorttimeformat")
-    val Thousandsseparator = Value("thousandsseparator")
-    val Decimalseparator = Value("decimalseparator")
-  }
+    object Name {
+        case object TIMEZONE extends Name { val value = "TIMEZONE" }
+        case object RegionalSettingsIsDefault extends Name { val value = "regional_settings_is_default" }
+        case object Dateformat extends Name { val value = "dateformat" }
+        case object Timeformat extends Name { val value = "timeformat" }
+        case object Shorttimeformat extends Name { val value = "shorttimeformat" }
+        case object Thousandsseparator extends Name { val value = "thousandsseparator" }
+        case object Decimalseparator extends Name { val value = "decimalseparator" }
+
+        def fromString(value: String): Name = value match {
+          case "TIMEZONE" =>
+            Name.TIMEZONE
+          case "regional_settings_is_default" =>
+            Name.RegionalSettingsIsDefault
+          case "dateformat" =>
+            Name.Dateformat
+          case "timeformat" =>
+            Name.Timeformat
+          case "shorttimeformat" =>
+            Name.Shorttimeformat
+          case "thousandsseparator" =>
+            Name.Thousandsseparator
+          case "decimalseparator" =>
+            Name.Decimalseparator
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to Name")
+        }
+    }
 
 }
 
