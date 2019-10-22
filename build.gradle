@@ -41,7 +41,7 @@ openApiGenerate {
     groupId = "com.liveagent.legacy"
     id = "api-client"
     templateDir = "$rootDir/template_dir/"
-    version = "3.0.3"
+    version = "4.0.0"
     configOptions = [
             dateLibrary: "java8",
             mainPackage: "com.liveagent.legacy.client"
@@ -61,7 +61,7 @@ task original(type: org.openapitools.generator.gradle.plugin.tasks.GenerateTask)
     outputDir = "$rootDir/".toString()
     groupId = "com.liveagent.legacy"
     id = "api-client"
-    version = "3.0.3"
+    version = "4.0.0"
     configOptions = [
             dateLibrary: "java8",
             mainPackage: "com.liveagent.legacy.client"
