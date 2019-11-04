@@ -70,6 +70,7 @@ Class | Method | HTTP request | Description
 *AgentsApi* | **convertRegisteredVisitor** | **POST** /agents/convert | Convert registered visitor
 *AgentsApi* | **deleteAgent** | **DELETE** /agents/{userId} | Agent
 *AgentsApi* | **getAgent** | **GET** /agents/{userId} | Agent
+*AgentsApi* | **getAgentNames** | **POST** /agent_names | Agent names
 *AgentsApi* | **getAgentStatuses** | **GET** /agents/{userId}/status | Get agent statuses in departments
 *AgentsApi* | **getAgents** | **GET** /agents/ | Agent list
 *AgentsApi* | **getAgentsActivity** | **GET** /agents/activity | Agent Activity list
@@ -149,6 +150,7 @@ Class | Method | HTTP request | Description
 *CustomButtonsApi* | **updateCustomButton** | **PUT** /custom_buttons/{customButtonId} | Update custom button
 *DefaultApi* | **ping** | **GET** /ping | Check that API is responding
 *DepartmentsApi* | **getDepartmentList** | **GET** /departments | Gets list of departments
+*DepartmentsApi* | **getDepartmentNames** | **POST** /department_names | Department names
 *DepartmentsApi* | **getSpecificDepartment** | **GET** /departments/{departmentId} | Get department by specific id
 *DepartmentsApi* | **ifAgentIsInDepartment** | **GET** /departments/{departmentId}/{agentId} | Is agent is department
 *DepartmentsApi* | **updateDepartmentMailAccount** | **PUT** /departments/{departmentId}/mailAccount/{mailAccountId} | Update department mail account
@@ -283,6 +285,7 @@ Class | Method | HTTP request | Description
  - [AddonList](AddonList.md)
  - [Agent](Agent.md)
  - [AgentActivity](AgentActivity.md)
+ - [AgentName](AgentName.md)
  - [AgentStatus](AgentStatus.md)
  - [AgentStatuses](AgentStatuses.md)
  - [ApiInfo](ApiInfo.md)
@@ -324,6 +327,7 @@ Class | Method | HTTP request | Description
  - [Customer](Customer.md)
  - [DayInterval](DayInterval.md)
  - [Department](Department.md)
+ - [DepartmentName](DepartmentName.md)
  - [Departments](Departments.md)
  - [Device](Device.md)
  - [DeviceDepartment](DeviceDepartment.md)
@@ -339,6 +343,7 @@ Class | Method | HTTP request | Description
  - [FilterCondition](FilterCondition.md)
  - [Group](Group.md)
  - [HostingInfo](HostingInfo.md)
+ - [Ids](Ids.md)
  - [Invoice](Invoice.md)
  - [InvoiceItem](InvoiceItem.md)
  - [InvoiceList](InvoiceList.md)
