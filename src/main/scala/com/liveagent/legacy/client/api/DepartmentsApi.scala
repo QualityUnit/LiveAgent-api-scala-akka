@@ -12,9 +12,7 @@
 package com.liveagent.legacy.client.api
 
 import com.liveagent.legacy.client.model.Department
-import com.liveagent.legacy.client.model.DepartmentName
 import com.liveagent.legacy.client.model.ErrorResponse
-import com.liveagent.legacy.client.model.Ids
 import com.liveagent.legacy.client.core._
 import com.liveagent.legacy.client.core.CollectionFormats._
 import com.liveagent.legacy.client.core.ApiKeyLocations._
@@ -53,26 +51,6 @@ class DepartmentsApi(baseUrl: String) {
       .withQueryParam("_sortField", sortField)
       .withQueryParam("_filters", filters)
       .withSuccessResponse[Seq[Department]](200)
-      .withDefaultErrorResponse[ErrorResponse]
-      
-
-  /**
-   * List of department names
-   * 
-   * Expected answers:
-   *   code 200 : Seq[DepartmentName] (Department names list)
-   *   code 0 : ErrorResponse (Error response)
-   * 
-   * Available security schemes:
-   *   apikey (apiKey)
-   * 
-   * @param ids 
-   */
-  def getDepartmentNames(ids: Ids)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[DepartmentName]] =
-    ApiRequest[Seq[DepartmentName]](ApiMethods.POST, baseUrl, "/department_names", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
-      .withBody(ids)
-      .withSuccessResponse[Seq[DepartmentName]](200)
       .withDefaultErrorResponse[ErrorResponse]
       
 

@@ -38,7 +38,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.liveagent.legacy</groupId>
   <artifactId>api-client</artifactId>
-  <version>4.0.0</version>
+  <version>4.1.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -48,13 +48,13 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.liveagent.legacy:api-client:4.0.0"
+compile "com.liveagent.legacy:api-client:4.1.0"
 ```
 
 ### SBT users
 
 ```scala
-libraryDependencies += "com.liveagent.legacy" % "api-client" % "4.0.0"
+libraryDependencies += "com.liveagent.legacy" % "api-client" % "4.1.0"
 ```
 
 ## Getting Started
@@ -70,7 +70,6 @@ Class | Method | HTTP request | Description
 *AgentsApi* | **convertRegisteredVisitor** | **POST** /agents/convert | Convert registered visitor
 *AgentsApi* | **deleteAgent** | **DELETE** /agents/{userId} | Agent
 *AgentsApi* | **getAgent** | **GET** /agents/{userId} | Agent
-*AgentsApi* | **getAgentNames** | **POST** /agent_names | Agent names
 *AgentsApi* | **getAgentStatuses** | **GET** /agents/{userId}/status | Get agent statuses in departments
 *AgentsApi* | **getAgents** | **GET** /agents/ | Agent list
 *AgentsApi* | **getAgentsActivity** | **GET** /agents/activity | Agent Activity list
@@ -150,7 +149,6 @@ Class | Method | HTTP request | Description
 *CustomButtonsApi* | **updateCustomButton** | **PUT** /custom_buttons/{customButtonId} | Update custom button
 *DefaultApi* | **ping** | **GET** /ping | Check that API is responding
 *DepartmentsApi* | **getDepartmentList** | **GET** /departments | Gets list of departments
-*DepartmentsApi* | **getDepartmentNames** | **POST** /department_names | Department names
 *DepartmentsApi* | **getSpecificDepartment** | **GET** /departments/{departmentId} | Get department by specific id
 *DepartmentsApi* | **ifAgentIsInDepartment** | **GET** /departments/{departmentId}/{agentId} | Is agent is department
 *DepartmentsApi* | **updateDepartmentMailAccount** | **PUT** /departments/{departmentId}/mailAccount/{mailAccountId} | Update department mail account
@@ -202,6 +200,15 @@ Class | Method | HTTP request | Description
 *MailAccountApi* | **getMailAccount** | **GET** /mail_accounts/{mailAccountId} | Gets mail account
 *MailAccountApi* | **getMailAccountList** | **GET** /mail_accounts | Gets list of mail accounts
 *MessagesApi* | **getMessage** | **GET** /messages/{messageId} | Get message
+*MicroservicesApi* | **getAgentNames** | **POST** /agent_names | Agent names
+*MicroservicesApi* | **getDepartmentNames** | **POST** /department_names | Department names
+*MicroservicesApi* | **getDepartments** | **GET** /principal/{principalId}/departments | Get principal departments
+*MicroservicesApi* | **getRole** | **GET** /principal/{principalId}/role | Get principal role
+*MicroservicesApi* | **resolveBrowser** | **POST** /principal/resolveBrowser | Resolve browser
+*MicroservicesApi* | **resolveUserIdFromSession** | **POST** /principal/resolveUserIdFromSession | Get user id from session
+*MicroservicesApi* | **resolveUserIdFromVisitorId** | **POST** /principal/resolveUserIdFromVisitorId | Get user id from visitor id
+*MicroservicesApi* | **resolveVisitor** | **POST** /principal/resolveVisitor | Resolve visitor
+*MicroservicesApi* | **validateCredentials** | **POST** /principal/validateCredentials | Validate principal credentials
 *PageVisitsApi* | **getPageVisitByContactId** | **GET** /page_visits/{contactId}/contact | Gets a page visits
 *PhoneNumbersApi* | **addNumber** | **POST** /phone_numbers | Add new number
 *PhoneNumbersApi* | **getPhoneNumber** | **GET** /phone_numbers/{phoneNumberId} | Gets phone number
@@ -221,13 +228,6 @@ Class | Method | HTTP request | Description
 *PredefinedAnswersApi* | **getPredefinedAnswer** | **GET** /predefined_answers/{predefinedAnswerId} | Gets canned message
 *PredefinedAnswersApi* | **getPredefinedAnswersList** | **GET** /predefined_answers | Gets list of predefined answers
 *PredefinedAnswersApi* | **updatePredefinedAnswer** | **PUT** /predefined_answers/{predefinedAnswerId} | Update predefined answer
-*PrincipalApi* | **getDepartments** | **GET** /principal/{principalId}/departments | Get principal departments
-*PrincipalApi* | **getRole** | **GET** /principal/{principalId}/role | Get principal role
-*PrincipalApi* | **resolveBrowser** | **POST** /principal/resolveBrowser | Resolve browser
-*PrincipalApi* | **resolveUserIdFromSession** | **POST** /principal/resolveUserIdFromSession | Get user id from session
-*PrincipalApi* | **resolveUserIdFromVisitorId** | **POST** /principal/resolveUserIdFromVisitorId | Get user id from visitor id
-*PrincipalApi* | **resolveVisitor** | **POST** /principal/resolveVisitor | Resolve visitor
-*PrincipalApi* | **validateCredentials** | **POST** /principal/validateCredentials | Validate principal credentials
 *QueueApi* | **getQueueBatch** | **GET** /queue/batch/{batchId} | Retrieves the batch status and remaining items to process
 *SettingsApi* | **getSettings** | **GET** /settings | Gets settings list
 *SlasApi* | **getSla** | **GET** /slas/{levelId} | Gets sla

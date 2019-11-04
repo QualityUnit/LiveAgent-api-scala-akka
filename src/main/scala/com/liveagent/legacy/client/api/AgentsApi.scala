@@ -13,10 +13,8 @@ package com.liveagent.legacy.client.api
 
 import com.liveagent.legacy.client.model.Agent
 import com.liveagent.legacy.client.model.AgentActivity
-import com.liveagent.legacy.client.model.AgentName
 import com.liveagent.legacy.client.model.AgentStatus
 import com.liveagent.legacy.client.model.ErrorResponse
-import com.liveagent.legacy.client.model.Ids
 import com.liveagent.legacy.client.core._
 import com.liveagent.legacy.client.core.CollectionFormats._
 import com.liveagent.legacy.client.core.ApiKeyLocations._
@@ -85,26 +83,6 @@ class AgentsApi(baseUrl: String) {
       .withApiKey(apiKeyValue, "apikey", HEADER)
       .withPathParam("userId", userId)
       .withSuccessResponse[Agent](200)
-      .withDefaultErrorResponse[ErrorResponse]
-      
-
-  /**
-   * List of agent names
-   * 
-   * Expected answers:
-   *   code 200 : Seq[AgentName] (Agent names list)
-   *   code 0 : ErrorResponse (Error response)
-   * 
-   * Available security schemes:
-   *   apikey (apiKey)
-   * 
-   * @param ids 
-   */
-  def getAgentNames(ids: Ids)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[AgentName]] =
-    ApiRequest[Seq[AgentName]](ApiMethods.POST, baseUrl, "/agent_names", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
-      .withBody(ids)
-      .withSuccessResponse[Seq[AgentName]](200)
       .withDefaultErrorResponse[ErrorResponse]
       
 

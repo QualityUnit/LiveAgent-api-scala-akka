@@ -18,7 +18,7 @@ import java.util.UUID
 import org.json4s.MappingException
 
 case class UserId (
-  id: Option[String] = None
+  id: String
 ) extends ApiModel
 
 
