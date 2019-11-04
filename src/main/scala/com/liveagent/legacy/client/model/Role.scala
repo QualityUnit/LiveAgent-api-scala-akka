@@ -19,7 +19,7 @@ import org.json4s.MappingException
 
 case class Role (
   /* - D - Admin - A - Agent - C - Customer */
-  role: Option[RoleEnums.Role] = None
+  role: RoleEnums.Role
 ) extends ApiModel
 
 object RoleEnums {
