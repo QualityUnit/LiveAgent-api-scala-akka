@@ -36,9 +36,9 @@ class PlansApi(baseUrl: String) {
    * @param deviceId 
    * @param departmentId 
    */
-  def getDeviceDepartmentPlan(deviceId: Int, departmentId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[DeviceDepartmentPlan]] =
+  def getDeviceDepartmentPlan(deviceId: Int, departmentId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[DeviceDepartmentPlan]] =
     ApiRequest[Seq[DeviceDepartmentPlan]](ApiMethods.GET, baseUrl, "/devices/{deviceId}/departments/{departmentId}/plans", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("deviceId", deviceId)
       .withPathParam("departmentId", departmentId)
       .withSuccessResponse[Seq[DeviceDepartmentPlan]](200)

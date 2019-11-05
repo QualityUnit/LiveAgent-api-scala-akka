@@ -41,9 +41,9 @@ class ApiApi(baseUrl: String) {
    * 
    * @param apiKey 
    */
-  def createApiKeys(apiKey: Option[ApiKeyWithPrivileges] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[ApiKeyWithPrivileges] =
+  def createApiKeys(apiKey: Option[ApiKeyWithPrivileges] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[ApiKeyWithPrivileges] =
     ApiRequest[ApiKeyWithPrivileges](ApiMethods.POST, baseUrl, "/apikeys", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withBody(apiKey)
       .withSuccessResponse[ApiKeyWithPrivileges](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -61,9 +61,9 @@ class ApiApi(baseUrl: String) {
    * 
    * @param apikeyId 
    */
-  def deleteApiKey(apikeyId: Double)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
+  def deleteApiKey(apikeyId: Double)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.DELETE, baseUrl, "/apikeys/{apikeyId}", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("apikeyId", apikeyId)
       .withSuccessResponse[Any](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -79,9 +79,9 @@ class ApiApi(baseUrl: String) {
    * Available security schemes:
    *   apikey (apiKey)
    */
-  def generateApiKey()(implicit apiKeyValue: ApiKeyValue): ApiRequest[ApiKey] =
+  def generateApiKey()(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[ApiKey] =
     ApiRequest[ApiKey](ApiMethods.POST, baseUrl, "/apikeys/_generate", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withSuccessResponse[ApiKey](200)
       .withDefaultErrorResponse[ErrorResponse]
       
@@ -99,9 +99,9 @@ class ApiApi(baseUrl: String) {
    * 
    * @param apiVersion v1 - legacy api version,  v3 - current api version
    */
-  def getApiInfo(apiVersion: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[ApiInfo] =
+  def getApiInfo(apiVersion: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[ApiInfo] =
     ApiRequest[ApiInfo](ApiMethods.GET, baseUrl, "/api/info/{apiVersion}", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("apiVersion", apiVersion)
       .withSuccessResponse[ApiInfo](200)
       .withErrorResponse[ErrorResponse](404)
@@ -121,9 +121,9 @@ class ApiApi(baseUrl: String) {
    * 
    * @param apikeyId 
    */
-  def getApiKey(apikeyId: Double)(implicit apiKeyValue: ApiKeyValue): ApiRequest[ApiKeyWithPrivileges] =
+  def getApiKey(apikeyId: Double)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[ApiKeyWithPrivileges] =
     ApiRequest[ApiKeyWithPrivileges](ApiMethods.GET, baseUrl, "/apikeys/{apikeyId}", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("apikeyId", apikeyId)
       .withSuccessResponse[ApiKeyWithPrivileges](200)
       .withErrorResponse[ErrorResponse](404)
@@ -146,9 +146,9 @@ class ApiApi(baseUrl: String) {
    * @param cursor used for iteration throght resultset. Cursor identifies specific page in resultset.
    * @param sortField 
    */
-  def getApiKeys(perPage: Option[Int] = None, sortDir: Option[String] = None, filters: Option[String] = None, cursor: Option[String] = None, sortField: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[ApiKey]] =
+  def getApiKeys(perPage: Option[Int] = None, sortDir: Option[String] = None, filters: Option[String] = None, cursor: Option[String] = None, sortField: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[ApiKey]] =
     ApiRequest[Seq[ApiKey]](ApiMethods.GET, baseUrl, "/apikeys", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("_perPage", perPage)
       .withQueryParam("_sortDir", sortDir)
       .withQueryParam("_filters", filters)
@@ -168,9 +168,9 @@ class ApiApi(baseUrl: String) {
    * Available security schemes:
    *   apikey (apiKey)
    */
-  def getApiPrivileges()(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[ApiPrivilege]] =
+  def getApiPrivileges()(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[ApiPrivilege]] =
     ApiRequest[Seq[ApiPrivilege]](ApiMethods.GET, baseUrl, "/api/privileges", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withSuccessResponse[Seq[ApiPrivilege]](200)
       .withDefaultErrorResponse[ErrorResponse]
       
@@ -185,9 +185,9 @@ class ApiApi(baseUrl: String) {
    * 
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
    */
-  def getApiV3KeysCount(filters: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Count] =
+  def getApiV3KeysCount(filters: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Count] =
     ApiRequest[Count](ApiMethods.GET, baseUrl, "/api/v3/count", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("_filters", filters)
       .withSuccessResponse[Count](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -235,9 +235,9 @@ class ApiApi(baseUrl: String) {
    * @param apikeyId 
    * @param apiKey 
    */
-  def updateApiKey(apikeyId: Double, apiKey: Option[ApiKeyWithPrivileges] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[ApiKeyWithPrivileges] =
+  def updateApiKey(apikeyId: Double, apiKey: Option[ApiKeyWithPrivileges] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[ApiKeyWithPrivileges] =
     ApiRequest[ApiKeyWithPrivileges](ApiMethods.PUT, baseUrl, "/apikeys/{apikeyId}", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withBody(apiKey)
       .withPathParam("apikeyId", apikeyId)
       .withSuccessResponse[ApiKeyWithPrivileges](200)

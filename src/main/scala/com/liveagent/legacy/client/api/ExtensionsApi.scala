@@ -36,9 +36,9 @@ class ExtensionsApi(baseUrl: String) {
    * 
    * @param extensionId 
    */
-  def getExtension(extensionId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Extension] =
+  def getExtension(extensionId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Extension] =
     ApiRequest[Extension](ApiMethods.GET, baseUrl, "/extensions/{extensionId}", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("extensionId", extensionId)
       .withSuccessResponse[Extension](200)
       .withErrorResponse[ErrorResponse](404)
@@ -55,9 +55,9 @@ class ExtensionsApi(baseUrl: String) {
    * 
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
    */
-  def getExtensionsCount(filters: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Count] =
+  def getExtensionsCount(filters: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Count] =
     ApiRequest[Count](ApiMethods.GET, baseUrl, "/extensions/count", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("_filters", filters)
       .withSuccessResponse[Count](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -77,9 +77,9 @@ class ExtensionsApi(baseUrl: String) {
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
    * @param cursor used for iteration throght resultset. Cursor identifies specific page in resultset.
    */
-  def getExtensionsList(perPage: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None, cursor: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[Extension]] =
+  def getExtensionsList(perPage: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None, cursor: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[Extension]] =
     ApiRequest[Seq[Extension]](ApiMethods.GET, baseUrl, "/extensions", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("_perPage", perPage)
       .withQueryParam("_sortDir", sortDir)
       .withQueryParam("_sortField", sortField)
@@ -104,9 +104,9 @@ class ExtensionsApi(baseUrl: String) {
    * @param departmentId 
    * @param status E - Enabled, D - Disabled
    */
-  def setExtension(extensionId: String, number: Option[String] = None, departmentId: Option[String] = None, status: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Extension] =
+  def setExtension(extensionId: String, number: Option[String] = None, departmentId: Option[String] = None, status: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Extension] =
     ApiRequest[Extension](ApiMethods.PUT, baseUrl, "/extensions/{extensionId}", "application/x-www-form-urlencoded")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withFormParam("number", number)
       .withFormParam("departmentId", departmentId)
       .withFormParam("status", status)

@@ -44,9 +44,9 @@ class TicketsApi(baseUrl: String) {
    * 
    * @param ticket 
    */
-  def createTicket(ticket: Option[TicketListItem] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[TicketInformation] =
+  def createTicket(ticket: Option[TicketListItem] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[TicketInformation] =
     ApiRequest[TicketInformation](ApiMethods.POST, baseUrl, "/tickets", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withBody(ticket)
       .withSuccessResponse[TicketInformation](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -63,9 +63,9 @@ class TicketsApi(baseUrl: String) {
    * 
    * @param ticketId 
    */
-  def deleteTicket(ticketId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
+  def deleteTicket(ticketId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.DELETE, baseUrl, "/tickets/{ticketId}", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("ticketId", ticketId)
       .withSuccessResponse[Any](200)
       .withErrorResponse[ErrorResponse](404)
@@ -83,9 +83,9 @@ class TicketsApi(baseUrl: String) {
    * 
    * @param ticketId 
    */
-  def getTicket(ticketId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Ticket] =
+  def getTicket(ticketId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Ticket] =
     ApiRequest[Ticket](ApiMethods.GET, baseUrl, "/tickets/{ticketId}", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("ticketId", ticketId)
       .withSuccessResponse[Ticket](200)
       .withErrorResponse[ErrorResponse](404)
@@ -104,9 +104,9 @@ class TicketsApi(baseUrl: String) {
    * @param ticketId 
    * @param attributeName 
    */
-  def getTicketAttribute(ticketId: String, attributeName: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[TicketAttribute] =
+  def getTicketAttribute(ticketId: String, attributeName: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[TicketAttribute] =
     ApiRequest[TicketAttribute](ApiMethods.GET, baseUrl, "/tickets/{ticketId}/attributes/{attributeName}", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("ticketId", ticketId)
       .withPathParam("attributeName", attributeName)
       .withSuccessResponse[TicketAttribute](200)
@@ -129,9 +129,9 @@ class TicketsApi(baseUrl: String) {
    * @param sortField 
    * @param timezoneOffset difference between client and server time in seconds
    */
-  def getTicketHistory(perPage: Option[Int] = None, sortDir: Option[String] = None, filters: Option[String] = None, cursor: Option[String] = None, sortField: Option[String] = None, timezoneOffset: Option[Int] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[TicketHistory]] =
+  def getTicketHistory(perPage: Option[Int] = None, sortDir: Option[String] = None, filters: Option[String] = None, cursor: Option[String] = None, sortField: Option[String] = None, timezoneOffset: Option[Int] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[TicketHistory]] =
     ApiRequest[Seq[TicketHistory]](ApiMethods.GET, baseUrl, "/tickets/history", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("_perPage", perPage)
       .withQueryParam("_sortDir", sortDir)
       .withQueryParam("_filters", filters)
@@ -152,9 +152,9 @@ class TicketsApi(baseUrl: String) {
    * 
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
    */
-  def getTicketHistoryCount(filters: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Count] =
+  def getTicketHistoryCount(filters: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Count] =
     ApiRequest[Count](ApiMethods.GET, baseUrl, "/tickets/history/count", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("_filters", filters)
       .withSuccessResponse[Count](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -171,9 +171,9 @@ class TicketsApi(baseUrl: String) {
    * 
    * @param ticketId 
    */
-  def getTicketHistory_0(ticketId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[TicketHistory]] =
+  def getTicketHistory_0(ticketId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[TicketHistory]] =
     ApiRequest[Seq[TicketHistory]](ApiMethods.GET, baseUrl, "/tickets/{ticketId}/history", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("ticketId", ticketId)
       .withSuccessResponse[Seq[TicketHistory]](200)
       .withErrorResponse[ErrorResponse](404)
@@ -199,9 +199,9 @@ class TicketsApi(baseUrl: String) {
    * @param from Result set start. Takes precedence over _page.
    * @param to Result set end. Used only if _from is used.
    */
-  def getTicketMessageGroups(ticketId: String, includeQuotedMessages: Option[Boolean] = None, page: Option[Int] = None, perPage: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None, from: Option[Int] = None, to: Option[Int] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[MessageGroup]] =
+  def getTicketMessageGroups(ticketId: String, includeQuotedMessages: Option[Boolean] = None, page: Option[Int] = None, perPage: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None, from: Option[Int] = None, to: Option[Int] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[MessageGroup]] =
     ApiRequest[Seq[MessageGroup]](ApiMethods.GET, baseUrl, "/tickets/{ticketId}/messages", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("includeQuotedMessages", includeQuotedMessages)
       .withQueryParam("_page", page)
       .withQueryParam("_perPage", perPage)
@@ -227,9 +227,9 @@ class TicketsApi(baseUrl: String) {
    * 
    * @param ticketId 
    */
-  def getTicketSla(ticketId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[TicketSla] =
+  def getTicketSla(ticketId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[TicketSla] =
     ApiRequest[TicketSla](ApiMethods.GET, baseUrl, "/tickets/{ticketId}/sla", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("ticketId", ticketId)
       .withSuccessResponse[TicketSla](200)
       .withErrorResponse[ErrorResponse](404)
@@ -252,9 +252,9 @@ class TicketsApi(baseUrl: String) {
    * @param sortField Sorting field
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
    */
-  def getTicketsList(page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[Ticket]] =
+  def getTicketsList(page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[Ticket]] =
     ApiRequest[Seq[Ticket]](ApiMethods.GET, baseUrl, "/tickets", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("_page", page)
       .withQueryParam("_perPage", perPage)
       .withQueryParam("_from", from)
@@ -279,9 +279,9 @@ class TicketsApi(baseUrl: String) {
    * @param attributeName 
    * @param value New attribute value
    */
-  def setTicketAttribute(ticketId: String, attributeName: String, value: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
+  def setTicketAttribute(ticketId: String, attributeName: String, value: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.PUT, baseUrl, "/tickets/{ticketId}/attributes/{attributeName}", "application/x-www-form-urlencoded")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withFormParam("value", value)
       .withPathParam("ticketId", ticketId)
       .withPathParam("attributeName", attributeName)
@@ -304,9 +304,9 @@ class TicketsApi(baseUrl: String) {
    * @param dateTime - date and time with valid format: YYYY-MM-DD HH:MM:SS
    * @param userid 
    */
-  def setTicketPostpone(ticketId: String, dateTime: String, userid: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
+  def setTicketPostpone(ticketId: String, dateTime: String, userid: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.PUT, baseUrl, "/tickets/{ticketId}/postpone", "application/x-www-form-urlencoded")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withFormParam("date_time", dateTime)
       .withFormParam("userid", userid)
       .withPathParam("ticketId", ticketId)
@@ -328,9 +328,9 @@ class TicketsApi(baseUrl: String) {
    * @param ticketId 
    * @param ticket 
    */
-  def updateTicket(ticketId: String, ticket: Option[TicketUpdatable] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Ticket] =
+  def updateTicket(ticketId: String, ticket: Option[TicketUpdatable] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Ticket] =
     ApiRequest[Ticket](ApiMethods.PUT, baseUrl, "/tickets/{ticketId}", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withBody(ticket)
       .withPathParam("ticketId", ticketId)
       .withSuccessResponse[Ticket](200)

@@ -36,9 +36,9 @@ class UserApi(baseUrl: String) {
    * 
    * @param userId 
    */
-  def getUser(userId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[User]] =
+  def getUser(userId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[User]] =
     ApiRequest[Seq[User]](ApiMethods.GET, baseUrl, "/users/{userId}", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("userId", userId)
       .withSuccessResponse[Seq[User]](200)
       .withDefaultErrorResponse[ErrorResponse]

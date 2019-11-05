@@ -42,9 +42,9 @@ class GridApi(baseUrl: String) {
    * @param sortField Sorting field
    * @param timezoneOffset difference between client and server time in seconds
    */
-  def getCallsSlaLogGridList(perPage: Option[Int] = None, sortDir: Option[String] = None, filters: Option[String] = None, cursor: Option[String] = None, sortField: Option[String] = None, timezoneOffset: Option[Int] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[SlaLogRow]] =
+  def getCallsSlaLogGridList(perPage: Option[Int] = None, sortDir: Option[String] = None, filters: Option[String] = None, cursor: Option[String] = None, sortField: Option[String] = None, timezoneOffset: Option[Int] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[SlaLogRow]] =
     ApiRequest[Seq[SlaLogRow]](ApiMethods.GET, baseUrl, "/grid/calls/sla", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("_perPage", perPage)
       .withQueryParam("_sortDir", sortDir)
       .withQueryParam("_filters", filters)
@@ -65,9 +65,9 @@ class GridApi(baseUrl: String) {
    * 
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
    */
-  def getCallsSlaLogGridListCount(filters: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Count] =
+  def getCallsSlaLogGridListCount(filters: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Count] =
     ApiRequest[Count](ApiMethods.GET, baseUrl, "/grid/calls/sla/count", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("_filters", filters)
       .withSuccessResponse[Count](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -88,9 +88,9 @@ class GridApi(baseUrl: String) {
    * @param sortField Sorting field
    * @param timezoneOffset difference between client and server time in seconds
    */
-  def getChatsSlaLogGridList(perPage: Option[Int] = None, sortDir: Option[String] = None, filters: Option[String] = None, cursor: Option[String] = None, sortField: Option[String] = None, timezoneOffset: Option[Int] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[SlaLogRow]] =
+  def getChatsSlaLogGridList(perPage: Option[Int] = None, sortDir: Option[String] = None, filters: Option[String] = None, cursor: Option[String] = None, sortField: Option[String] = None, timezoneOffset: Option[Int] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[SlaLogRow]] =
     ApiRequest[Seq[SlaLogRow]](ApiMethods.GET, baseUrl, "/grid/chats/sla", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("_perPage", perPage)
       .withQueryParam("_sortDir", sortDir)
       .withQueryParam("_filters", filters)
@@ -111,9 +111,9 @@ class GridApi(baseUrl: String) {
    * 
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
    */
-  def getChatsSlaLogGridListCount(filters: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Count] =
+  def getChatsSlaLogGridListCount(filters: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Count] =
     ApiRequest[Count](ApiMethods.GET, baseUrl, "/grid/chats/sla/count", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("_filters", filters)
       .withSuccessResponse[Count](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -134,9 +134,9 @@ class GridApi(baseUrl: String) {
    * @param sortField Sorting field
    * @param timezoneOffset difference between client and server time in seconds
    */
-  def getEventLogsGridList(perPage: Option[Int] = None, sortDir: Option[String] = None, filters: Option[String] = None, cursor: Option[String] = None, sortField: Option[String] = None, timezoneOffset: Option[Int] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[EventLogRow]] =
+  def getEventLogsGridList(perPage: Option[Int] = None, sortDir: Option[String] = None, filters: Option[String] = None, cursor: Option[String] = None, sortField: Option[String] = None, timezoneOffset: Option[Int] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[EventLogRow]] =
     ApiRequest[Seq[EventLogRow]](ApiMethods.GET, baseUrl, "/grid/eventlogs", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("_perPage", perPage)
       .withQueryParam("_sortDir", sortDir)
       .withQueryParam("_filters", filters)
@@ -157,9 +157,9 @@ class GridApi(baseUrl: String) {
    * 
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
    */
-  def getEventLogsGridListCount(filters: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Count] =
+  def getEventLogsGridListCount(filters: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Count] =
     ApiRequest[Count](ApiMethods.GET, baseUrl, "/grid/eventlogs/count", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("_filters", filters)
       .withSuccessResponse[Count](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -180,9 +180,9 @@ class GridApi(baseUrl: String) {
    * @param sortField Sorting field
    * @param timezoneOffset difference between client and server time in seconds
    */
-  def getTicketsGridList(perPage: Option[Int] = None, sortDir: Option[String] = None, filters: Option[String] = None, cursor: Option[String] = None, sortField: Option[String] = None, timezoneOffset: Option[Int] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[TicketRow]] =
+  def getTicketsGridList(perPage: Option[Int] = None, sortDir: Option[String] = None, filters: Option[String] = None, cursor: Option[String] = None, sortField: Option[String] = None, timezoneOffset: Option[Int] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[TicketRow]] =
     ApiRequest[Seq[TicketRow]](ApiMethods.GET, baseUrl, "/grid/tickets", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("_perPage", perPage)
       .withQueryParam("_sortDir", sortDir)
       .withQueryParam("_filters", filters)
@@ -203,9 +203,9 @@ class GridApi(baseUrl: String) {
    * 
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
    */
-  def getTicketsGridListCount(filters: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Count] =
+  def getTicketsGridListCount(filters: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Count] =
     ApiRequest[Count](ApiMethods.GET, baseUrl, "/grid/tickets/count", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("_filters", filters)
       .withSuccessResponse[Count](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -226,9 +226,9 @@ class GridApi(baseUrl: String) {
    * @param sortField Sorting field
    * @param timezoneOffset difference between client and server time in seconds
    */
-  def getTicketsSlaLogGridList(perPage: Option[Int] = None, sortDir: Option[String] = None, filters: Option[String] = None, cursor: Option[String] = None, sortField: Option[String] = None, timezoneOffset: Option[Int] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[SlaLogRow]] =
+  def getTicketsSlaLogGridList(perPage: Option[Int] = None, sortDir: Option[String] = None, filters: Option[String] = None, cursor: Option[String] = None, sortField: Option[String] = None, timezoneOffset: Option[Int] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[SlaLogRow]] =
     ApiRequest[Seq[SlaLogRow]](ApiMethods.GET, baseUrl, "/grid/tickets/sla", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("_perPage", perPage)
       .withQueryParam("_sortDir", sortDir)
       .withQueryParam("_filters", filters)
@@ -249,9 +249,9 @@ class GridApi(baseUrl: String) {
    * 
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
    */
-  def getTicketsSlaLogGridListCount(filters: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Count] =
+  def getTicketsSlaLogGridListCount(filters: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Count] =
     ApiRequest[Count](ApiMethods.GET, baseUrl, "/grid/tickets/sla/count", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("_filters", filters)
       .withSuccessResponse[Count](200)
       .withDefaultErrorResponse[ErrorResponse]

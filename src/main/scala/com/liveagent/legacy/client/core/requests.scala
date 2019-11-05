@@ -80,14 +80,14 @@ sealed trait Credentials {
 
 sealed case class BasicCredentials(user: String, password: String) extends Credentials
 
-sealed case class ApiKeyCredentials(key: ApiKeyValue, keyName: String, location: ApiKeyLocation) extends Credentials {
+sealed case class ApiKeyCredentials(key: ApiKeyValueFromRequest, keyName: String, location: ApiKeyLocation) extends Credentials {
   override def asQueryParam: Option[(String, String)] = location match {
     case ApiKeyLocations.QUERY => Some((keyName, key.value))
     case _ => None
   }
 }
 
-sealed case class ApiKeyValue(value: String)
+sealed case class ApiKeyValueFromRequest(value: String)
 
 sealed trait ApiKeyLocation
 

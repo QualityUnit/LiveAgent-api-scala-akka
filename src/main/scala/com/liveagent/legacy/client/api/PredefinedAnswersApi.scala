@@ -36,9 +36,9 @@ class PredefinedAnswersApi(baseUrl: String) {
    * 
    * @param predefinedAnswer 
    */
-  def createPredefinedAnswer(predefinedAnswer: Option[PredefinedAnswer] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[PredefinedAnswer] =
+  def createPredefinedAnswer(predefinedAnswer: Option[PredefinedAnswer] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[PredefinedAnswer] =
     ApiRequest[PredefinedAnswer](ApiMethods.POST, baseUrl, "/predefined_answers", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withBody(predefinedAnswer)
       .withSuccessResponse[PredefinedAnswer](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -56,9 +56,9 @@ class PredefinedAnswersApi(baseUrl: String) {
    * 
    * @param predefinedAnswerId 
    */
-  def deletePredefinedAnswer(predefinedAnswerId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
+  def deletePredefinedAnswer(predefinedAnswerId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.DELETE, baseUrl, "/predefined_answers/{predefinedAnswerId}", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("predefinedAnswerId", predefinedAnswerId)
       .withSuccessResponse[Any](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -75,9 +75,9 @@ class PredefinedAnswersApi(baseUrl: String) {
    * 
    * @param predefinedAnswerId 
    */
-  def getPredefinedAnswer(predefinedAnswerId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[PredefinedAnswer] =
+  def getPredefinedAnswer(predefinedAnswerId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[PredefinedAnswer] =
     ApiRequest[PredefinedAnswer](ApiMethods.GET, baseUrl, "/predefined_answers/{predefinedAnswerId}", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("predefinedAnswerId", predefinedAnswerId)
       .withSuccessResponse[PredefinedAnswer](200)
       .withErrorResponse[ErrorResponse](404)
@@ -100,9 +100,9 @@ class PredefinedAnswersApi(baseUrl: String) {
    * @param sortField Sorting field
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
    */
-  def getPredefinedAnswersList(page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[PredefinedAnswer]] =
+  def getPredefinedAnswersList(page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[PredefinedAnswer]] =
     ApiRequest[Seq[PredefinedAnswer]](ApiMethods.GET, baseUrl, "/predefined_answers", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("_page", page)
       .withQueryParam("_perPage", perPage)
       .withQueryParam("_from", from)
@@ -127,9 +127,9 @@ class PredefinedAnswersApi(baseUrl: String) {
    * @param predefinedAnswerId 
    * @param cannedMessage 
    */
-  def updatePredefinedAnswer(predefinedAnswerId: String, cannedMessage: Option[PredefinedAnswer] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[PredefinedAnswer] =
+  def updatePredefinedAnswer(predefinedAnswerId: String, cannedMessage: Option[PredefinedAnswer] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[PredefinedAnswer] =
     ApiRequest[PredefinedAnswer](ApiMethods.PUT, baseUrl, "/predefined_answers/{predefinedAnswerId}", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withBody(cannedMessage)
       .withPathParam("predefinedAnswerId", predefinedAnswerId)
       .withSuccessResponse[PredefinedAnswer](200)

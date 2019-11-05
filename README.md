@@ -205,6 +205,7 @@ Class | Method | HTTP request | Description
 *MicroservicesApi* | **getDepartments** | **GET** /principal/{principalId}/departments | Get principal departments
 *MicroservicesApi* | **getRole** | **GET** /principal/{principalId}/role | Get principal role
 *MicroservicesApi* | **resolveBrowser** | **POST** /principal/resolveBrowser | Resolve browser
+*MicroservicesApi* | **resolveUserIdFromApiKey** | **POST** /principal/resolveUserIdFromApiKey | Get user id from apikey
 *MicroservicesApi* | **resolveUserIdFromSession** | **POST** /principal/resolveUserIdFromSession | Get user id from session
 *MicroservicesApi* | **resolveUserIdFromVisitorId** | **POST** /principal/resolveUserIdFromVisitorId | Get user id from visitor id
 *MicroservicesApi* | **resolveVisitor** | **POST** /principal/resolveVisitor | Resolve visitor
@@ -291,6 +292,7 @@ Class | Method | HTTP request | Description
  - [ApiInfo](ApiInfo.md)
  - [ApiKey](ApiKey.md)
  - [ApiKeyLogin](ApiKeyLogin.md)
+ - [ApiKeyValue](ApiKeyValue.md)
  - [ApiKeyWithPrivileges](ApiKeyWithPrivileges.md)
  - [ApiKeyWithPrivilegesAllOf](ApiKeyWithPrivilegesAllOf.md)
  - [ApiPrivilege](ApiPrivilege.md)

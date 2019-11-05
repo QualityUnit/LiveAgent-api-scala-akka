@@ -38,9 +38,9 @@ class SlasApi(baseUrl: String) {
    * 
    * @param levelId 
    */
-  def getSla(levelId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Sla] =
+  def getSla(levelId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Sla] =
     ApiRequest[Sla](ApiMethods.GET, baseUrl, "/slas/{levelId}", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("levelId", levelId)
       .withSuccessResponse[Sla](200)
       .withErrorResponse[ErrorResponse](404)
@@ -60,9 +60,9 @@ class SlasApi(baseUrl: String) {
    * 
    * @param ticketId 
    */
-  def getSlaTicketHistory(ticketId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[SlaHistory] =
+  def getSlaTicketHistory(ticketId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[SlaHistory] =
     ApiRequest[SlaHistory](ApiMethods.GET, baseUrl, "/slas/{ticketId}/history", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("ticketId", ticketId)
       .withSuccessResponse[SlaHistory](200)
       .withErrorResponse[ErrorResponse](404)
@@ -79,9 +79,9 @@ class SlasApi(baseUrl: String) {
    * Available security schemes:
    *   apikey (apiKey)
    */
-  def getSlasList()(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[Sla]] =
+  def getSlasList()(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[Sla]] =
     ApiRequest[Seq[Sla]](ApiMethods.GET, baseUrl, "/slas", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withSuccessResponse[Seq[Sla]](200)
       .withDefaultErrorResponse[ErrorResponse]
       

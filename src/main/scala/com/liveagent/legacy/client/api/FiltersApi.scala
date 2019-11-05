@@ -36,9 +36,9 @@ class FiltersApi(baseUrl: String) {
    * 
    * @param filter 
    */
-  def createFilter(filter: Option[Filter] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Filter] =
+  def createFilter(filter: Option[Filter] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Filter] =
     ApiRequest[Filter](ApiMethods.POST, baseUrl, "/filters/", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withBody(filter)
       .withSuccessResponse[Filter](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -57,9 +57,9 @@ class FiltersApi(baseUrl: String) {
    * 
    * @param filterId 
    */
-  def deleteFilter(filterId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
+  def deleteFilter(filterId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.DELETE, baseUrl, "/filters/{filterId}", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("filterId", filterId)
       .withSuccessResponse[Any](200)
       .withErrorResponse[ErrorResponse](404)
@@ -78,9 +78,9 @@ class FiltersApi(baseUrl: String) {
    * 
    * @param filterId 
    */
-  def getFilter(filterId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Filter] =
+  def getFilter(filterId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Filter] =
     ApiRequest[Filter](ApiMethods.GET, baseUrl, "/filters/{filterId}", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("filterId", filterId)
       .withSuccessResponse[Filter](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -104,9 +104,9 @@ class FiltersApi(baseUrl: String) {
    * @param from Result set start. Takes precedence over _page.
    * @param to Result set end. Used only if _from is used.
    */
-  def getFilters(page: Option[Int] = None, perPage: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None, from: Option[Int] = None, to: Option[Int] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[Filter]] =
+  def getFilters(page: Option[Int] = None, perPage: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None, from: Option[Int] = None, to: Option[Int] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[Filter]] =
     ApiRequest[Seq[Filter]](ApiMethods.GET, baseUrl, "/filters/", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("_page", page)
       .withQueryParam("_perPage", perPage)
       .withQueryParam("_sortDir", sortDir)
@@ -131,9 +131,9 @@ class FiltersApi(baseUrl: String) {
    * @param filterId 
    * @param filter 
    */
-  def updateFilter(filterId: String, filter: Option[Filter] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Filter] =
+  def updateFilter(filterId: String, filter: Option[Filter] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Filter] =
     ApiRequest[Filter](ApiMethods.PUT, baseUrl, "/filters/{filterId}", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withBody(filter)
       .withPathParam("filterId", filterId)
       .withSuccessResponse[Filter](200)

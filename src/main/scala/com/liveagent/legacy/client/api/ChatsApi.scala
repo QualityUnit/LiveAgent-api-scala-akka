@@ -40,9 +40,9 @@ class ChatsApi(baseUrl: String) {
    * @param sortField Sorting field
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
    */
-  def getChatsList(page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[ChatInformation]] =
+  def getChatsList(page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[ChatInformation]] =
     ApiRequest[Seq[ChatInformation]](ApiMethods.GET, baseUrl, "/chats", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("_page", page)
       .withQueryParam("_perPage", perPage)
       .withQueryParam("_from", from)

@@ -31,9 +31,9 @@ class DefaultApi(baseUrl: String) {
    * Available security schemes:
    *   apikey (apiKey)
    */
-  def ping()(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
+  def ping()(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.GET, baseUrl, "/ping", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withSuccessResponse[Any](200)
       .withDefaultErrorResponse[ErrorResponse]
       

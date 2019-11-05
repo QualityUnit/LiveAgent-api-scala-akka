@@ -43,9 +43,9 @@ class CallsApi(baseUrl: String) {
    * @param callId 
    * @param body 
    */
-  def callAddMessage(callId: String, body: Option[CallMessage] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
+  def callAddMessage(callId: String, body: Option[CallMessage] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.POST, baseUrl, "/calls/{callId}/messages", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withBody(body)
       .withPathParam("callId", callId)
       .withSuccessResponse[Any](200)
@@ -65,9 +65,9 @@ class CallsApi(baseUrl: String) {
    * @param callId 
    * @param file 
    */
-  def callAddRecording(callId: String, file: Option[File] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
+  def callAddRecording(callId: String, file: Option[File] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.POST, baseUrl, "/calls/{callId}/recordings", "multipart/form-data")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withFormParam("file", file)
       .withPathParam("callId", callId)
       .withSuccessResponse[Any](200)
@@ -89,9 +89,9 @@ class CallsApi(baseUrl: String) {
    * @param toNumber callee number
    * @param channelId Channel ID
    */
-  def callAnswer(callId: String, toNumber: String, channelId: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
+  def callAnswer(callId: String, toNumber: String, channelId: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.POST, baseUrl, "/calls/{callId}/_answer", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("to_number", toNumber)
       .withQueryParam("channelId", channelId)
       .withPathParam("callId", callId)
@@ -115,9 +115,9 @@ class CallsApi(baseUrl: String) {
    * @param channelId 
    * @param status run (\"R\" - default), hold (\"H\")
    */
-  def callChangeChannelStatus(callId: String, channelId: String, status: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
+  def callChangeChannelStatus(callId: String, channelId: String, status: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.PUT, baseUrl, "/calls/{callId}/channels/{channelId}/_status", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("status", status)
       .withPathParam("callId", callId)
       .withPathParam("channelId", channelId)
@@ -147,9 +147,9 @@ class CallsApi(baseUrl: String) {
    * @param ticketId ticket id or code
    * @param direction incoming call ('in' - default), outgoing call ('out'), internal call('int'), auto decide direction of call based on to_number ('auto')
    */
-  def callCreate(callId: String, toNumber: String, fromNumber: String, channelId: Option[String] = None, viaNumber: Option[String] = None, ticketId: Option[String] = None, direction: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Call] =
+  def callCreate(callId: String, toNumber: String, fromNumber: String, channelId: Option[String] = None, viaNumber: Option[String] = None, ticketId: Option[String] = None, direction: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Call] =
     ApiRequest[Call](ApiMethods.POST, baseUrl, "/calls/{callId}", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("channelId", channelId)
       .withQueryParam("to_number", toNumber)
       .withQueryParam("via_number", viaNumber)
@@ -176,9 +176,9 @@ class CallsApi(baseUrl: String) {
    * @param callId 
    * @param fetch 
    */
-  def callFetchIvr(callId: String, fetch: IvrFetch)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[Ivr]] =
+  def callFetchIvr(callId: String, fetch: IvrFetch)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[Ivr]] =
     ApiRequest[Seq[Ivr]](ApiMethods.POST, baseUrl, "/calls/{callId}/_fetchIvr", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withBody(fetch)
       .withPathParam("callId", callId)
       .withSuccessResponse[Seq[Ivr]](200)
@@ -199,9 +199,9 @@ class CallsApi(baseUrl: String) {
    * @param callId 
    * @param unreachableAgents Identifiers of unreachable agents that should be excluded from routing
    */
-  def callGetStatus(callId: String, unreachableAgents: Seq[String])(implicit apiKeyValue: ApiKeyValue): ApiRequest[CallStatus] =
+  def callGetStatus(callId: String, unreachableAgents: Seq[String])(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[CallStatus] =
     ApiRequest[CallStatus](ApiMethods.GET, baseUrl, "/calls/{callId}/status", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("unreachableAgents", ArrayValues(unreachableAgents, CSV))
       .withPathParam("callId", callId)
       .withSuccessResponse[CallStatus](200)
@@ -222,9 +222,9 @@ class CallsApi(baseUrl: String) {
    * @param channelId 
    * @param toCallId Target call
    */
-  def callMoveChannel(callId: String, channelId: String, toCallId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
+  def callMoveChannel(callId: String, channelId: String, toCallId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.POST, baseUrl, "/calls/{callId}/channels/{channelId}/_move", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("to_callId", toCallId)
       .withPathParam("callId", callId)
       .withPathParam("channelId", channelId)
@@ -245,9 +245,9 @@ class CallsApi(baseUrl: String) {
    * @param callId 
    * @param channelId 
    */
-  def callRemoveChannel(callId: String, channelId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
+  def callRemoveChannel(callId: String, channelId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.DELETE, baseUrl, "/calls/{callId}/channels/{channelId}", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("callId", callId)
       .withPathParam("channelId", channelId)
       .withSuccessResponse[Any](200)
@@ -271,9 +271,9 @@ class CallsApi(baseUrl: String) {
    * @param reason T - timeout, D - decline, DNR - device not registered
    * @param unreachableAgents Identifiers of unreachable agents that should be excluded from routing
    */
-  def callReroute(callId: String, reason: Option[String] = None, unreachableAgents: Seq[String])(implicit apiKeyValue: ApiKeyValue): ApiRequest[CallStatus] =
+  def callReroute(callId: String, reason: Option[String] = None, unreachableAgents: Seq[String])(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[CallStatus] =
     ApiRequest[CallStatus](ApiMethods.POST, baseUrl, "/calls/{callId}/_reroute", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("reason", reason)
       .withQueryParam("unreachableAgents", ArrayValues(unreachableAgents, CSV))
       .withPathParam("callId", callId)
@@ -299,9 +299,9 @@ class CallsApi(baseUrl: String) {
    * @param departmentId Department ID
    * @param toNumber callee number
    */
-  def callRing(callId: String, departmentId: Option[String] = None, toNumber: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[CallStatus] =
+  def callRing(callId: String, departmentId: Option[String] = None, toNumber: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[CallStatus] =
     ApiRequest[CallStatus](ApiMethods.POST, baseUrl, "/calls/{callId}/_ring", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("departmentId", departmentId)
       .withQueryParam("to_number", toNumber)
       .withPathParam("callId", callId)
@@ -326,9 +326,9 @@ class CallsApi(baseUrl: String) {
    * @param ticketId ticket id or code
    * @param viaNumber trunk number via which call was made
    */
-  def callStart(toNumber: String, fromNumber: String, ticketId: String, viaNumber: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
+  def callStart(toNumber: String, fromNumber: String, ticketId: String, viaNumber: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.POST, baseUrl, "/call/_start", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("to_number", toNumber)
       .withQueryParam("from_number", fromNumber)
       .withQueryParam("via_number", viaNumber)
@@ -349,9 +349,9 @@ class CallsApi(baseUrl: String) {
    * 
    * @param callId Call ID
    */
-  def callStartCanceled(callId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
+  def callStartCanceled(callId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.POST, baseUrl, "/call/_startCanceled", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("callId", callId)
       .withSuccessResponse[Any](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -369,9 +369,9 @@ class CallsApi(baseUrl: String) {
    * 
    * @param callId Call ID
    */
-  def callStartFailed(callId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
+  def callStartFailed(callId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.POST, baseUrl, "/call/_startFailed", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("callId", callId)
       .withSuccessResponse[Any](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -389,9 +389,9 @@ class CallsApi(baseUrl: String) {
    * @param callId 
    * @param fromNumber from number
    */
-  def callStop(callId: String, fromNumber: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
+  def callStop(callId: String, fromNumber: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.POST, baseUrl, "/calls/{callId}/_stop", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("from_number", fromNumber)
       .withPathParam("callId", callId)
       .withSuccessResponse[Any](200)
@@ -414,9 +414,9 @@ class CallsApi(baseUrl: String) {
    * @param callId 
    * @param to Department ID or extension
    */
-  def callTransfer(callId: String, to: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[CallTransferResult] =
+  def callTransfer(callId: String, to: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[CallTransferResult] =
     ApiRequest[CallTransferResult](ApiMethods.POST, baseUrl, "/calls/{callId}/_transfer", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("to", to)
       .withPathParam("callId", callId)
       .withSuccessResponse[CallTransferResult](200)
@@ -440,9 +440,9 @@ class CallsApi(baseUrl: String) {
    * @param toNumber callee number
    * @param channelId Channel ID
    */
-  def confirmRing(callId: String, toNumber: Option[String] = None, channelId: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
+  def confirmRing(callId: String, toNumber: Option[String] = None, channelId: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.POST, baseUrl, "/calls/{callId}/_confirmRing", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("to_number", toNumber)
       .withQueryParam("channelId", channelId)
       .withPathParam("callId", callId)
@@ -464,9 +464,9 @@ class CallsApi(baseUrl: String) {
    * @param channelId 
    * @param dtmf DTMF To send
    */
-  def dtmfChannel(callId: String, channelId: String, dtmf: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
+  def dtmfChannel(callId: String, channelId: String, dtmf: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.POST, baseUrl, "/calls/{callId}/channels/{channelId}/_dtmf", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("dtmf", dtmf)
       .withPathParam("callId", callId)
       .withPathParam("channelId", channelId)
@@ -487,9 +487,9 @@ class CallsApi(baseUrl: String) {
    * @param callId 
    * @param channelId 
    */
-  def endChannel(callId: String, channelId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
+  def endChannel(callId: String, channelId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.POST, baseUrl, "/calls/{callId}/channels/{channelId}/_end", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("callId", callId)
       .withPathParam("channelId", channelId)
       .withSuccessResponse[Any](200)
@@ -513,9 +513,9 @@ class CallsApi(baseUrl: String) {
    * @param sortField Sorting field
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
    */
-  def getCallsList(page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[CallListItem]] =
+  def getCallsList(page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[CallListItem]] =
     ApiRequest[Seq[CallListItem]](ApiMethods.GET, baseUrl, "/calls", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("_page", page)
       .withQueryParam("_perPage", perPage)
       .withQueryParam("_from", from)
@@ -539,9 +539,9 @@ class CallsApi(baseUrl: String) {
    * @param callId 
    * @param channelId 
    */
-  def holdChannel(callId: String, channelId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
+  def holdChannel(callId: String, channelId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.POST, baseUrl, "/calls/{callId}/channels/{channelId}/_hold", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("callId", callId)
       .withPathParam("channelId", channelId)
       .withSuccessResponse[Any](200)
@@ -564,9 +564,9 @@ class CallsApi(baseUrl: String) {
    * @param secCallId Secondary call ID
    * @param agentId Agent ID for removing from the call
    */
-  def merge(callId: String, secCallId: String, agentId: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
+  def merge(callId: String, secCallId: String, agentId: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.POST, baseUrl, "/calls/{callId}/_merge", "application/x-www-form-urlencoded")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withFormParam("secCallId", secCallId)
       .withFormParam("agentId", agentId)
       .withPathParam("callId", callId)
@@ -587,9 +587,9 @@ class CallsApi(baseUrl: String) {
    * @param callId 
    * @param channelId 
    */
-  def muteChannel(callId: String, channelId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
+  def muteChannel(callId: String, channelId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.POST, baseUrl, "/calls/{callId}/channels/{channelId}/_mute", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("callId", callId)
       .withPathParam("channelId", channelId)
       .withSuccessResponse[Any](200)
@@ -610,9 +610,9 @@ class CallsApi(baseUrl: String) {
    * 
    * @param callId 
    */
-  def stopRing(callId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
+  def stopRing(callId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.POST, baseUrl, "/calls/{callId}/_stopRing", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("callId", callId)
       .withSuccessResponse[Any](200)
       .withErrorResponse[ErrorResponse](404)
@@ -631,9 +631,9 @@ class CallsApi(baseUrl: String) {
    * @param callId 
    * @param channelId 
    */
-  def unholChannel(callId: String, channelId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
+  def unholChannel(callId: String, channelId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.POST, baseUrl, "/calls/{callId}/channels/{channelId}/_unhold", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("callId", callId)
       .withPathParam("channelId", channelId)
       .withSuccessResponse[Any](200)
@@ -653,9 +653,9 @@ class CallsApi(baseUrl: String) {
    * @param callId 
    * @param channelId 
    */
-  def unmuteChannel(callId: String, channelId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
+  def unmuteChannel(callId: String, channelId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.POST, baseUrl, "/calls/{callId}/channels/{channelId}/_unmute", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("callId", callId)
       .withPathParam("channelId", channelId)
       .withSuccessResponse[Any](200)

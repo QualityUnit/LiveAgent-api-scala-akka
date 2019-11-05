@@ -34,9 +34,9 @@ class SettingsApi(baseUrl: String) {
    * 
    * @param settingsNames 
    */
-  def getSettings(settingsNames: Seq[String])(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[Setting]] =
+  def getSettings(settingsNames: Seq[String])(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[Setting]] =
     ApiRequest[Seq[Setting]](ApiMethods.GET, baseUrl, "/settings", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("settingsNames", ArrayValues(settingsNames))
       .withSuccessResponse[Seq[Setting]](200)
       .withDefaultErrorResponse[ErrorResponse]

@@ -40,9 +40,9 @@ class DepartmentsApi(baseUrl: String) {
    * @param sortField Sorting field
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
    */
-  def getDepartmentList(page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[Department]] =
+  def getDepartmentList(page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[Department]] =
     ApiRequest[Seq[Department]](ApiMethods.GET, baseUrl, "/departments", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("_page", page)
       .withQueryParam("_perPage", perPage)
       .withQueryParam("_from", from)
@@ -65,9 +65,9 @@ class DepartmentsApi(baseUrl: String) {
    * 
    * @param departmentId 
    */
-  def getSpecificDepartment(departmentId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Department] =
+  def getSpecificDepartment(departmentId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Department] =
     ApiRequest[Department](ApiMethods.GET, baseUrl, "/departments/{departmentId}", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("departmentId", departmentId)
       .withSuccessResponse[Department](200)
       .withErrorResponse[ErrorResponse](404)
@@ -86,9 +86,9 @@ class DepartmentsApi(baseUrl: String) {
    * @param departmentId 
    * @param agentId 
    */
-  def ifAgentIsInDepartment(departmentId: String, agentId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
+  def ifAgentIsInDepartment(departmentId: String, agentId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.GET, baseUrl, "/departments/{departmentId}/{agentId}", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("departmentId", departmentId)
       .withPathParam("agentId", agentId)
       .withSuccessResponse[Any](200)
@@ -109,9 +109,9 @@ class DepartmentsApi(baseUrl: String) {
    * @param departmentId 
    * @param mailAccountId 
    */
-  def updateDepartmentMailAccount(departmentId: String, mailAccountId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Department] =
+  def updateDepartmentMailAccount(departmentId: String, mailAccountId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Department] =
     ApiRequest[Department](ApiMethods.PUT, baseUrl, "/departments/{departmentId}/mailAccount/{mailAccountId}", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("departmentId", departmentId)
       .withPathParam("mailAccountId", mailAccountId)
       .withSuccessResponse[Department](200)

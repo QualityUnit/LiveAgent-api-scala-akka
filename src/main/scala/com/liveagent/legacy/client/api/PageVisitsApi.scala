@@ -43,9 +43,9 @@ class PageVisitsApi(baseUrl: String) {
    * @param from Result set start. Takes precedence over _page.
    * @param to Result set end. Used only if _from is used.
    */
-  def getPageVisitByContactId(contactId: String, sortDir: Option[String] = None, sortField: Option[String] = None, page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[PageVisit]] =
+  def getPageVisitByContactId(contactId: String, sortDir: Option[String] = None, sortField: Option[String] = None, page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[PageVisit]] =
     ApiRequest[Seq[PageVisit]](ApiMethods.GET, baseUrl, "/page_visits/{contactId}/contact", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("_sortDir", sortDir)
       .withQueryParam("_sortField", sortField)
       .withQueryParam("_page", page)

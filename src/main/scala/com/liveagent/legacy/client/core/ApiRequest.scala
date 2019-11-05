@@ -39,7 +39,7 @@ case class ApiRequest[U](
 
   def withCredentials(cred: Credentials): ApiRequest[U] = copy[U](credentials = credentials :+ cred)
 
-  def withApiKey(key: ApiKeyValue, keyName: String, location: ApiKeyLocation): ApiRequest[U] = withCredentials(ApiKeyCredentials(key, keyName, location))
+  def withApiKey(key: ApiKeyValueFromRequest, keyName: String, location: ApiKeyLocation): ApiRequest[U] = withCredentials(ApiKeyCredentials(key, keyName, location))
 
   def withSuccessResponse[T](code: Int)(implicit m: Manifest[T]): ApiRequest[U] = copy[U](responses = responses + (code -> (m, ResponseState.Success)))
 

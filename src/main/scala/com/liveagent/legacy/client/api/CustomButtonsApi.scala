@@ -34,9 +34,9 @@ class CustomButtonsApi(baseUrl: String) {
    * 
    * @param customButton 
    */
-  def createCustomButton(customButton: Option[CustomButton] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[CustomButton] =
+  def createCustomButton(customButton: Option[CustomButton] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[CustomButton] =
     ApiRequest[CustomButton](ApiMethods.POST, baseUrl, "/custom_buttons", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withBody(customButton)
       .withSuccessResponse[CustomButton](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -53,9 +53,9 @@ class CustomButtonsApi(baseUrl: String) {
    * 
    * @param customButtonId 
    */
-  def deleteCustomButton(customButtonId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
+  def deleteCustomButton(customButtonId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.DELETE, baseUrl, "/custom_buttons/{customButtonId}", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("customButtonId", customButtonId)
       .withSuccessResponse[Any](200)
       .withErrorResponse[ErrorResponse](404)
@@ -73,9 +73,9 @@ class CustomButtonsApi(baseUrl: String) {
    * 
    * @param customButtonId 
    */
-  def getCustomButton(customButtonId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[CustomButton] =
+  def getCustomButton(customButtonId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[CustomButton] =
     ApiRequest[CustomButton](ApiMethods.GET, baseUrl, "/custom_buttons/{customButtonId}", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("customButtonId", customButtonId)
       .withSuccessResponse[CustomButton](200)
       .withErrorResponse[ErrorResponse](404)
@@ -98,9 +98,9 @@ class CustomButtonsApi(baseUrl: String) {
    * @param sortField Sorting field
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
    */
-  def getCustomButtonsList(page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[CustomButton]] =
+  def getCustomButtonsList(page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[CustomButton]] =
     ApiRequest[Seq[CustomButton]](ApiMethods.GET, baseUrl, "/custom_buttons", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("_page", page)
       .withQueryParam("_perPage", perPage)
       .withQueryParam("_from", from)
@@ -124,9 +124,9 @@ class CustomButtonsApi(baseUrl: String) {
    * @param customButtonId 
    * @param customButton 
    */
-  def updateCustomButton(customButtonId: String, customButton: Option[CustomButton] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[CustomButton] =
+  def updateCustomButton(customButtonId: String, customButton: Option[CustomButton] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[CustomButton] =
     ApiRequest[CustomButton](ApiMethods.PUT, baseUrl, "/custom_buttons/{customButtonId}", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withBody(customButton)
       .withPathParam("customButtonId", customButtonId)
       .withSuccessResponse[CustomButton](200)

@@ -36,9 +36,9 @@ class AgentPhoneApi(baseUrl: String) {
    * @param agentId 
    * @param `type` API (I - default), SIP (S)
    */
-  def getAgentPhone(agentId: String, `type`: Option[String] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[PhoneDevice] =
+  def getAgentPhone(agentId: String, `type`: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[PhoneDevice] =
     ApiRequest[PhoneDevice](ApiMethods.GET, baseUrl, "/agent_phone/{agentId}", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("type", `type`)
       .withPathParam("agentId", agentId)
       .withSuccessResponse[PhoneDevice](200)
@@ -57,9 +57,9 @@ class AgentPhoneApi(baseUrl: String) {
    * @param agentId 
    * @param phoneId New phone ID
    */
-  def setAgentPhone(agentId: String, phoneId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Any] =
+  def setAgentPhone(agentId: String, phoneId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.PUT, baseUrl, "/agent_phone/{agentId}", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("phoneId", phoneId)
       .withPathParam("agentId", agentId)
       .withSuccessResponse[Any](200)

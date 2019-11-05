@@ -37,9 +37,9 @@ class BansApi(baseUrl: String) {
    * 
    * @param ban 
    */
-  def createBan(ban: Option[Ban] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Ban] =
+  def createBan(ban: Option[Ban] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Ban] =
     ApiRequest[Ban](ApiMethods.POST, baseUrl, "/bans/", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withBody(ban)
       .withSuccessResponse[Ban](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -57,9 +57,9 @@ class BansApi(baseUrl: String) {
    * 
    * @param banId 
    */
-  def expireBan(banId: Int)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Ban] =
+  def expireBan(banId: Int)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Ban] =
     ApiRequest[Ban](ApiMethods.POST, baseUrl, "/bans/{banId}/_expire", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("banId", banId)
       .withSuccessResponse[Ban](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -77,9 +77,9 @@ class BansApi(baseUrl: String) {
    * 
    * @param banId 
    */
-  def getBan(banId: Int)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Ban] =
+  def getBan(banId: Int)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Ban] =
     ApiRequest[Ban](ApiMethods.GET, baseUrl, "/bans/{banId}", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("banId", banId)
       .withSuccessResponse[Ban](200)
       .withDefaultErrorResponse[ErrorResponse]
@@ -103,9 +103,9 @@ class BansApi(baseUrl: String) {
    * @param from Result set start. Takes precedence over _page.
    * @param to Result set end. Used only if _from is used.
    */
-  def getBans(page: Option[Int] = None, perPage: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None, from: Option[Int] = None, to: Option[Int] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[BanListItem]] =
+  def getBans(page: Option[Int] = None, perPage: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None, from: Option[Int] = None, to: Option[Int] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[BanListItem]] =
     ApiRequest[Seq[BanListItem]](ApiMethods.GET, baseUrl, "/bans/", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("_page", page)
       .withQueryParam("_perPage", perPage)
       .withQueryParam("_sortDir", sortDir)
@@ -130,9 +130,9 @@ class BansApi(baseUrl: String) {
    * @param banId 
    * @param ban 
    */
-  def updateBan(banId: Int, ban: Option[Ban] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Ban] =
+  def updateBan(banId: Int, ban: Option[Ban] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Ban] =
     ApiRequest[Ban](ApiMethods.PUT, baseUrl, "/bans/{banId}", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withBody(ban)
       .withPathParam("banId", banId)
       .withSuccessResponse[Ban](200)

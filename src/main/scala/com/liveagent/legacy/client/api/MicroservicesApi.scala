@@ -12,6 +12,7 @@
 package com.liveagent.legacy.client.api
 
 import com.liveagent.legacy.client.model.AgentName
+import com.liveagent.legacy.client.model.ApiKeyValue
 import com.liveagent.legacy.client.model.Browser
 import com.liveagent.legacy.client.model.BrowserId
 import com.liveagent.legacy.client.model.DepartmentName
@@ -48,9 +49,9 @@ class MicroservicesApi(baseUrl: String) {
    * 
    * @param ids 
    */
-  def getAgentNames(ids: Ids)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[AgentName]] =
+  def getAgentNames(ids: Ids)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[AgentName]] =
     ApiRequest[Seq[AgentName]](ApiMethods.POST, baseUrl, "/agent_names", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withBody(ids)
       .withSuccessResponse[Seq[AgentName]](200)
       .withErrorResponse[ErrorResponse](400)
@@ -70,9 +71,9 @@ class MicroservicesApi(baseUrl: String) {
    * 
    * @param ids 
    */
-  def getDepartmentNames(ids: Ids)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Seq[DepartmentName]] =
+  def getDepartmentNames(ids: Ids)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[DepartmentName]] =
     ApiRequest[Seq[DepartmentName]](ApiMethods.POST, baseUrl, "/department_names", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withBody(ids)
       .withSuccessResponse[Seq[DepartmentName]](200)
       .withErrorResponse[ErrorResponse](400)
@@ -90,9 +91,9 @@ class MicroservicesApi(baseUrl: String) {
    * 
    * @param principalId Principal id
    */
-  def getDepartments(principalId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Departments] =
+  def getDepartments(principalId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Departments] =
     ApiRequest[Departments](ApiMethods.GET, baseUrl, "/principal/{principalId}/departments", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("principalId", principalId)
       .withSuccessResponse[Departments](200)
       .withErrorResponse[ErrorResponse](404)
@@ -110,9 +111,9 @@ class MicroservicesApi(baseUrl: String) {
    * 
    * @param principalId Principal id
    */
-  def getRole(principalId: String)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Role] =
+  def getRole(principalId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Role] =
     ApiRequest[Role](ApiMethods.GET, baseUrl, "/principal/{principalId}/role", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("principalId", principalId)
       .withSuccessResponse[Role](200)
       .withErrorResponse[ErrorResponse](404)
@@ -129,9 +130,9 @@ class MicroservicesApi(baseUrl: String) {
    * 
    * @param browserId 
    */
-  def resolveBrowser(browserId: Option[BrowserId] = None)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Browser] =
+  def resolveBrowser(browserId: Option[BrowserId] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Browser] =
     ApiRequest[Browser](ApiMethods.POST, baseUrl, "/principal/resolveBrowser", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withBody(browserId)
       .withSuccessResponse[Browser](200)
       .withErrorResponse[ErrorResponse](500)
@@ -146,11 +147,31 @@ class MicroservicesApi(baseUrl: String) {
    * Available security schemes:
    *   apikey (apiKey)
    * 
+   * @param apikey 
+   */
+  def resolveUserIdFromApiKey(apikey: ApiKeyValue)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[UserId] =
+    ApiRequest[UserId](ApiMethods.POST, baseUrl, "/principal/resolveUserIdFromApiKey", "application/json")
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
+      .withBody(apikey)
+      .withSuccessResponse[UserId](200)
+      .withErrorResponse[ErrorResponse](404)
+      .withErrorResponse[ErrorResponse](500)
+      
+
+  /**
+   * Expected answers:
+   *   code 200 : UserId (UserId)
+   *   code 404 : ErrorResponse (Session not found)
+   *   code 500 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   * 
    * @param sessionId 
    */
-  def resolveUserIdFromSession(sessionId: SessionId)(implicit apiKeyValue: ApiKeyValue): ApiRequest[UserId] =
+  def resolveUserIdFromSession(sessionId: SessionId)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[UserId] =
     ApiRequest[UserId](ApiMethods.POST, baseUrl, "/principal/resolveUserIdFromSession", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withBody(sessionId)
       .withSuccessResponse[UserId](200)
       .withErrorResponse[ErrorResponse](404)
@@ -168,9 +189,9 @@ class MicroservicesApi(baseUrl: String) {
    * 
    * @param visitorId 
    */
-  def resolveUserIdFromVisitorId(visitorId: VisitorId)(implicit apiKeyValue: ApiKeyValue): ApiRequest[UserId] =
+  def resolveUserIdFromVisitorId(visitorId: VisitorId)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[UserId] =
     ApiRequest[UserId](ApiMethods.POST, baseUrl, "/principal/resolveUserIdFromVisitorId", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withBody(visitorId)
       .withSuccessResponse[UserId](200)
       .withErrorResponse[ErrorResponse](400)
@@ -188,9 +209,9 @@ class MicroservicesApi(baseUrl: String) {
    * 
    * @param visitorId 
    */
-  def resolveVisitor(visitorId: VisitorId)(implicit apiKeyValue: ApiKeyValue): ApiRequest[Visitor] =
+  def resolveVisitor(visitorId: VisitorId)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Visitor] =
     ApiRequest[Visitor](ApiMethods.POST, baseUrl, "/principal/resolveVisitor", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withBody(visitorId)
       .withSuccessResponse[Visitor](200)
       .withErrorResponse[ErrorResponse](400)
@@ -213,9 +234,9 @@ class MicroservicesApi(baseUrl: String) {
    * 
    * @param credentials 
    */
-  def validateCredentials(credentials: PrincipalCredentials)(implicit apiKeyValue: ApiKeyValue): ApiRequest[UserId] =
+  def validateCredentials(credentials: PrincipalCredentials)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[UserId] =
     ApiRequest[UserId](ApiMethods.POST, baseUrl, "/principal/validateCredentials", "application/json")
-      .withApiKey(apiKeyValue, "apikey", HEADER)
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withBody(credentials)
       .withSuccessResponse[UserId](200)
       .withErrorResponse[ErrorResponse](400)
