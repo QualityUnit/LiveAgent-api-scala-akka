@@ -38,7 +38,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.liveagent.legacy</groupId>
   <artifactId>api-client</artifactId>
-  <version>4.1.1</version>
+  <version>4.1.2</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -48,13 +48,13 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.liveagent.legacy:api-client:4.1.1"
+compile "com.liveagent.legacy:api-client:4.1.2"
 ```
 
 ### SBT users
 
 ```scala
-libraryDependencies += "com.liveagent.legacy" % "api-client" % "4.1.1"
+libraryDependencies += "com.liveagent.legacy" % "api-client" % "4.1.2"
 ```
 
 ## Getting Started
