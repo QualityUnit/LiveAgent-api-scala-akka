@@ -125,9 +125,9 @@ class ApiInvoker(formats: Formats)(implicit system: ActorSystem) extends CustomC
     request: HttpRequest =>
       credentialsSeq.foldLeft(request) {
         case (req, BasicCredentials(login, password)) =>
-          req.withHeaders(Authorization(BasicHttpCredentials(login, password)))
+          req.withHeaders(req.headers :+ Authorization(BasicHttpCredentials(login, password)))
         case (req, ApiKeyCredentials(keyValue, keyName, ApiKeyLocations.HEADER)) =>
-          req.withHeaders(RawHeader(keyName, keyValue.value))
+          req.withHeaders(req.headers :+ RawHeader(keyName, keyValue.value))
         case (req, _) => req
       }
   }
