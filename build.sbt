@@ -1,4 +1,4 @@
-version := "4.1.3"
+version := "4.1.4"
 name := "api-client"
 organization := "com.liveagent.legacy"
 scalaVersion := "2.12.8"

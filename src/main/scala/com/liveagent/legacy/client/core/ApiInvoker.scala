@@ -36,15 +36,17 @@ import scala.collection.immutable
 import scala.concurrent.{ ExecutionContext, ExecutionContextExecutor, Future }
 import scala.reflect.ClassTag
 
+import com.liveagent.legacy.client.api.EnumsSerializers
+
 object ApiInvoker {
 
   def apply()(implicit system: ActorSystem): ApiInvoker =
-    apply(DefaultFormats + DateTimeSerializer)
+    apply(DefaultFormats + DateTimeSerializer ++ EnumsSerializers.all)
 
-  def apply(serializers: Iterable[Serializer[_]])(implicit system: ActorSystem): ApiInvoker =
+  private def apply(serializers: Iterable[Serializer[_]])(implicit system: ActorSystem): ApiInvoker =
     apply(DefaultFormats + DateTimeSerializer ++ serializers)
 
-  def apply(formats: Formats)(implicit system: ActorSystem): ApiInvoker = new ApiInvoker(formats)
+  private def apply(formats: Formats)(implicit system: ActorSystem): ApiInvoker = new ApiInvoker(formats)
 
 
   /**
