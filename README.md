@@ -38,7 +38,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.liveagent.legacy</groupId>
   <artifactId>api-client</artifactId>
-  <version>4.1.4</version>
+  <version>4.1.6</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -48,13 +48,13 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.liveagent.legacy:api-client:4.1.4"
+compile "com.liveagent.legacy:api-client:4.1.6"
 ```
 
 ### SBT users
 
 ```scala
-libraryDependencies += "com.liveagent.legacy" % "api-client" % "4.1.4"
+libraryDependencies += "com.liveagent.legacy" % "api-client" % "4.1.6"
 ```
 
 ## Getting Started
@@ -200,15 +200,21 @@ Class | Method | HTTP request | Description
 *MailAccountApi* | **getMailAccount** | **GET** /mail_accounts/{mailAccountId} | Gets mail account
 *MailAccountApi* | **getMailAccountList** | **GET** /mail_accounts | Gets list of mail accounts
 *MessagesApi* | **getMessage** | **GET** /messages/{messageId} | Get message
+*MicroservicesApi* | **activateGmailAccount** | **POST** /gmail_accounts/{gmailAccountId}/_activate | 
+*MicroservicesApi* | **createGmailAccount** | **POST** /gmail_accounts/{gmailAccountId} | 
+*MicroservicesApi* | **deactivateGmailAccount** | **POST** /gmail_accounts/{gmailAccountId}/_deactivate | 
+*MicroservicesApi* | **deleteGmailAccount** | **DELETE** /gmail_accounts/{gmailAccountId} | 
 *MicroservicesApi* | **getAgentNames** | **POST** /agent_names | Agent names
 *MicroservicesApi* | **getDepartmentNames** | **POST** /department_names | Department names
 *MicroservicesApi* | **getDepartments** | **GET** /principal/{principalId}/departments | Get principal departments
 *MicroservicesApi* | **getRole** | **GET** /principal/{principalId}/role | Get principal role
+*MicroservicesApi* | **rejectGmailAccount** | **POST** /gmail_accounts/{gmailAccountId}/_reject | 
 *MicroservicesApi* | **resolveBrowser** | **POST** /principal/resolveBrowser | Resolve browser
 *MicroservicesApi* | **resolveUserIdFromApiKey** | **POST** /principal/resolveUserIdFromApiKey | Get user id from apikey
 *MicroservicesApi* | **resolveUserIdFromSession** | **POST** /principal/resolveUserIdFromSession | Get user id from session
 *MicroservicesApi* | **resolveUserIdFromVisitorId** | **POST** /principal/resolveUserIdFromVisitorId | Get user id from visitor id
 *MicroservicesApi* | **resolveVisitor** | **POST** /principal/resolveVisitor | Resolve visitor
+*MicroservicesApi* | **updateGmailAccount** | **PUT** /gmail_accounts/{gmailAccountId} | 
 *MicroservicesApi* | **validateCredentials** | **POST** /principal/validateCredentials | Validate principal credentials
 *PageVisitsApi* | **getPageVisitByContactId** | **GET** /page_visits/{contactId}/contact | Gets a page visits
 *PhoneNumbersApi* | **addNumber** | **POST** /phone_numbers | Add new number
@@ -343,6 +349,7 @@ Class | Method | HTTP request | Description
  - [Extension](Extension.md)
  - [Filter](Filter.md)
  - [FilterCondition](FilterCondition.md)
+ - [GmailAccountSettings](GmailAccountSettings.md)
  - [Group](Group.md)
  - [HostingInfo](HostingInfo.md)
  - [Ids](Ids.md)

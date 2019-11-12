@@ -41,7 +41,7 @@ openApiGenerate {
     groupId = "com.liveagent.legacy"
     id = "api-client"
     templateDir = "$rootDir/template_dir/"
-    version = "4.1.4"
+    version = "4.1.6"
     configOptions = [
             dateLibrary: "java8",
             mainPackage: "com.liveagent.legacy.client"

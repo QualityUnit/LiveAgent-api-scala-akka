@@ -18,6 +18,7 @@ import com.liveagent.legacy.client.model.BrowserId
 import com.liveagent.legacy.client.model.DepartmentName
 import com.liveagent.legacy.client.model.Departments
 import com.liveagent.legacy.client.model.ErrorResponse
+import com.liveagent.legacy.client.model.GmailAccountSettings
 import com.liveagent.legacy.client.model.Ids
 import com.liveagent.legacy.client.model.PrincipalCredentials
 import com.liveagent.legacy.client.model.Role
@@ -36,6 +37,90 @@ object MicroservicesApi {
 
 class MicroservicesApi(baseUrl: String) {
   
+  /**
+   * Expected answers:
+   *   code 200 :  (Done)
+   *   code 404 : ErrorResponse (Error response)
+   *   code 0 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   * 
+   * @param gmailAccountId 
+   * @param emailAddress 
+   */
+  def activateGmailAccount(gmailAccountId: String, emailAddress: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Unit] =
+    ApiRequest[Unit](ApiMethods.POST, baseUrl, "/gmail_accounts/{gmailAccountId}/_activate", "application/json")
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
+      .withBody(emailAddress)
+      .withPathParam("gmailAccountId", gmailAccountId)
+      .withSuccessResponse[Unit](200)
+      .withErrorResponse[ErrorResponse](404)
+      .withDefaultErrorResponse[ErrorResponse]
+      
+
+  /**
+   * Expected answers:
+   *   code 200 :  (Done)
+   *   code 404 : ErrorResponse (Error response)
+   *   code 0 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   * 
+   * @param gmailAccountId 
+   * @param settings 
+   */
+  def createGmailAccount(gmailAccountId: String, settings: GmailAccountSettings)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Unit] =
+    ApiRequest[Unit](ApiMethods.POST, baseUrl, "/gmail_accounts/{gmailAccountId}", "application/json")
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
+      .withBody(settings)
+      .withPathParam("gmailAccountId", gmailAccountId)
+      .withSuccessResponse[Unit](200)
+      .withErrorResponse[ErrorResponse](404)
+      .withDefaultErrorResponse[ErrorResponse]
+      
+
+  /**
+   * Expected answers:
+   *   code 200 :  (Done)
+   *   code 404 : ErrorResponse (Error response)
+   *   code 0 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   * 
+   * @param gmailAccountId 
+   */
+  def deactivateGmailAccount(gmailAccountId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Unit] =
+    ApiRequest[Unit](ApiMethods.POST, baseUrl, "/gmail_accounts/{gmailAccountId}/_deactivate", "application/json")
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
+      .withPathParam("gmailAccountId", gmailAccountId)
+      .withSuccessResponse[Unit](200)
+      .withErrorResponse[ErrorResponse](404)
+      .withDefaultErrorResponse[ErrorResponse]
+      
+
+  /**
+   * Expected answers:
+   *   code 200 :  (Done)
+   *   code 404 : ErrorResponse (Error response)
+   *   code 0 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   * 
+   * @param gmailAccountId 
+   */
+  def deleteGmailAccount(gmailAccountId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Unit] =
+    ApiRequest[Unit](ApiMethods.DELETE, baseUrl, "/gmail_accounts/{gmailAccountId}", "application/json")
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
+      .withPathParam("gmailAccountId", gmailAccountId)
+      .withSuccessResponse[Unit](200)
+      .withErrorResponse[ErrorResponse](404)
+      .withDefaultErrorResponse[ErrorResponse]
+      
+
   /**
    * List of agent names
    * 
@@ -118,6 +203,26 @@ class MicroservicesApi(baseUrl: String) {
       .withSuccessResponse[Role](200)
       .withErrorResponse[ErrorResponse](404)
       .withErrorResponse[ErrorResponse](500)
+      
+
+  /**
+   * Expected answers:
+   *   code 200 :  (Done)
+   *   code 404 : ErrorResponse (Error response)
+   *   code 0 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   * 
+   * @param gmailAccountId 
+   */
+  def rejectGmailAccount(gmailAccountId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Unit] =
+    ApiRequest[Unit](ApiMethods.POST, baseUrl, "/gmail_accounts/{gmailAccountId}/_reject", "application/json")
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
+      .withPathParam("gmailAccountId", gmailAccountId)
+      .withSuccessResponse[Unit](200)
+      .withErrorResponse[ErrorResponse](404)
+      .withDefaultErrorResponse[ErrorResponse]
       
 
   /**
@@ -216,6 +321,28 @@ class MicroservicesApi(baseUrl: String) {
       .withSuccessResponse[Visitor](200)
       .withErrorResponse[ErrorResponse](400)
       .withErrorResponse[ErrorResponse](500)
+      
+
+  /**
+   * Expected answers:
+   *   code 200 :  (Done)
+   *   code 404 : ErrorResponse (Error response)
+   *   code 0 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   * 
+   * @param gmailAccountId 
+   * @param settings 
+   */
+  def updateGmailAccount(gmailAccountId: String, settings: GmailAccountSettings)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Unit] =
+    ApiRequest[Unit](ApiMethods.PUT, baseUrl, "/gmail_accounts/{gmailAccountId}", "application/json")
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
+      .withBody(settings)
+      .withPathParam("gmailAccountId", gmailAccountId)
+      .withSuccessResponse[Unit](200)
+      .withErrorResponse[ErrorResponse](404)
+      .withDefaultErrorResponse[ErrorResponse]
       
 
   /**
