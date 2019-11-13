@@ -21,7 +21,11 @@ case class GmailAccountSettings (
   departmentId: String,
   fetchAllOnConnect: Boolean,
   leaveCopy: Boolean,
-  aliases: Seq[String]
+  aliases: Seq[String],
+  incomingHost: String,
+  incomingPort: Int,
+  outgoingHost: String,
+  outgoingPort: Int
 ) extends ApiModel
 
 
