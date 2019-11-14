@@ -215,10 +215,12 @@ class MicroservicesApi(baseUrl: String) {
    *   apikey (apiKey)
    * 
    * @param gmailAccountId 
+   * @param reason 
    */
-  def rejectGmailAccount(gmailAccountId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Unit] =
+  def rejectGmailAccount(gmailAccountId: String, reason: ErrorResponse)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Unit] =
     ApiRequest[Unit](ApiMethods.POST, baseUrl, "/gmail_accounts/{gmailAccountId}/_reject", "application/json")
       .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
+      .withBody(reason)
       .withPathParam("gmailAccountId", gmailAccountId)
       .withSuccessResponse[Unit](200)
       .withErrorResponse[ErrorResponse](404)

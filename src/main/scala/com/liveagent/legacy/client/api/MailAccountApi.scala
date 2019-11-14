@@ -11,6 +11,7 @@
  */
 package com.liveagent.legacy.client.api
 
+import com.liveagent.legacy.client.model.EmailAddressObj
 import com.liveagent.legacy.client.model.ErrorResponse
 import com.liveagent.legacy.client.model.MailAccount
 import com.liveagent.legacy.client.core._
@@ -41,6 +42,26 @@ class MailAccountApi(baseUrl: String) {
     ApiRequest[MailAccount](ApiMethods.GET, baseUrl, "/mail_accounts/{mailAccountId}", "application/json")
       .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("mailAccountId", mailAccountId)
+      .withSuccessResponse[MailAccount](200)
+      .withErrorResponse[ErrorResponse](404)
+      .withDefaultErrorResponse[ErrorResponse]
+      
+
+  /**
+   * Expected answers:
+   *   code 200 : MailAccount (Mail account)
+   *   code 404 : ErrorResponse (Error response)
+   *   code 0 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   * 
+   * @param emailAddress 
+   */
+  def getMailAccountByEmailAddress(emailAddress: EmailAddressObj)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[MailAccount] =
+    ApiRequest[MailAccount](ApiMethods.POST, baseUrl, "/mail_accounts/_by_email", "application/json")
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
+      .withBody(emailAddress)
       .withSuccessResponse[MailAccount](200)
       .withErrorResponse[ErrorResponse](404)
       .withDefaultErrorResponse[ErrorResponse]

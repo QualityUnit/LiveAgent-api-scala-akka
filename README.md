@@ -38,7 +38,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.liveagent.legacy</groupId>
   <artifactId>api-client</artifactId>
-  <version>4.1.7</version>
+  <version>4.1.10</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -48,13 +48,13 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.liveagent.legacy:api-client:4.1.7"
+compile "com.liveagent.legacy:api-client:4.1.10"
 ```
 
 ### SBT users
 
 ```scala
-libraryDependencies += "com.liveagent.legacy" % "api-client" % "4.1.7"
+libraryDependencies += "com.liveagent.legacy" % "api-client" % "4.1.10"
 ```
 
 ## Getting Started
@@ -70,6 +70,7 @@ Class | Method | HTTP request | Description
 *AgentsApi* | **convertRegisteredVisitor** | **POST** /agents/convert | Convert registered visitor
 *AgentsApi* | **deleteAgent** | **DELETE** /agents/{userId} | Agent
 *AgentsApi* | **getAgent** | **GET** /agents/{userId} | Agent
+*AgentsApi* | **getAgentByEmail** | **POST** /agents/_by_email | Agent
 *AgentsApi* | **getAgentStatuses** | **GET** /agents/{userId}/status | Get agent statuses in departments
 *AgentsApi* | **getAgents** | **GET** /agents/ | Agent list
 *AgentsApi* | **getAgentsActivity** | **GET** /agents/activity | Agent Activity list
@@ -198,6 +199,7 @@ Class | Method | HTTP request | Description
 *InvoicesApi* | **dowloadInvoice** | **POST** /invoices/{invoiceNumber}/_download | Download invoice
 *InvoicesApi* | **getInvoices** | **GET** /invoices/ | Invoice list
 *MailAccountApi* | **getMailAccount** | **GET** /mail_accounts/{mailAccountId} | Gets mail account
+*MailAccountApi* | **getMailAccountByEmailAddress** | **POST** /mail_accounts/_by_email | Gets mail account by email address
 *MailAccountApi* | **getMailAccountList** | **GET** /mail_accounts | Gets list of mail accounts
 *MessagesApi* | **getMessage** | **GET** /messages/{messageId} | Get message
 *MicroservicesApi* | **activateGmailAccount** | **POST** /gmail_accounts/{gmailAccountId}/_activate | 
@@ -344,6 +346,7 @@ Class | Method | HTTP request | Description
  - [DeviceDepartmentPlanList](DeviceDepartmentPlanList.md)
  - [DiscountValue](DiscountValue.md)
  - [Domain](Domain.md)
+ - [EmailAddressObj](EmailAddressObj.md)
  - [ErrorResponse](ErrorResponse.md)
  - [EventLogRow](EventLogRow.md)
  - [Extension](Extension.md)

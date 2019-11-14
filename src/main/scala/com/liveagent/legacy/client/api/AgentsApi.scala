@@ -14,6 +14,7 @@ package com.liveagent.legacy.client.api
 import com.liveagent.legacy.client.model.Agent
 import com.liveagent.legacy.client.model.AgentActivity
 import com.liveagent.legacy.client.model.AgentStatus
+import com.liveagent.legacy.client.model.EmailAddressObj
 import com.liveagent.legacy.client.model.ErrorResponse
 import com.liveagent.legacy.client.core._
 import com.liveagent.legacy.client.core.CollectionFormats._
@@ -83,6 +84,28 @@ class AgentsApi(baseUrl: String) {
       .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("userId", userId)
       .withSuccessResponse[Agent](200)
+      .withDefaultErrorResponse[ErrorResponse]
+      
+
+  /**
+   * Retrieves an agent
+   * 
+   * Expected answers:
+   *   code 200 : Agent (Requested agent)
+   *   code 404 : ErrorResponse (Error response)
+   *   code 0 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   * 
+   * @param emailAddress 
+   */
+  def getAgentByEmail(emailAddress: EmailAddressObj)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Agent] =
+    ApiRequest[Agent](ApiMethods.POST, baseUrl, "/agents/_by_email", "application/json")
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
+      .withBody(emailAddress)
+      .withSuccessResponse[Agent](200)
+      .withErrorResponse[ErrorResponse](404)
       .withDefaultErrorResponse[ErrorResponse]
       
 
