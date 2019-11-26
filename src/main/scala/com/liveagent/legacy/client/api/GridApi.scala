@@ -11,11 +11,15 @@
  */
 package com.liveagent.legacy.client.api
 
+import com.liveagent.legacy.client.model.AgentRow
+import com.liveagent.legacy.client.model.ChatRow
 import com.liveagent.legacy.client.model.Count
+import com.liveagent.legacy.client.model.DepartmentRow
 import com.liveagent.legacy.client.model.ErrorResponse
 import com.liveagent.legacy.client.model.EventLogRow
 import com.liveagent.legacy.client.model.SlaLogRow
 import com.liveagent.legacy.client.model.TicketRow
+import com.liveagent.legacy.client.model.TimeReportRow
 import com.liveagent.legacy.client.core._
 import com.liveagent.legacy.client.core.CollectionFormats._
 import com.liveagent.legacy.client.core.ApiKeyLocations._
@@ -27,6 +31,50 @@ object GridApi {
 
 class GridApi(baseUrl: String) {
   
+  /**
+   * Expected answers:
+   *   code 200 : Seq[AgentRow] (Agents grid response)
+   *   code 0 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   * 
+   * @param perPage Results per page. Used only if _page is used.
+   * @param sortDir Sorting direction ASC or DESC
+   * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
+   * @param cursor used for iteration throght resultset. Cursor identifies specific page in resultset.
+   * @param sortField Sorting field
+   */
+  def getAgentsGridList(perPage: Option[Int] = None, sortDir: Option[String] = None, filters: Option[String] = None, cursor: Option[String] = None, sortField: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[AgentRow]] =
+    ApiRequest[Seq[AgentRow]](ApiMethods.GET, baseUrl, "/grid/agents", "application/json")
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
+      .withQueryParam("_perPage", perPage)
+      .withQueryParam("_sortDir", sortDir)
+      .withQueryParam("_filters", filters)
+      .withQueryParam("_cursor", cursor)
+      .withQueryParam("_sortField", sortField)
+      .withSuccessResponse[Seq[AgentRow]](200)
+      .withDefaultErrorResponse[ErrorResponse]
+      
+
+  /**
+   * Expected answers:
+   *   code 200 : Count (Agents grid count response)
+   *   code 0 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   * 
+   * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
+   */
+  def getAgentsGridListCount(filters: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Count] =
+    ApiRequest[Count](ApiMethods.GET, baseUrl, "/grid/agents/count", "application/json")
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
+      .withQueryParam("_filters", filters)
+      .withSuccessResponse[Count](200)
+      .withDefaultErrorResponse[ErrorResponse]
+      
+
   /**
    * Expected answers:
    *   code 200 : Seq[SlaLogRow] (Calls sla log grid response)
@@ -67,6 +115,46 @@ class GridApi(baseUrl: String) {
    */
   def getCallsSlaLogGridListCount(filters: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Count] =
     ApiRequest[Count](ApiMethods.GET, baseUrl, "/grid/calls/sla/count", "application/json")
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
+      .withQueryParam("_filters", filters)
+      .withSuccessResponse[Count](200)
+      .withDefaultErrorResponse[ErrorResponse]
+      
+
+  /**
+   * Expected answers:
+   *   code 200 : Seq[ChatRow] (Chats grid response)
+   *   code 0 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   * 
+   * @param perPage Results per page. Used only if _page is used.
+   * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
+   * @param cursor used for iteration throght resultset. Cursor identifies specific page in resultset.
+   */
+  def getChatsGridList(perPage: Option[Int] = None, filters: Option[String] = None, cursor: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[ChatRow]] =
+    ApiRequest[Seq[ChatRow]](ApiMethods.GET, baseUrl, "/grid/chats", "application/json")
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
+      .withQueryParam("_perPage", perPage)
+      .withQueryParam("_filters", filters)
+      .withQueryParam("_cursor", cursor)
+      .withSuccessResponse[Seq[ChatRow]](200)
+      .withDefaultErrorResponse[ErrorResponse]
+      
+
+  /**
+   * Expected answers:
+   *   code 200 : Count (Tickets grid count response)
+   *   code 0 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   * 
+   * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
+   */
+  def getChatsGridListCount(filters: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Count] =
+    ApiRequest[Count](ApiMethods.GET, baseUrl, "/grid/chats/count", "application/json")
       .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("_filters", filters)
       .withSuccessResponse[Count](200)
@@ -116,6 +204,50 @@ class GridApi(baseUrl: String) {
       .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("_filters", filters)
       .withSuccessResponse[Count](200)
+      .withDefaultErrorResponse[ErrorResponse]
+      
+
+  /**
+   * Expected answers:
+   *   code 200 : Count (Departments grid count response)
+   *   code 0 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   * 
+   * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
+   */
+  def getDepartmensGridListCount(filters: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Count] =
+    ApiRequest[Count](ApiMethods.GET, baseUrl, "/grid/departments/count", "application/json")
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
+      .withQueryParam("_filters", filters)
+      .withSuccessResponse[Count](200)
+      .withDefaultErrorResponse[ErrorResponse]
+      
+
+  /**
+   * Expected answers:
+   *   code 200 : Seq[DepartmentRow] (Departments grid response)
+   *   code 0 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   * 
+   * @param perPage Results per page. Used only if _page is used.
+   * @param sortDir Sorting direction ASC or DESC
+   * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
+   * @param cursor used for iteration throght resultset. Cursor identifies specific page in resultset.
+   * @param sortField Sorting field
+   */
+  def getDepartmentsGridList(perPage: Option[Int] = None, sortDir: Option[String] = None, filters: Option[String] = None, cursor: Option[String] = None, sortField: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[DepartmentRow]] =
+    ApiRequest[Seq[DepartmentRow]](ApiMethods.GET, baseUrl, "/grid/departments", "application/json")
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
+      .withQueryParam("_perPage", perPage)
+      .withQueryParam("_sortDir", sortDir)
+      .withQueryParam("_filters", filters)
+      .withQueryParam("_cursor", cursor)
+      .withQueryParam("_sortField", sortField)
+      .withSuccessResponse[Seq[DepartmentRow]](200)
       .withDefaultErrorResponse[ErrorResponse]
       
 
@@ -251,6 +383,50 @@ class GridApi(baseUrl: String) {
    */
   def getTicketsSlaLogGridListCount(filters: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Count] =
     ApiRequest[Count](ApiMethods.GET, baseUrl, "/grid/tickets/sla/count", "application/json")
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
+      .withQueryParam("_filters", filters)
+      .withSuccessResponse[Count](200)
+      .withDefaultErrorResponse[ErrorResponse]
+      
+
+  /**
+   * Expected answers:
+   *   code 200 : Seq[TimeReportRow] (A list of time reports)
+   *   code 0 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   * 
+   * @param perPage Results per page. Used only if _page is used.
+   * @param sortDir Sorting direction ASC or DESC
+   * @param sortField Sorting field
+   * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
+   * @param cursor used for iteration throght resultset. Cursor identifies specific page in resultset.
+   */
+  def getTimeReportsGridList(perPage: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None, cursor: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[TimeReportRow]] =
+    ApiRequest[Seq[TimeReportRow]](ApiMethods.GET, baseUrl, "/grid/reports/time", "application/json")
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
+      .withQueryParam("_perPage", perPage)
+      .withQueryParam("_sortDir", sortDir)
+      .withQueryParam("_sortField", sortField)
+      .withQueryParam("_filters", filters)
+      .withQueryParam("_cursor", cursor)
+      .withSuccessResponse[Seq[TimeReportRow]](200)
+      .withDefaultErrorResponse[ErrorResponse]
+      
+
+  /**
+   * Expected answers:
+   *   code 200 : Count (Time reports grid count response)
+   *   code 0 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   * 
+   * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
+   */
+  def getTimeReportsGridListCount(filters: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Count] =
+    ApiRequest[Count](ApiMethods.GET, baseUrl, "/grid/reports/time/count", "application/json")
       .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("_filters", filters)
       .withSuccessResponse[Count](200)

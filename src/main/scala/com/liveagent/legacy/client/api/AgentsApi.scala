@@ -136,6 +136,7 @@ class AgentsApi(baseUrl: String) {
    * 
    * Expected answers:
    *   code 200 : Seq[Agent] (Agent list)
+   *   code 206 : Seq[Agent] (Agent list)
    *   code 0 : ErrorResponse (Error response)
    * 
    * Available security schemes:
@@ -160,6 +161,7 @@ class AgentsApi(baseUrl: String) {
       .withQueryParam("_from", from)
       .withQueryParam("_to", to)
       .withSuccessResponse[Seq[Agent]](200)
+      .withErrorResponse[Seq[Agent]](206)
       .withDefaultErrorResponse[ErrorResponse]
       
 
@@ -168,6 +170,7 @@ class AgentsApi(baseUrl: String) {
    * 
    * Expected answers:
    *   code 200 : Seq[AgentActivity] (Agent Activity list)
+   *   code 206 : Seq[AgentActivity] (Agent Activity list)
    *   code 0 : ErrorResponse (Error response)
    * 
    * Available security schemes:
@@ -192,6 +195,7 @@ class AgentsApi(baseUrl: String) {
       .withQueryParam("_from", from)
       .withQueryParam("_to", to)
       .withSuccessResponse[Seq[AgentActivity]](200)
+      .withErrorResponse[Seq[AgentActivity]](206)
       .withDefaultErrorResponse[ErrorResponse]
       
 

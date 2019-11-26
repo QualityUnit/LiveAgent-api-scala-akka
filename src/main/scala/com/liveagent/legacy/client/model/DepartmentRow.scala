@@ -17,14 +17,10 @@ import java.util.UUID
 
 import org.json4s.MappingException
 
-case class GmailAccountSettings (
-  fetchAllOnConnect: Boolean,
-  leaveCopy: Boolean,
-  aliases: Seq[String],
-  incomingHost: String,
-  incomingPort: Int,
-  outgoingHost: String,
-  outgoingPort: Int
+case class DepartmentRow (
+  id: Option[String] = None,
+  name: Option[String] = None,
+  agentCount: Option[Int] = None
 ) extends ApiModel
 
 

@@ -183,6 +183,7 @@ class TicketsApi(baseUrl: String) {
   /**
    * Expected answers:
    *   code 200 : Seq[MessageGroup] (Ticket message groups)
+   *   code 206 : Seq[MessageGroup] (Ticket message groups)
    *   code 404 : ErrorResponse (Error response)
    *   code 0 : ErrorResponse (Error response)
    * 
@@ -212,6 +213,7 @@ class TicketsApi(baseUrl: String) {
       .withQueryParam("_to", to)
       .withPathParam("ticketId", ticketId)
       .withSuccessResponse[Seq[MessageGroup]](200)
+      .withErrorResponse[Seq[MessageGroup]](206)
       .withErrorResponse[ErrorResponse](404)
       .withDefaultErrorResponse[ErrorResponse]
       
@@ -239,6 +241,7 @@ class TicketsApi(baseUrl: String) {
   /**
    * Expected answers:
    *   code 200 : Seq[Ticket] (Tickets response)
+   *   code 206 : Seq[Ticket] (Tickets response)
    *   code 0 : ErrorResponse (Error response)
    * 
    * Available security schemes:
@@ -263,6 +266,7 @@ class TicketsApi(baseUrl: String) {
       .withQueryParam("_sortField", sortField)
       .withQueryParam("_filters", filters)
       .withSuccessResponse[Seq[Ticket]](200)
+      .withErrorResponse[Seq[Ticket]](206)
       .withDefaultErrorResponse[ErrorResponse]
       
 

@@ -13,6 +13,7 @@ package com.liveagent.legacy.client.api
 
 import com.liveagent.legacy.client.model.Contact
 import com.liveagent.legacy.client.model.ContactListItem
+import com.liveagent.legacy.client.model.ContactRequest
 import com.liveagent.legacy.client.model.ErrorResponse
 import com.liveagent.legacy.client.core._
 import com.liveagent.legacy.client.core.CollectionFormats._
@@ -36,7 +37,7 @@ class ContactsApi(baseUrl: String) {
    * 
    * @param contact 
    */
-  def createContact(contact: Option[Contact] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Contact] =
+  def createContact(contact: Option[ContactRequest] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Contact] =
     ApiRequest[Contact](ApiMethods.POST, baseUrl, "/contacts", "application/json")
       .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withBody(contact)
@@ -131,7 +132,7 @@ class ContactsApi(baseUrl: String) {
    * @param contactId 
    * @param contact 
    */
-  def patchContact(contactId: String, contact: Option[Contact] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Contact] =
+  def patchContact(contactId: String, contact: Option[ContactRequest] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Contact] =
     ApiRequest[Contact](ApiMethods.PATCH, baseUrl, "/contacts/{contactId}", "application/json")
       .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withBody(contact)
@@ -152,11 +153,33 @@ class ContactsApi(baseUrl: String) {
    * 
    * @param contactId 
    * @param registrationEmail 
+   * @param sendRegistrationMail If this parameter is false, the registration mail will not be sent
    */
-  def registerContact(contactId: String, registrationEmail: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Contact] =
+  def registerContact(contactId: String, registrationEmail: String, sendRegistrationMail: Option[Boolean] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Contact] =
     ApiRequest[Contact](ApiMethods.PUT, baseUrl, "/contacts/{contactId}/_register", "application/json")
       .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("registration_email", registrationEmail)
+      .withQueryParam("sendRegistrationMail", sendRegistrationMail)
+      .withPathParam("contactId", contactId)
+      .withSuccessResponse[Contact](200)
+      .withErrorResponse[ErrorResponse](400)
+      .withDefaultErrorResponse[ErrorResponse]
+      
+
+  /**
+   * Expected answers:
+   *   code 200 : Contact (Contact was unregistered)
+   *   code 400 : ErrorResponse (Data is missing)
+   *   code 0 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   * 
+   * @param contactId 
+   */
+  def unregisterContact(contactId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Contact] =
+    ApiRequest[Contact](ApiMethods.DELETE, baseUrl, "/contacts/{contactId}/_unregister", "application/json")
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("contactId", contactId)
       .withSuccessResponse[Contact](200)
       .withErrorResponse[ErrorResponse](400)
@@ -175,7 +198,7 @@ class ContactsApi(baseUrl: String) {
    * @param contactId 
    * @param contact 
    */
-  def updateContact(contactId: String, contact: Option[Contact] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Contact] =
+  def updateContact(contactId: String, contact: Option[ContactRequest] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Contact] =
     ApiRequest[Contact](ApiMethods.PUT, baseUrl, "/contacts/{contactId}", "application/json")
       .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withBody(contact)

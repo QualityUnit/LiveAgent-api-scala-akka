@@ -70,6 +70,7 @@ class MailAccountApi(baseUrl: String) {
   /**
    * Expected answers:
    *   code 200 : Seq[MailAccount] (Mail account response)
+   *   code 206 : Seq[MailAccount] (Mail account response)
    *   code 404 : ErrorResponse (Error response)
    *   code 0 : ErrorResponse (Error response)
    * 
@@ -95,6 +96,7 @@ class MailAccountApi(baseUrl: String) {
       .withQueryParam("_sortField", sortField)
       .withQueryParam("_filters", filters)
       .withSuccessResponse[Seq[MailAccount]](200)
+      .withErrorResponse[Seq[MailAccount]](206)
       .withErrorResponse[ErrorResponse](404)
       .withDefaultErrorResponse[ErrorResponse]
       

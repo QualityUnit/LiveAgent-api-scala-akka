@@ -21,7 +21,30 @@ case class Tag (
   id: Option[String] = None,
   name: Option[String] = None,
   color: Option[String] = None,
-  backgroundColor: Option[String] = None
+  backgroundColor: Option[String] = None,
+  /* - Y - Public tag - N - Private tag */
+  isPublic: Option[TagEnums.IsPublic] = None
 ) extends ApiModel
 
+object TagEnums {
+    sealed trait IsPublic extends ApiEnum
+
+    object IsPublic {
+        case object `Y` extends IsPublic { val value = "Y" }
+        case object `N` extends IsPublic { val value = "N" }
+        case object `empty` extends IsPublic { val value = "" }
+
+        def fromString(value: String): IsPublic = value match {
+          case "Y" =>
+            IsPublic.`Y`
+          case "N" =>
+            IsPublic.`N`
+          case "" =>
+            IsPublic.`empty`
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to IsPublic")
+        }
+    }
+
+}
 

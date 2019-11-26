@@ -29,6 +29,7 @@ class PageVisitsApi(baseUrl: String) {
    * 
    * Expected answers:
    *   code 200 : Seq[PageVisit] (Page visit response)
+   *   code 206 : Seq[PageVisit] (Page visit response)
    *   code 404 : ErrorResponse (Error response)
    *   code 0 : ErrorResponse (Error response)
    * 
@@ -54,6 +55,7 @@ class PageVisitsApi(baseUrl: String) {
       .withQueryParam("_to", to)
       .withPathParam("contactId", contactId)
       .withSuccessResponse[Seq[PageVisit]](200)
+      .withErrorResponse[Seq[PageVisit]](206)
       .withErrorResponse[ErrorResponse](404)
       .withDefaultErrorResponse[ErrorResponse]
       

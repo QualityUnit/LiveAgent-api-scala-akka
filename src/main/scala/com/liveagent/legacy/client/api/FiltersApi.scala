@@ -91,6 +91,7 @@ class FiltersApi(baseUrl: String) {
    * 
    * Expected answers:
    *   code 200 : Seq[Filter] (Filters list)
+   *   code 206 : Seq[Filter] (Filters list)
    *   code 0 : ErrorResponse (Error response)
    * 
    * Available security schemes:
@@ -115,6 +116,7 @@ class FiltersApi(baseUrl: String) {
       .withQueryParam("_from", from)
       .withQueryParam("_to", to)
       .withSuccessResponse[Seq[Filter]](200)
+      .withErrorResponse[Seq[Filter]](206)
       .withDefaultErrorResponse[ErrorResponse]
       
 

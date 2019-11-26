@@ -13,6 +13,7 @@ package com.liveagent.legacy.client.api
 
 import com.liveagent.legacy.client.model.Company
 import com.liveagent.legacy.client.model.CompanyListItem
+import com.liveagent.legacy.client.model.CompanyRequest
 import com.liveagent.legacy.client.model.ErrorResponse
 import com.liveagent.legacy.client.core._
 import com.liveagent.legacy.client.core.CollectionFormats._
@@ -36,7 +37,7 @@ class CompaniesApi(baseUrl: String) {
    * 
    * @param company 
    */
-  def createCompany(company: Option[Company] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Company] =
+  def createCompany(company: Option[CompanyRequest] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Company] =
     ApiRequest[Company](ApiMethods.POST, baseUrl, "/companies", "application/json")
       .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withBody(company)
@@ -121,6 +122,48 @@ class CompaniesApi(baseUrl: String) {
 
   /**
    * Expected answers:
+   *   code 200 : Company (Company was registered)
+   *   code 400 : ErrorResponse (Data is missing)
+   *   code 0 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   * 
+   * @param companyId 
+   * @param registrationEmail 
+   */
+  def registerCompany(companyId: String, registrationEmail: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Company] =
+    ApiRequest[Company](ApiMethods.PUT, baseUrl, "/companies/{companyId}/_register", "application/json")
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
+      .withQueryParam("registration_email", registrationEmail)
+      .withPathParam("companyId", companyId)
+      .withSuccessResponse[Company](200)
+      .withErrorResponse[ErrorResponse](400)
+      .withDefaultErrorResponse[ErrorResponse]
+      
+
+  /**
+   * Expected answers:
+   *   code 200 : Company (Company was unregistered)
+   *   code 400 : ErrorResponse (Data is missing)
+   *   code 0 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   * 
+   * @param companyId 
+   */
+  def unregisterCompany(companyId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Company] =
+    ApiRequest[Company](ApiMethods.DELETE, baseUrl, "/companies/{companyId}/_unregister", "application/json")
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
+      .withPathParam("companyId", companyId)
+      .withSuccessResponse[Company](200)
+      .withErrorResponse[ErrorResponse](400)
+      .withDefaultErrorResponse[ErrorResponse]
+      
+
+  /**
+   * Expected answers:
    *   code 200 : Company (Company was updated)
    *   code 400 : ErrorResponse (Data is missing)
    *   code 0 : ErrorResponse (Error response)
@@ -131,7 +174,7 @@ class CompaniesApi(baseUrl: String) {
    * @param companyId 
    * @param company 
    */
-  def updateCompany(companyId: String, company: Option[Company] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Company] =
+  def updateCompany(companyId: String, company: Option[CompanyRequest] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Company] =
     ApiRequest[Company](ApiMethods.PUT, baseUrl, "/companies/{companyId}", "application/json")
       .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withBody(company)

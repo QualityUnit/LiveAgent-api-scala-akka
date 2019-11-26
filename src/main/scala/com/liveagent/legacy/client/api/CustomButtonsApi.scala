@@ -85,6 +85,7 @@ class CustomButtonsApi(baseUrl: String) {
   /**
    * Expected answers:
    *   code 200 : Seq[CustomButton] (Custom buttons response)
+   *   code 206 : Seq[CustomButton] (Custom buttons response)
    *   code 0 : ErrorResponse (Error response)
    * 
    * Available security schemes:
@@ -109,6 +110,7 @@ class CustomButtonsApi(baseUrl: String) {
       .withQueryParam("_sortField", sortField)
       .withQueryParam("_filters", filters)
       .withSuccessResponse[Seq[CustomButton]](200)
+      .withErrorResponse[Seq[CustomButton]](206)
       .withDefaultErrorResponse[ErrorResponse]
       
 

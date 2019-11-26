@@ -23,12 +23,10 @@ case class TicketListItem (
   departmentid: String,
   recipient: String,
   message: String,
-  /*  date and time with valid format: YYYY-MM-DD HH:MM:SS */
-  dateCreated: Option[String] = None,
   recipientName: Option[String] = None,
   carbonCopy: Option[String] = None,
   blindCarbonCopy: Option[String] = None,
-  /* <br> I - init<br> N - new<br> T - chatting<br> P - calling<br> R - resolved<br> X - deleted<br> B - spam<br> A - answered<br> C - open<br> W - postponed */
+  /* <br> N - new<br> T - chatting<br> P - calling<br> R - resolved<br> X - deleted<br> B - spam<br> A - answered<br> C - open<br> W - postponed */
   status: Option[TicketListItemEnums.Status] = None,
   mailMessageId: Option[String] = None,
   /* Y - yes, N - no */
@@ -47,7 +45,6 @@ object TicketListItemEnums {
     sealed trait Status extends ApiEnum
 
     object Status {
-        case object `I` extends Status { val value = "I" }
         case object `N` extends Status { val value = "N" }
         case object `T` extends Status { val value = "T" }
         case object `P` extends Status { val value = "P" }
@@ -59,8 +56,6 @@ object TicketListItemEnums {
         case object `W` extends Status { val value = "W" }
 
         def fromString(value: String): Status = value match {
-          case "I" =>
-            Status.`I`
           case "N" =>
             Status.`N`
           case "T" =>

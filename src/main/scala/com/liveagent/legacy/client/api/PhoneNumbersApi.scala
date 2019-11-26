@@ -11,6 +11,7 @@
  */
 package com.liveagent.legacy.client.api
 
+import com.liveagent.legacy.client.model.AvailablePrefix
 import com.liveagent.legacy.client.model.ErrorResponse
 import com.liveagent.legacy.client.model.PhoneNumber
 import com.liveagent.legacy.client.core._
@@ -65,6 +66,23 @@ class PhoneNumbersApi(baseUrl: String) {
       .withFormParam("providerid", providerid)
       .withFormParam("ivr", ivr)
       .withSuccessResponse[PhoneNumber](200)
+      .withDefaultErrorResponse[ErrorResponse]
+      
+
+  /**
+   * Expected answers:
+   *   code 200 : AvailablePrefix (Available dial out prefix exists and will be returned)
+   *   code 404 : ErrorResponse (Error response)
+   *   code 0 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   */
+  def getAvailablePrefix()(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[AvailablePrefix] =
+    ApiRequest[AvailablePrefix](ApiMethods.GET, baseUrl, "/phone_numbers/availablePrefix", "application/json")
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
+      .withSuccessResponse[AvailablePrefix](200)
+      .withErrorResponse[ErrorResponse](404)
       .withDefaultErrorResponse[ErrorResponse]
       
 

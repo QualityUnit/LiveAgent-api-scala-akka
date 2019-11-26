@@ -17,14 +17,9 @@ import java.util.UUID
 
 import org.json4s.MappingException
 
-case class GmailAccountSettings (
-  fetchAllOnConnect: Boolean,
-  leaveCopy: Boolean,
-  aliases: Seq[String],
-  incomingHost: String,
-  incomingPort: Int,
-  outgoingHost: String,
-  outgoingPort: Int
+case class CreateGmailAccountRequest (
+  legacyDepartmentId: LegacyDepartmentId,
+  gmailAccountSettings: GmailAccountSettings
 ) extends ApiModel
 
 

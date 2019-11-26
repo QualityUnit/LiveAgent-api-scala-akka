@@ -17,14 +17,31 @@ import java.util.UUID
 
 import org.json4s.MappingException
 
-case class GmailAccountSettings (
-  fetchAllOnConnect: Boolean,
-  leaveCopy: Boolean,
-  aliases: Seq[String],
-  incomingHost: String,
-  incomingPort: Int,
-  outgoingHost: String,
-  outgoingPort: Int
+case class ContactRequest (
+  id: Option[String] = None,
+  companyId: Option[String] = None,
+  firstname: Option[String] = None,
+  lastname: Option[String] = None,
+  systemName: Option[String] = None,
+  description: Option[String] = None,
+  avatarUrl: Option[String] = None,
+  /* M - Male, F - Female, X - Unspecified */
+  gender: Option[String] = None,
+  language: Option[String] = None,
+  city: Option[String] = None,
+  countrycode: Option[String] = None,
+  ip: Option[String] = None,
+  emails: Option[Seq[String]] = None,
+  phones: Option[Seq[String]] = None,
+  groups: Option[Seq[String]] = None,
+  jobPosition: Option[String] = None,
+  note: Option[String] = None,
+  useragent: Option[String] = None,
+  screen: Option[String] = None,
+  timeOffset: Option[Double] = None,
+  latitude: Option[Double] = None,
+  longitude: Option[Double] = None,
+  customFields: Option[Seq[CustomFields]] = None
 ) extends ApiModel
 
 

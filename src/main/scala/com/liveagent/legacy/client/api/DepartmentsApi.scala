@@ -27,6 +27,7 @@ class DepartmentsApi(baseUrl: String) {
   /**
    * Expected answers:
    *   code 200 : Seq[Department] (Department response)
+   *   code 206 : Seq[Department] (Department response)
    *   code 0 : ErrorResponse (Error response)
    * 
    * Available security schemes:
@@ -51,6 +52,7 @@ class DepartmentsApi(baseUrl: String) {
       .withQueryParam("_sortField", sortField)
       .withQueryParam("_filters", filters)
       .withSuccessResponse[Seq[Department]](200)
+      .withErrorResponse[Seq[Department]](206)
       .withDefaultErrorResponse[ErrorResponse]
       
 

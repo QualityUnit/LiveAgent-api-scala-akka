@@ -225,6 +225,7 @@ class DevicesApi(baseUrl: String) {
   /**
    * Expected answers:
    *   code 200 : Seq[DeviceDepartment] (Device departments response)
+   *   code 206 : Seq[DeviceDepartment] (Device departments response)
    *   code 404 : ErrorResponse (Device was not found)
    *   code 0 : ErrorResponse (Error response)
    * 
@@ -254,6 +255,7 @@ class DevicesApi(baseUrl: String) {
       .withQueryParam("_filters", filters)
       .withPathParam("deviceId", deviceId)
       .withSuccessResponse[Seq[DeviceDepartment]](200)
+      .withErrorResponse[Seq[DeviceDepartment]](206)
       .withErrorResponse[ErrorResponse](404)
       .withDefaultErrorResponse[ErrorResponse]
       
@@ -281,6 +283,7 @@ class DevicesApi(baseUrl: String) {
   /**
    * Expected answers:
    *   code 200 : Seq[Device] (Device response)
+   *   code 206 : Seq[Device] (Device response)
    *   code 0 : ErrorResponse (Error response)
    * 
    * Available security schemes:
@@ -305,6 +308,7 @@ class DevicesApi(baseUrl: String) {
       .withQueryParam("_sortField", sortField)
       .withQueryParam("_filters", filters)
       .withSuccessResponse[Seq[Device]](200)
+      .withErrorResponse[Seq[Device]](206)
       .withDefaultErrorResponse[ErrorResponse]
       
 

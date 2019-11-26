@@ -19,7 +19,8 @@ import org.json4s.MappingException
 
 case class PaymentProcessorType (
   processorType: Option[PaymentProcessorTypeEnums.ProcessorType] = None,
-  token: Option[String] = None
+  token: Option[String] = None,
+  initToken: Option[String] = None
 ) extends ApiModel
 
 object PaymentProcessorTypeEnums {

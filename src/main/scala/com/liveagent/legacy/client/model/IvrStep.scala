@@ -18,7 +18,7 @@ import java.util.UUID
 import org.json4s.MappingException
 
 case class IvrStep (
-  /* P - play message (URL in params), R - ring to agent (optional departmentId in params), V - redirect to voicemail, D - choice (choices), G - goto (IVR name in params), T - transfer (optional ivr settings in choices {\"1\":\"online\",\"0\":\"offline\",\"9\":\"queue\"}), F - fetch next IVR steps from URL in params, I - wait for DTMF input and then fetch next IVR steps from URL in params */
+  /* P - play message (URL in params), R - ring to agent (optional departmentId in params), V - redirect to voicemail, D - choice (choices), G - goto (IVR name in params), T - transfer (optional ivr settings in choices {\"1\":\"online\",\"0\":\"offline\",\"9\":\"queue\"}), F - fetch next IVR steps from URL in params, I - wait for DTMF input and then fetch next IVR steps from URL in params, C - request Callback */
   `type`: IvrStepEnums.`Type`,
   params: Option[String] = None,
   choices: Option[Seq[IvrChoice]] = None
@@ -36,6 +36,7 @@ object IvrStepEnums {
         case object `T` extends `Type` { val value = "T" }
         case object `F` extends `Type` { val value = "F" }
         case object `I` extends `Type` { val value = "I" }
+        case object `C` extends `Type` { val value = "C" }
 
         def fromString(value: String): `Type` = value match {
           case "P" =>
@@ -54,6 +55,8 @@ object IvrStepEnums {
             `Type`.`F`
           case "I" =>
             `Type`.`I`
+          case "C" =>
+            `Type`.`C`
           case unknown =>
             throw new MappingException(s"Can't convert $unknown to `Type`")
         }

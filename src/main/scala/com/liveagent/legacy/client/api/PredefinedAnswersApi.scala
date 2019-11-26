@@ -87,6 +87,7 @@ class PredefinedAnswersApi(baseUrl: String) {
   /**
    * Expected answers:
    *   code 200 : Seq[PredefinedAnswer] (Predefined answer response)
+   *   code 206 : Seq[PredefinedAnswer] (Predefined answer response)
    *   code 0 : ErrorResponse (Error response)
    * 
    * Available security schemes:
@@ -111,6 +112,7 @@ class PredefinedAnswersApi(baseUrl: String) {
       .withQueryParam("_sortField", sortField)
       .withQueryParam("_filters", filters)
       .withSuccessResponse[Seq[PredefinedAnswer]](200)
+      .withErrorResponse[Seq[PredefinedAnswer]](206)
       .withDefaultErrorResponse[ErrorResponse]
       
 

@@ -11,9 +11,11 @@
  */
 package com.liveagent.legacy.client.api
 
+import com.liveagent.legacy.client.model.CreateGmailAccountRequest
 import com.liveagent.legacy.client.model.EmailAddressObj
 import com.liveagent.legacy.client.model.ErrorResponse
 import com.liveagent.legacy.client.model.GmailAccountSettings
+import com.liveagent.legacy.client.model.LegacyDepartmentId
 import com.liveagent.legacy.client.core._
 import com.liveagent.legacy.client.core.CollectionFormats._
 import com.liveagent.legacy.client.core.ApiKeyLocations._
@@ -59,7 +61,7 @@ class MicroservicesGmailApi(baseUrl: String) {
    * @param gmailAccountId 
    * @param settings 
    */
-  def createGmailAccount(gmailAccountId: String, settings: GmailAccountSettings)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
+  def createGmailAccount(gmailAccountId: String, settings: CreateGmailAccountRequest)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.POST, baseUrl, "/gmail_accounts/{gmailAccountId}", "application/json")
       .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withBody(settings)
@@ -145,6 +147,28 @@ class MicroservicesGmailApi(baseUrl: String) {
    */
   def updateGmailAccount(gmailAccountId: String, settings: GmailAccountSettings)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.PUT, baseUrl, "/gmail_accounts/{gmailAccountId}", "application/json")
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
+      .withBody(settings)
+      .withPathParam("gmailAccountId", gmailAccountId)
+      .withSuccessResponse[Any](200)
+      .withErrorResponse[ErrorResponse](404)
+      .withDefaultErrorResponse[ErrorResponse]
+      
+
+  /**
+   * Expected answers:
+   *   code 200 : Any (OK response)
+   *   code 404 : ErrorResponse (Error response)
+   *   code 0 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   * 
+   * @param gmailAccountId 
+   * @param settings 
+   */
+  def updateGmailAccountDepartment(gmailAccountId: String, settings: LegacyDepartmentId)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
+    ApiRequest[Any](ApiMethods.POST, baseUrl, "/gmail_accounts/{gmailAccountId}/_change_department", "application/json")
       .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withBody(settings)
       .withPathParam("gmailAccountId", gmailAccountId)

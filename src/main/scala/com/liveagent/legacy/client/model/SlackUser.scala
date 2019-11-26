@@ -17,14 +17,13 @@ import java.util.UUID
 
 import org.json4s.MappingException
 
-case class GmailAccountSettings (
-  fetchAllOnConnect: Boolean,
-  leaveCopy: Boolean,
-  aliases: Seq[String],
-  incomingHost: String,
-  incomingPort: Int,
-  outgoingHost: String,
-  outgoingPort: Int
+case class SlackUser (
+  id: Option[String] = None,
+  name: Option[String] = None,
+  realName: Option[String] = None,
+  displayName: Option[String] = None,
+  image: Option[String] = None,
+  color: Option[String] = None
 ) extends ApiModel
 
 

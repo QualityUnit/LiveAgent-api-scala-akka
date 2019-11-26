@@ -87,6 +87,7 @@ class GroupsApi(baseUrl: String) {
   /**
    * Expected answers:
    *   code 200 : Seq[Group] (Contact groups response)
+   *   code 206 : Seq[Group] (Contact groups response)
    *   code 0 : ErrorResponse (Error response)
    * 
    * Available security schemes:
@@ -105,6 +106,7 @@ class GroupsApi(baseUrl: String) {
       .withQueryParam("_from", from)
       .withQueryParam("_to", to)
       .withSuccessResponse[Seq[Group]](200)
+      .withErrorResponse[Seq[Group]](206)
       .withDefaultErrorResponse[ErrorResponse]
       
 

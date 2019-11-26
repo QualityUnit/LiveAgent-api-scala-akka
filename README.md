@@ -90,6 +90,7 @@ Class | Method | HTTP request | Description
 *ApiApi* | **login** | **POST** /apikeys/_login | Creates or returns API key from login.
 *ApiApi* | **updateApiKey** | **PUT** /apikeys/{apikeyId} | Updates api key
 *BansApi* | **createBan** | **POST** /bans/ | Create ban
+*BansApi* | **excludeIPBan** | **PUT** /bans/_exclude | Exclude banned IP address
 *BansApi* | **expireBan** | **POST** /bans/{banId}/_expire | Expire ban
 *BansApi* | **getBan** | **GET** /bans/{banId} | Get ban item
 *BansApi* | **getBans** | **GET** /bans/ | Bans list
@@ -132,6 +133,8 @@ Class | Method | HTTP request | Description
 *CompaniesApi* | **deleteCompany** | **DELETE** /companies/{companyId} | Delete company
 *CompaniesApi* | **getCompaniesList** | **GET** /companies | Gets list of companies
 *CompaniesApi* | **getSpecificCompany** | **GET** /companies/{companyId} | Get company by specific id
+*CompaniesApi* | **registerCompany** | **PUT** /companies/{companyId}/_register | Register company
+*CompaniesApi* | **unregisterCompany** | **DELETE** /companies/{companyId}/_unregister | Unregister company
 *CompaniesApi* | **updateCompany** | **PUT** /companies/{companyId} | Update company
 *ContactPhonesApi* | **getContactPhone** | **GET** /contact_phones/{phone} | Get contact phone
 *ContactPhonesApi* | **getContactPhonesList** | **GET** /contact_phones | Gets list of contact phones
@@ -141,6 +144,7 @@ Class | Method | HTTP request | Description
 *ContactsApi* | **getSpecificContact** | **GET** /contacts/{contactId} | Get contact by specific id
 *ContactsApi* | **patchContact** | **PATCH** /contacts/{contactId} | Update contact partially
 *ContactsApi* | **registerContact** | **PUT** /contacts/{contactId}/_register | Register contact
+*ContactsApi* | **unregisterContact** | **DELETE** /contacts/{contactId}/_unregister | Unregister contact
 *ContactsApi* | **updateContact** | **PUT** /contacts/{contactId} | Update whole contact
 *CountriesApi* | **getCountries** | **GET** /countries/ | Country list
 *CustomButtonsApi* | **createCustomButton** | **POST** /custom_buttons | Create new custom button
@@ -180,16 +184,24 @@ Class | Method | HTTP request | Description
 *FiltersApi* | **getFilter** | **GET** /filters/{filterId} | Get filter
 *FiltersApi* | **getFilters** | **GET** /filters/ | Filters list
 *FiltersApi* | **updateFilter** | **PUT** /filters/{filterId} | Update filter
+*GridApi* | **getAgentsGridList** | **GET** /grid/agents | Gets list of agents for grid
+*GridApi* | **getAgentsGridListCount** | **GET** /grid/agents/count | Gets count of agents for agents grid
 *GridApi* | **getCallsSlaLogGridList** | **GET** /grid/calls/sla | Gets list of call slas for grid
 *GridApi* | **getCallsSlaLogGridListCount** | **GET** /grid/calls/sla/count | Gets count of calls for tickets sla grid
+*GridApi* | **getChatsGridList** | **GET** /grid/chats | Gets list of chats for chats grid
+*GridApi* | **getChatsGridListCount** | **GET** /grid/chats/count | Gets count of chats for chats grid
 *GridApi* | **getChatsSlaLogGridList** | **GET** /grid/chats/sla | Gets list of chat slas for grid
 *GridApi* | **getChatsSlaLogGridListCount** | **GET** /grid/chats/sla/count | Gets count of chats for chats sla grid
+*GridApi* | **getDepartmensGridListCount** | **GET** /grid/departments/count | Gets count of departments for department grid
+*GridApi* | **getDepartmentsGridList** | **GET** /grid/departments | Gets list of departments for grid
 *GridApi* | **getEventLogsGridList** | **GET** /grid/eventlogs | Gets list of event logs for grid
-*GridApi* | **getEventLogsGridListCount** | **GET** /grid/eventlogs/count | Gets count of tickets for tickets grid
+*GridApi* | **getEventLogsGridListCount** | **GET** /grid/eventlogs/count | Gets count of logs for event logs grid
 *GridApi* | **getTicketsGridList** | **GET** /grid/tickets | Gets list of tickets for tickets grid
 *GridApi* | **getTicketsGridListCount** | **GET** /grid/tickets/count | Gets count of tickets for tickets grid
 *GridApi* | **getTicketsSlaLogGridList** | **GET** /grid/tickets/sla | Gets list of ticket slas for grid
 *GridApi* | **getTicketsSlaLogGridListCount** | **GET** /grid/tickets/sla/count | Gets count of tickets for tickets sla grid
+*GridApi* | **getTimeReportsGridList** | **GET** /grid/reports/time | Gets list of reports for time reports grid
+*GridApi* | **getTimeReportsGridListCount** | **GET** /grid/reports/time/count | Gets count of time reporst grid
 *GroupsApi* | **createGroup** | **POST** /groups | Create contact group
 *GroupsApi* | **deleteGroup** | **DELETE** /groups/{groupId} | Delete contact group
 *GroupsApi* | **getGroupById** | **GET** /groups/{groupId} | Get contact group by group id
@@ -218,8 +230,10 @@ Class | Method | HTTP request | Description
 *MicroservicesGmailApi* | **deleteGmailAccount** | **DELETE** /gmail_accounts/{gmailAccountId} | 
 *MicroservicesGmailApi* | **rejectGmailAccount** | **POST** /gmail_accounts/{gmailAccountId}/_reject | 
 *MicroservicesGmailApi* | **updateGmailAccount** | **PUT** /gmail_accounts/{gmailAccountId} | 
+*MicroservicesGmailApi* | **updateGmailAccountDepartment** | **POST** /gmail_accounts/{gmailAccountId}/_change_department | 
 *PageVisitsApi* | **getPageVisitByContactId** | **GET** /page_visits/{contactId}/contact | Gets a page visits
 *PhoneNumbersApi* | **addNumber** | **POST** /phone_numbers | Add new number
+*PhoneNumbersApi* | **getAvailablePrefix** | **GET** /phone_numbers/availablePrefix | Gets available dial out prefix
 *PhoneNumbersApi* | **getPhoneNumber** | **GET** /phone_numbers/{phoneNumberId} | Gets phone number
 *PhoneNumbersApi* | **getPhoneNumbersList** | **GET** /phone_numbers | Gets list of available phone numbers
 *PhoneNumbersApi* | **removePhoneNumber** | **DELETE** /phone_numbers/{phoneNumberId} | Remove phone number
@@ -239,6 +253,13 @@ Class | Method | HTTP request | Description
 *PredefinedAnswersApi* | **updatePredefinedAnswer** | **PUT** /predefined_answers/{predefinedAnswerId} | Update predefined answer
 *QueueApi* | **getQueueBatch** | **GET** /queue/batch/{batchId} | Retrieves the batch status and remaining items to process
 *SettingsApi* | **getSettings** | **GET** /settings | Gets settings list
+*SlackApi* | **getConversation** | **GET** /slack/conversation/{id} | Gets info about Slack workspace channel
+*SlackApi* | **getConversations** | **GET** /slack/conversations | Gets Slack workspace channels
+*SlackApi* | **getSlackUser** | **GET** /slack/user/{id} | Gets info about Slack user
+*SlackApi* | **getTemplate** | **GET** /slack/template/{id} | Get Slack template
+*SlackApi* | **getTemplates** | **GET** /slack/templates/ | Gets Slack notification templates
+*SlackApi* | **getUsers** | **GET** /slack/users | Gets Slack users in workspace
+*SlackApi* | **saveTemplate** | **PUT** /slack/template/{id} | Save Slack template
 *SlasApi* | **getSla** | **GET** /slas/{levelId} | Gets sla
 *SlasApi* | **getSlaTicketHistory** | **GET** /slas/{ticketId}/history | Gets ticket sla history
 *SlasApi* | **getSlasList** | **GET** /slas | Gets list of slas
@@ -295,6 +316,7 @@ Class | Method | HTTP request | Description
  - [Agent](Agent.md)
  - [AgentActivity](AgentActivity.md)
  - [AgentName](AgentName.md)
+ - [AgentRow](AgentRow.md)
  - [AgentStatus](AgentStatus.md)
  - [AgentStatuses](AgentStatuses.md)
  - [ApiInfo](ApiInfo.md)
@@ -305,6 +327,7 @@ Class | Method | HTTP request | Description
  - [ApiKeyWithPrivilegesAllOf](ApiKeyWithPrivilegesAllOf.md)
  - [ApiPrivilege](ApiPrivilege.md)
  - [AttributeSimple](AttributeSimple.md)
+ - [AvailablePrefix](AvailablePrefix.md)
  - [Ban](Ban.md)
  - [BanListItem](BanListItem.md)
  - [BanListItemAllOf](BanListItemAllOf.md)
@@ -322,22 +345,27 @@ Class | Method | HTTP request | Description
  - [CallTransferResult](CallTransferResult.md)
  - [CannedMessage](CannedMessage.md)
  - [ChatInformation](ChatInformation.md)
+ - [ChatRow](ChatRow.md)
  - [Company](Company.md)
  - [CompanyAllOf](CompanyAllOf.md)
  - [CompanyListItem](CompanyListItem.md)
+ - [CompanyRequest](CompanyRequest.md)
  - [Contact](Contact.md)
  - [ContactAllOf](ContactAllOf.md)
  - [ContactListItem](ContactListItem.md)
  - [ContactPhone](ContactPhone.md)
+ - [ContactRequest](ContactRequest.md)
  - [Count](Count.md)
  - [Country](Country.md)
  - [Coupon](Coupon.md)
+ - [CreateGmailAccountRequest](CreateGmailAccountRequest.md)
  - [CustomButton](CustomButton.md)
  - [CustomFields](CustomFields.md)
  - [Customer](Customer.md)
  - [DayInterval](DayInterval.md)
  - [Department](Department.md)
  - [DepartmentName](DepartmentName.md)
+ - [DepartmentRow](DepartmentRow.md)
  - [Departments](Departments.md)
  - [Device](Device.md)
  - [DeviceDepartment](DeviceDepartment.md)
@@ -364,6 +392,7 @@ Class | Method | HTTP request | Description
  - [IvrFetch](IvrFetch.md)
  - [IvrFetchParam](IvrFetchParam.md)
  - [IvrStep](IvrStep.md)
+ - [LegacyDepartmentId](LegacyDepartmentId.md)
  - [MailAccount](MailAccount.md)
  - [Message](Message.md)
  - [MessageGroup](MessageGroup.md)
@@ -383,6 +412,9 @@ Class | Method | HTTP request | Description
  - [SlaHistory](SlaHistory.md)
  - [SlaLogRow](SlaLogRow.md)
  - [SlaValues](SlaValues.md)
+ - [SlackConversation](SlackConversation.md)
+ - [SlackTemplate](SlackTemplate.md)
+ - [SlackUser](SlackUser.md)
  - [StopReason](StopReason.md)
  - [StoredFile](StoredFile.md)
  - [Subscription](Subscription.md)
@@ -396,6 +428,7 @@ Class | Method | HTTP request | Description
  - [TicketRow](TicketRow.md)
  - [TicketSla](TicketSla.md)
  - [TicketUpdatable](TicketUpdatable.md)
+ - [TimeReportRow](TimeReportRow.md)
  - [Token](Token.md)
  - [Upgrade](Upgrade.md)
  - [UsageData](UsageData.md)

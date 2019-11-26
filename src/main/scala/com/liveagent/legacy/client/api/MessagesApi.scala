@@ -34,14 +34,14 @@ class MessagesApi(baseUrl: String) {
    *   apikey (apiKey)
    * 
    * @param messageId 
-   * @param from Result set start. Takes precedence over _page.
-   * @param to Result set end. Used only if _from is used.
+   * @param subStringStart Set start of message.
+   * @param subStringLength Set length of message.
    */
-  def getMessage(messageId: Int, from: Option[Int] = None, to: Option[Int] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Message] =
+  def getMessage(messageId: Int, subStringStart: Option[Int] = None, subStringLength: Option[Int] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Message] =
     ApiRequest[Message](ApiMethods.GET, baseUrl, "/messages/{messageId}", "application/json")
       .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
-      .withQueryParam("_from", from)
-      .withQueryParam("_to", to)
+      .withQueryParam("subString_Start", subStringStart)
+      .withQueryParam("subString_Length", subStringLength)
       .withPathParam("messageId", messageId)
       .withSuccessResponse[Message](200)
       .withErrorResponse[ErrorResponse](404)

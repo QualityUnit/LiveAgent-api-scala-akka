@@ -46,6 +46,26 @@ class BansApi(baseUrl: String) {
       
 
   /**
+   * Exclude IP from banned IP ranges
+   * 
+   * Expected answers:
+   *   code 200 : Any (OK response)
+   *   code 0 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   * 
+   * @param ipAddress IP address you want exclude form IP Ban
+   */
+  def excludeIPBan(ipAddress: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
+    ApiRequest[Any](ApiMethods.PUT, baseUrl, "/bans/_exclude", "application/json")
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
+      .withQueryParam("ipAddress", ipAddress)
+      .withSuccessResponse[Any](200)
+      .withDefaultErrorResponse[ErrorResponse]
+      
+
+  /**
    * Expire ban
    * 
    * Expected answers:
@@ -90,6 +110,7 @@ class BansApi(baseUrl: String) {
    * 
    * Expected answers:
    *   code 200 : Seq[BanListItem] (Bans list)
+   *   code 206 : Seq[BanListItem] (Bans list)
    *   code 0 : ErrorResponse (Error response)
    * 
    * Available security schemes:
@@ -114,6 +135,7 @@ class BansApi(baseUrl: String) {
       .withQueryParam("_from", from)
       .withQueryParam("_to", to)
       .withSuccessResponse[Seq[BanListItem]](200)
+      .withErrorResponse[Seq[BanListItem]](206)
       .withDefaultErrorResponse[ErrorResponse]
       
 

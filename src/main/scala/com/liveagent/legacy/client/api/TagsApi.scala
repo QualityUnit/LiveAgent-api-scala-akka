@@ -87,6 +87,7 @@ class TagsApi(baseUrl: String) {
   /**
    * Expected answers:
    *   code 200 : Seq[Tag] (Tags response)
+   *   code 206 : Seq[Tag] (Tags response)
    *   code 0 : ErrorResponse (Error response)
    * 
    * Available security schemes:
@@ -105,6 +106,7 @@ class TagsApi(baseUrl: String) {
       .withQueryParam("_from", from)
       .withQueryParam("_to", to)
       .withSuccessResponse[Seq[Tag]](200)
+      .withErrorResponse[Seq[Tag]](206)
       .withDefaultErrorResponse[ErrorResponse]
       
 

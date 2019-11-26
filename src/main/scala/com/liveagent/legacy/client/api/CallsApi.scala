@@ -268,7 +268,7 @@ class CallsApi(baseUrl: String) {
    *   apikey (apiKey)
    * 
    * @param callId 
-   * @param reason T - timeout, D - decline, DNR - device not registered
+   * @param reason T - timeout, D - decline, DNR - device not registered, CHE - channel error
    * @param unreachableAgents Identifiers of unreachable agents that should be excluded from routing
    */
   def callReroute(callId: String, reason: Option[String] = None, unreachableAgents: Seq[String])(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[CallStatus] =
@@ -500,6 +500,7 @@ class CallsApi(baseUrl: String) {
   /**
    * Expected answers:
    *   code 200 : Seq[CallListItem] (Call response)
+   *   code 206 : Seq[CallListItem] (Call response)
    *   code 0 : ErrorResponse (Error response)
    * 
    * Available security schemes:
@@ -524,6 +525,7 @@ class CallsApi(baseUrl: String) {
       .withQueryParam("_sortField", sortField)
       .withQueryParam("_filters", filters)
       .withSuccessResponse[Seq[CallListItem]](200)
+      .withErrorResponse[Seq[CallListItem]](206)
       .withDefaultErrorResponse[ErrorResponse]
       
 

@@ -17,14 +17,38 @@ import java.util.UUID
 
 import org.json4s.MappingException
 
-case class GmailAccountSettings (
-  fetchAllOnConnect: Boolean,
-  leaveCopy: Boolean,
-  aliases: Seq[String],
-  incomingHost: String,
-  incomingPort: Int,
-  outgoingHost: String,
-  outgoingPort: Int
+case class AgentRow (
+  agentid: Option[String] = None,
+  firstname: Option[String] = None,
+  lastname: Option[String] = None,
+  systemName: Option[String] = None,
+  username: Option[String] = None,
+  countrycode: Option[String] = None,
+  avatarUrl: Option[String] = None,
+  roleid: Option[String] = None,
+  rolename: Option[String] = None,
+  twofa: Option[AgentRowEnums.Twofa] = None
 ) extends ApiModel
 
+object AgentRowEnums {
+    sealed trait Twofa extends ApiEnum
+
+    object Twofa {
+        case object `Y` extends Twofa { val value = "Y" }
+        case object `N` extends Twofa { val value = "N" }
+        case object `empty` extends Twofa { val value = "" }
+
+        def fromString(value: String): Twofa = value match {
+          case "Y" =>
+            Twofa.`Y`
+          case "N" =>
+            Twofa.`N`
+          case "" =>
+            Twofa.`empty`
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to Twofa")
+        }
+    }
+
+}
 

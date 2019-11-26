@@ -27,6 +27,7 @@ class ChatsApi(baseUrl: String) {
   /**
    * Expected answers:
    *   code 200 : Seq[ChatInformation] (Call response)
+   *   code 206 : Seq[ChatInformation] (Call response)
    *   code 0 : ErrorResponse (Error response)
    * 
    * Available security schemes:
@@ -51,6 +52,7 @@ class ChatsApi(baseUrl: String) {
       .withQueryParam("_sortField", sortField)
       .withQueryParam("_filters", filters)
       .withSuccessResponse[Seq[ChatInformation]](200)
+      .withErrorResponse[Seq[ChatInformation]](206)
       .withDefaultErrorResponse[ErrorResponse]
       
 

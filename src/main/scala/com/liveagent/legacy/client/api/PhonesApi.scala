@@ -69,6 +69,7 @@ class PhonesApi(baseUrl: String) {
   /**
    * Expected answers:
    *   code 200 : Seq[PhoneDevice] (PhoneDevices response)
+   *   code 206 : Seq[PhoneDevice] (PhoneDevices response)
    *   code 0 : ErrorResponse (Error response)
    * 
    * Available security schemes:
@@ -93,6 +94,7 @@ class PhonesApi(baseUrl: String) {
       .withQueryParam("_sortField", sortField)
       .withQueryParam("_filters", filters)
       .withSuccessResponse[Seq[PhoneDevice]](200)
+      .withErrorResponse[Seq[PhoneDevice]](206)
       .withDefaultErrorResponse[ErrorResponse]
       
 

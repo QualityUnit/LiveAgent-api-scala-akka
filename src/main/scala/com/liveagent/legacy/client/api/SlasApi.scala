@@ -74,6 +74,7 @@ class SlasApi(baseUrl: String) {
    * 
    * Expected answers:
    *   code 200 : Seq[Sla] (Slas response)
+   *   code 206 : Seq[Sla] (Slas response)
    *   code 0 : ErrorResponse (Error response)
    * 
    * Available security schemes:
@@ -83,6 +84,7 @@ class SlasApi(baseUrl: String) {
     ApiRequest[Seq[Sla]](ApiMethods.GET, baseUrl, "/slas", "application/json")
       .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withSuccessResponse[Seq[Sla]](200)
+      .withErrorResponse[Seq[Sla]](206)
       .withDefaultErrorResponse[ErrorResponse]
       
 

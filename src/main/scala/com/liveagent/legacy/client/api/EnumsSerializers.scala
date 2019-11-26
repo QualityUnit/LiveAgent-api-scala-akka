@@ -21,6 +21,7 @@ object EnumsSerializers {
   def all: Seq[Serializer[_]] = Seq[Serializer[_]]() :+
     new EnumNameSerializer[AgentEnums.Role](AgentEnums.Role.fromString) :+
     new EnumNameSerializer[AgentEnums.Gender](AgentEnums.Gender.fromString) :+
+    new EnumNameSerializer[AgentRowEnums.Twofa](AgentRowEnums.Twofa.fromString) :+
     new EnumNameSerializer[ApiKeyEnums.`Type`](ApiKeyEnums.`Type`.fromString) :+
     new EnumNameSerializer[ApiKeyLoginEnums.`Type`](ApiKeyLoginEnums.`Type`.fromString) :+
     new EnumNameSerializer[ApiKeyWithPrivilegesEnums.`Type`](ApiKeyWithPrivilegesEnums.`Type`.fromString) :+
@@ -32,8 +33,10 @@ object EnumsSerializers {
     new EnumNameSerializer[CallStatusEnums.Status](CallStatusEnums.Status.fromString) :+
     new EnumNameSerializer[CallTransferResultEnums.CalleeStatus](CallTransferResultEnums.CalleeStatus.fromString) :+
     new EnumNameSerializer[CompanyEnums.`Type`](CompanyEnums.`Type`.fromString) :+
+    new EnumNameSerializer[CompanyAllOfEnums.`Type`](CompanyAllOfEnums.`Type`.fromString) :+
     new EnumNameSerializer[CompanyListItemEnums.`Type`](CompanyListItemEnums.`Type`.fromString) :+
     new EnumNameSerializer[ContactEnums.`Type`](ContactEnums.`Type`.fromString) :+
+    new EnumNameSerializer[ContactAllOfEnums.`Type`](ContactAllOfEnums.`Type`.fromString) :+
     new EnumNameSerializer[ContactListItemEnums.`Type`](ContactListItemEnums.`Type`.fromString) :+
     new EnumNameSerializer[CustomButtonEnums.Method](CustomButtonEnums.Method.fromString) :+
     new EnumNameSerializer[CustomButtonEnums.`Type`](CustomButtonEnums.`Type`.fromString) :+
@@ -59,12 +62,14 @@ object EnumsSerializers {
     new EnumNameSerializer[RoleEnums.Role](RoleEnums.Role.fromString) :+
     new EnumNameSerializer[SettingEnums.Name](SettingEnums.Name.fromString) :+
     new EnumNameSerializer[SubscriptionEnums.Status](SubscriptionEnums.Status.fromString) :+
+    new EnumNameSerializer[TagEnums.IsPublic](TagEnums.IsPublic.fromString) :+
     new EnumNameSerializer[TicketEnums.Status](TicketEnums.Status.fromString) :+
     new EnumNameSerializer[TicketListItemEnums.Status](TicketListItemEnums.Status.fromString) :+
     new EnumNameSerializer[TicketListItemEnums.DoNotSendMail](TicketListItemEnums.DoNotSendMail.fromString) :+
     new EnumNameSerializer[TicketListItemEnums.UseTemplate](TicketListItemEnums.UseTemplate.fromString) :+
     new EnumNameSerializer[TicketListItemEnums.IsHtmlMessage](TicketListItemEnums.IsHtmlMessage.fromString) :+
     new EnumNameSerializer[TicketUpdatableEnums.Status](TicketUpdatableEnums.Status.fromString) :+
+    new EnumNameSerializer[TimeReportRowEnums.`Type`](TimeReportRowEnums.`Type`.fromString) :+
     new EnumNameSerializer[UpgradeEnums.BillingPeriod](UpgradeEnums.BillingPeriod.fromString) :+
     new EnumNameSerializer[UserEnums.Role](UserEnums.Role.fromString) :+
     new EnumNameSerializer[VariationUpgradesEnums.Currency](VariationUpgradesEnums.Currency.fromString)

@@ -17,14 +17,25 @@ import java.util.UUID
 
 import org.json4s.MappingException
 
-case class GmailAccountSettings (
-  fetchAllOnConnect: Boolean,
-  leaveCopy: Boolean,
-  aliases: Seq[String],
-  incomingHost: String,
-  incomingPort: Int,
-  outgoingHost: String,
-  outgoingPort: Int
+case class ChatRow (
+  conversationid: Option[String] = None,
+  datechanged: Option[DateTime] = None,
+  status: Option[String] = None,
+  preview: Option[String] = None,
+  subject: Option[String] = None,
+  departmentname: Option[String] = None,
+  agentname: Option[String] = None,
+  tags: Option[Seq[String]] = None,
+  firstname: Option[String] = None,
+  lastname: Option[String] = None,
+  systemName: Option[String] = None,
+  emails: Option[Seq[String]] = None,
+  city: Option[String] = None,
+  countrycode: Option[String] = None,
+  avatarUrl: Option[String] = None,
+  rstatus: Option[String] = None,
+  statusdatestarted: Option[DateTime] = None,
+  chatOrder: Option[Int] = None
 ) extends ApiModel
 
 

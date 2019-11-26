@@ -29,6 +29,7 @@ case class ContactListItem (
   `type`: Option[ContactListItemEnums.`Type`] = None,
   /* M - Male, F - Female, X - Unspecified */
   gender: Option[String] = None,
+  /* Set automatically */
   dateCreated: Option[DateTime] = None,
   /* Set automatically */
   dateChanged: Option[DateTime] = None,

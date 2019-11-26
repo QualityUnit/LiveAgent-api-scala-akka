@@ -87,6 +87,7 @@ class CannedMessagesApi(baseUrl: String) {
   /**
    * Expected answers:
    *   code 200 : Seq[CannedMessage] (Canned message response)
+   *   code 206 : Seq[CannedMessage] (Canned message response)
    *   code 0 : ErrorResponse (Error response)
    * 
    * Available security schemes:
@@ -111,6 +112,7 @@ class CannedMessagesApi(baseUrl: String) {
       .withQueryParam("_sortField", sortField)
       .withQueryParam("_filters", filters)
       .withSuccessResponse[Seq[CannedMessage]](200)
+      .withErrorResponse[Seq[CannedMessage]](206)
       .withDefaultErrorResponse[ErrorResponse]
       
 

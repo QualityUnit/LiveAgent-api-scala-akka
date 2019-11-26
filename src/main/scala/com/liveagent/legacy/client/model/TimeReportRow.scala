@@ -17,51 +17,41 @@ import java.util.UUID
 
 import org.json4s.MappingException
 
-case class Contact (
-  id: Option[String] = None,
-  companyId: Option[String] = None,
-  firstname: Option[String] = None,
-  lastname: Option[String] = None,
-  systemName: Option[String] = None,
-  description: Option[String] = None,
-  avatarUrl: Option[String] = None,
-  /* M - Male, F - Female, X - Unspecified */
-  gender: Option[String] = None,
-  language: Option[String] = None,
-  city: Option[String] = None,
-  countrycode: Option[String] = None,
-  ip: Option[String] = None,
-  emails: Option[Seq[String]] = None,
-  phones: Option[Seq[String]] = None,
-  groups: Option[Seq[String]] = None,
-  jobPosition: Option[String] = None,
+case class TimeReportRow (
+  id: Option[Int] = None,
+  agentid: Option[String] = None,
+  agent: Option[String] = None,
+  conversationid: Option[String] = None,
+  ticket: Option[String] = None,
+  parentContactid: Option[String] = None,
+  company: Option[String] = None,
+  contactid: Option[String] = None,
+  customer: Option[String] = None,
+  customerFirstname: Option[String] = None,
+  customerLastname: Option[String] = None,
+  customerSystemname: Option[String] = None,
+  agentTicket: Option[String] = None,
+  reportdate: Option[String] = None,
+  reportedtime: Option[String] = None,
+  reportedtimeHhmmss: Option[String] = None,
+  spenttime: Option[String] = None,
+  dateinvoiced: Option[String] = None,
   note: Option[String] = None,
-  useragent: Option[String] = None,
-  screen: Option[String] = None,
-  timeOffset: Option[Double] = None,
-  latitude: Option[Double] = None,
-  longitude: Option[Double] = None,
-  customFields: Option[Seq[CustomFields]] = None,
-  /* V - visitor, R - registered visitor */
-  `type`: Option[ContactEnums.`Type`] = None,
-  /* Set automatically */
-  dateCreated: Option[DateTime] = None,
-  /* Set automatically */
-  dateChanged: Option[DateTime] = None
+  `type`: Option[TimeReportRowEnums.`Type`] = None
 ) extends ApiModel
 
-object ContactEnums {
+object TimeReportRowEnums {
     sealed trait `Type` extends ApiEnum
 
     object `Type` {
-        case object `V` extends `Type` { val value = "V" }
-        case object `R` extends `Type` { val value = "R" }
+        case object Auto extends `Type` { val value = "auto" }
+        case object Manual extends `Type` { val value = "manual" }
 
         def fromString(value: String): `Type` = value match {
-          case "V" =>
-            `Type`.`V`
-          case "R" =>
-            `Type`.`R`
+          case "auto" =>
+            `Type`.Auto
+          case "manual" =>
+            `Type`.Manual
           case unknown =>
             throw new MappingException(s"Can't convert $unknown to `Type`")
         }

@@ -18,13 +18,29 @@ import java.util.UUID
 import org.json4s.MappingException
 
 case class CompanyAllOf (
-  note: Option[String] = None,
-  useragent: Option[String] = None,
-  screen: Option[String] = None,
-  timeOffset: Option[Double] = None,
-  latitude: Option[Double] = None,
-  longitude: Option[Double] = None,
-  customFields: Option[Seq[CustomFields]] = None
+  /* V - visitor, R - registered visitor */
+  `type`: Option[CompanyAllOfEnums.`Type`] = None,
+  dateCreated: Option[DateTime] = None,
+  /* Set automatically */
+  dateChanged: Option[DateTime] = None
 ) extends ApiModel
 
+object CompanyAllOfEnums {
+    sealed trait `Type` extends ApiEnum
+
+    object `Type` {
+        case object `V` extends `Type` { val value = "V" }
+        case object `R` extends `Type` { val value = "R" }
+
+        def fromString(value: String): `Type` = value match {
+          case "V" =>
+            `Type`.`V`
+          case "R" =>
+            `Type`.`R`
+          case unknown =>
+            throw new MappingException(s"Can't convert $unknown to `Type`")
+        }
+    }
+
+}
 

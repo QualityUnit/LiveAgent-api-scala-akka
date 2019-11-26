@@ -23,11 +23,6 @@ case class Company (
   systemName: Option[String] = None,
   description: Option[String] = None,
   avatarUrl: Option[String] = None,
-  /* V - visitor, R - registered visitor */
-  `type`: Option[CompanyEnums.`Type`] = None,
-  dateCreated: Option[DateTime] = None,
-  /* Set automatically */
-  dateChanged: Option[DateTime] = None,
   language: Option[String] = None,
   city: Option[String] = None,
   countrycode: Option[String] = None,
@@ -41,7 +36,12 @@ case class Company (
   timeOffset: Option[Double] = None,
   latitude: Option[Double] = None,
   longitude: Option[Double] = None,
-  customFields: Option[Seq[CustomFields]] = None
+  customFields: Option[Seq[CustomFields]] = None,
+  /* V - visitor, R - registered visitor */
+  `type`: Option[CompanyEnums.`Type`] = None,
+  dateCreated: Option[DateTime] = None,
+  /* Set automatically */
+  dateChanged: Option[DateTime] = None
 ) extends ApiModel
 
 object CompanyEnums {
