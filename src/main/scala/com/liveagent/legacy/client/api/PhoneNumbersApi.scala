@@ -114,11 +114,11 @@ class PhoneNumbersApi(baseUrl: String) {
    * Available security schemes:
    *   apikey (apiKey)
    * 
-   * @param perPage Results per page. Used only if _page is used.
+   * @param perPage Results per page.
    * @param sortDir Sorting direction ASC or DESC
    * @param sortField 
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
-   * @param cursor used for iteration throght resultset. Cursor identifies specific page in resultset.
+   * @param cursor used for iteration through resultset. Cursor identifies specific page in resultset.
    * @param additionalObjects Additional objects
    */
   def getPhoneNumbersList(perPage: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None, cursor: Option[String] = None, additionalObjects: Seq[String])(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[PhoneNumber]] =

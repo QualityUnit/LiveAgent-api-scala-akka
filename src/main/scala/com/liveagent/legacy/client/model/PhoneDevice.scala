@@ -23,12 +23,14 @@ case class PhoneDevice (
   `type`: PhoneDeviceEnums.`Type`,
   number: Option[String] = None,
   name: Option[String] = None,
-  statusMessage: Option[String] = None,
+  regStatus: Option[String] = None,
   connectionHost: Option[String] = None,
   connectionUser: Option[String] = None,
   connectionPass: Option[String] = None,
+  lastModified: Option[String] = None,
+  userAgent: Option[String] = None,
   agentId: Option[String] = None,
-  /* Addtional params column with no specific meaning */
+  /* Additional params column with no specific meaning */
   params: Option[String] = None
 ) extends ApiModel
 

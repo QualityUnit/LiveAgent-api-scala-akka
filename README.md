@@ -38,7 +38,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.liveagent.legacy</groupId>
   <artifactId>api-client</artifactId>
-  <version>4.1.11</version>
+  <version>6.18.2</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -48,13 +48,13 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.liveagent.legacy:api-client:4.1.11"
+compile "com.liveagent.legacy:api-client:6.18.2"
 ```
 
 ### SBT users
 
 ```scala
-libraryDependencies += "com.liveagent.legacy" % "api-client" % "4.1.11"
+libraryDependencies += "com.liveagent.legacy" % "api-client" % "6.18.2"
 ```
 
 ## Getting Started
@@ -82,11 +82,13 @@ Class | Method | HTTP request | Description
 *ApiApi* | **createApiKeys** | **POST** /apikeys | Creates api key
 *ApiApi* | **deleteApiKey** | **DELETE** /apikeys/{apikeyId} | Deletes api key
 *ApiApi* | **generateApiKey** | **POST** /apikeys/_generate | Gets new api keys
+*ApiApi* | **generateSSOKey** | **POST** /sso | Generate SSO key
 *ApiApi* | **getApiInfo** | **GET** /api/info/{apiVersion} | Gets api info
 *ApiApi* | **getApiKey** | **GET** /apikeys/{apikeyId} | Gets api keys
 *ApiApi* | **getApiKeys** | **GET** /apikeys | Gets api keys
 *ApiApi* | **getApiPrivileges** | **GET** /api/privileges | Gets api privileges
 *ApiApi* | **getApiV3KeysCount** | **GET** /api/v3/count | Gets count for api v3 keys
+*ApiApi* | **getSSOKey** | **GET** /sso | Get SSO key
 *ApiApi* | **login** | **POST** /apikeys/_login | Creates or returns API key from login.
 *ApiApi* | **updateApiKey** | **PUT** /apikeys/{apikeyId} | Updates api key
 *BansApi* | **createBan** | **POST** /bans/ | Create ban
@@ -97,8 +99,8 @@ Class | Method | HTTP request | Description
 *BansApi* | **updateBan** | **PUT** /bans/{banId} | Update ban
 *BillingApi* | **checkVat** | **POST** /billing/_check_vat | Vat validity
 *BillingApi* | **getCoupon** | **GET** /coupons/{couponCode} | Coupon
-*CallsApi* | **callAddMessage** | **POST** /calls/{callId}/messages | Adds a message to the call group in corresponfing ticket
-*CallsApi* | **callAddRecording** | **POST** /calls/{callId}/recordings | Adds a recording to the call group in corresponfing ticket
+*CallsApi* | **callAddMessage** | **POST** /calls/{callId}/messages | Adds a message to the call group in corresponding ticket
+*CallsApi* | **callAddRecording** | **POST** /calls/{callId}/recordings | Adds a recording to the call group in corresponding ticket
 *CallsApi* | **callAnswer** | **POST** /calls/{callId}/_answer | Set call as answered by agent
 *CallsApi* | **callChangeChannelStatus** | **PUT** /calls/{callId}/channels/{channelId}/_status | Change channel status
 *CallsApi* | **callCreate** | **POST** /calls/{callId} | Create new call
@@ -116,12 +118,13 @@ Class | Method | HTTP request | Description
 *CallsApi* | **confirmRing** | **POST** /calls/{callId}/_confirmRing | Confirm that call is ringing
 *CallsApi* | **dtmfChannel** | **POST** /calls/{callId}/channels/{channelId}/_dtmf | Send provided DTMF to channel
 *CallsApi* | **endChannel** | **POST** /calls/{callId}/channels/{channelId}/_end | End channel
+*CallsApi* | **getCallsCount** | **GET** /calls/count | Gets count for calls history
 *CallsApi* | **getCallsList** | **GET** /calls | Gets list of calls
 *CallsApi* | **holdChannel** | **POST** /calls/{callId}/channels/{channelId}/_hold | Hold channel
 *CallsApi* | **merge** | **POST** /calls/{callId}/_merge | Merge two calls
 *CallsApi* | **muteChannel** | **POST** /calls/{callId}/channels/{channelId}/_mute | Mute channel
 *CallsApi* | **stopRing** | **POST** /calls/{callId}/_stopRing | Stop ringing of call
-*CallsApi* | **unholChannel** | **POST** /calls/{callId}/channels/{channelId}/_unhold | Unhold channel
+*CallsApi* | **unholdChannel** | **POST** /calls/{callId}/channels/{channelId}/_unhold | Unhold channel
 *CallsApi* | **unmuteChannel** | **POST** /calls/{callId}/channels/{channelId}/_unmute | Unmute channel
 *CannedMessagesApi* | **createCannedMessage** | **POST** /canned_messages | Create canned message
 *CannedMessagesApi* | **deleteCannedMessage** | **DELETE** /canned_messages/{cannedMessageId} | Canned message
@@ -174,6 +177,9 @@ Class | Method | HTTP request | Description
 *DevicesApi* | **updateDeviceDepartment** | **PUT** /devices/{deviceId}/departments/{departmentId} | Update device department
 *DevicesApi* | **updateDeviceDepartmentPlan** | **PUT** /devices/{deviceId}/departments/{departmentId}/plans | Update device department plan
 *DevicesApi* | **updateDeviceDepartments** | **PUT** /devices/departments/update | Update device departments
+*ElasticApi* | **getIndexStatus** | **GET** /elastic/status | Get reindex status
+*ElasticApi* | **reindex** | **POST** /elastic/reindex | Reindex selected fields
+*ElasticApi* | **reindexAll** | **POST** /elastic/reindexAll | Reindex all fields
 *ExtensionsApi* | **getExtension** | **GET** /extensions/{extensionId} | Gets Extension
 *ExtensionsApi* | **getExtensionsCount** | **GET** /extensions/count | Gets count for extensions
 *ExtensionsApi* | **getExtensionsList** | **GET** /extensions | Gets list of extensions
@@ -196,6 +202,8 @@ Class | Method | HTTP request | Description
 *GridApi* | **getDepartmentsGridList** | **GET** /grid/departments | Gets list of departments for grid
 *GridApi* | **getEventLogsGridList** | **GET** /grid/eventlogs | Gets list of event logs for grid
 *GridApi* | **getEventLogsGridListCount** | **GET** /grid/eventlogs/count | Gets count of logs for event logs grid
+*GridApi* | **getTagsGridList** | **GET** /grid/tags | Gets list of tags for grid
+*GridApi* | **getTagsGridListCount** | **GET** /grid/tags/count | Gets count of tags for tags grid
 *GridApi* | **getTicketsGridList** | **GET** /grid/tickets | Gets list of tickets for tickets grid
 *GridApi* | **getTicketsGridListCount** | **GET** /grid/tickets/count | Gets count of tickets for tickets grid
 *GridApi* | **getTicketsSlaLogGridList** | **GET** /grid/tickets/sla | Gets list of ticket slas for grid
@@ -244,8 +252,7 @@ Class | Method | HTTP request | Description
 *PhonesApi* | **getPhonesList** | **GET** /phones | Gets list of available phone devices. Special filters (userId - filter phones available for specified user only) 
 *PhonesApi* | **removePhone** | **DELETE** /phones/{phoneId} | Remove phone
 *PhonesApi* | **updatePhone** | **PUT** /phones/{phoneId} | Update phone
-*PhonesApi* | **updatePhoneParams** | **PUT** /phones/{phoneId}/_updateParams | Update phone paramas
-*PlansApi* | **getDeviceDepartmentPlan** | **GET** /devices/{deviceId}/departments/{departmentId}/plans | Get device department plan
+*PhonesApi* | **updatePhoneParams** | **PUT** /phones/{phoneId}/_updateParams | Update phone params
 *PredefinedAnswersApi* | **createPredefinedAnswer** | **POST** /predefined_answers | Create predefined answer
 *PredefinedAnswersApi* | **deletePredefinedAnswer** | **DELETE** /predefined_answers/{predefinedAnswerId} | Predefined answer
 *PredefinedAnswersApi* | **getPredefinedAnswer** | **GET** /predefined_answers/{predefinedAnswerId} | Gets canned message
@@ -306,6 +313,13 @@ Class | Method | HTTP request | Description
 *TokenApi* | **getAccessToken** | **GET** /token | Access token
 *UserApi* | **getUser** | **GET** /users/{userId} | User
 *VariationsApi* | **getVariation** | **GET** /variations/{variationId} | Variation
+*ViberApi* | **changeStatus** | **PUT** /viber_accounts/{accountId}/status | Update Viber account status
+*ViberApi* | **connectAccount** | **POST** /viber_accounts | Connect Viber account
+*ViberApi* | **disconnect** | **DELETE** /viber_accounts/{accountId} | Disconnect Viber account
+*ViberApi* | **get** | **GET** /viber_accounts/{accountId} | Get Viber account
+*ViberApi* | **getAccounts** | **GET** /viber_accounts | Gets Viber accounts
+*ViberApi* | **getAccountsCount** | **GET** /viber_accounts/count | Gets count for Viber accounts
+*ViberApi* | **update** | **PUT** /viber_accounts/{accountId} | Update Viber account
 
 
 ## Documentation for Models
@@ -374,6 +388,7 @@ Class | Method | HTTP request | Description
  - [DeviceDepartmentPlanList](DeviceDepartmentPlanList.md)
  - [DiscountValue](DiscountValue.md)
  - [Domain](Domain.md)
+ - [ElasticMessage](ElasticMessage.md)
  - [EmailAddressObj](EmailAddressObj.md)
  - [ErrorResponse](ErrorResponse.md)
  - [EventLogRow](EventLogRow.md)
@@ -384,6 +399,8 @@ Class | Method | HTTP request | Description
  - [Group](Group.md)
  - [HostingInfo](HostingInfo.md)
  - [Ids](Ids.md)
+ - [IndexStatus](IndexStatus.md)
+ - [IndexStatusData](IndexStatusData.md)
  - [Invoice](Invoice.md)
  - [InvoiceItem](InvoiceItem.md)
  - [InvoiceList](InvoiceList.md)
@@ -404,7 +421,9 @@ Class | Method | HTTP request | Description
  - [PhoneNumber](PhoneNumber.md)
  - [PredefinedAnswer](PredefinedAnswer.md)
  - [PrincipalCredentials](PrincipalCredentials.md)
+ - [ReindexData](ReindexData.md)
  - [Role](Role.md)
+ - [SSOKey](SSOKey.md)
  - [SessionId](SessionId.md)
  - [Setting](Setting.md)
  - [Sla](Sla.md)
@@ -419,6 +438,7 @@ Class | Method | HTTP request | Description
  - [StoredFile](StoredFile.md)
  - [Subscription](Subscription.md)
  - [Tag](Tag.md)
+ - [TagRow](TagRow.md)
  - [Ticket](Ticket.md)
  - [TicketAttribute](TicketAttribute.md)
  - [TicketHistory](TicketHistory.md)
@@ -437,6 +457,9 @@ Class | Method | HTTP request | Description
  - [Variation](Variation.md)
  - [VariationUpgrade](VariationUpgrade.md)
  - [VariationUpgrades](VariationUpgrades.md)
+ - [ViberAccount](ViberAccount.md)
+ - [ViberAccountListItem](ViberAccountListItem.md)
+ - [ViberAccountListItemAllOf](ViberAccountListItemAllOf.md)
  - [Visitor](Visitor.md)
  - [VisitorId](VisitorId.md)
 

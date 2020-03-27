@@ -52,11 +52,11 @@ class ContactPhonesApi(baseUrl: String) {
    * Available security schemes:
    *   apikey (apiKey)
    * 
-   * @param perPage Results per page. Used only if _page is used.
+   * @param perPage Results per page.
    * @param sortDir Sorting direction ASC or DESC
    * @param sortField 
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
-   * @param cursor used for iteration throght resultset. Cursor identifies specific page in resultset.
+   * @param cursor used for iteration through resultset. Cursor identifies specific page in resultset.
    */
   def getContactPhonesList(perPage: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None, cursor: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[ContactPhone]] =
     ApiRequest[Seq[ContactPhone]](ApiMethods.GET, baseUrl, "/contact_phones", "application/json")

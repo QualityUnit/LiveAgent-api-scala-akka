@@ -122,10 +122,10 @@ class TicketsApi(baseUrl: String) {
    * Available security schemes:
    *   apikey (apiKey)
    * 
-   * @param perPage Results per page. Used only if _page is used.
+   * @param perPage Results per page.
    * @param sortDir Sorting direction ASC or DESC
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
-   * @param cursor used for iteration throght resultset. Cursor identifies specific page in resultset.
+   * @param cursor used for iteration through resultset. Cursor identifies specific page in resultset.
    * @param sortField 
    * @param timezoneOffset difference between client and server time in seconds
    */

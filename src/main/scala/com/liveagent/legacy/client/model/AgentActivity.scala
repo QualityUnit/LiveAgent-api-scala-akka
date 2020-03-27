@@ -19,7 +19,7 @@ import org.json4s.MappingException
 
 case class AgentActivity (
   id: Option[String] = None,
-  /* A - Avalible / B - Busy  */
+  /* A - Available / B - Busy  */
   agentStatus: Option[String] = None,
   activeTickets: Option[Seq[ActiveTicket]] = None
 ) extends ApiModel

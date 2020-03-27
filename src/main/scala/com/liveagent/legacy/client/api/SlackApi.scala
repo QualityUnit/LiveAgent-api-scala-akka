@@ -52,8 +52,8 @@ class SlackApi(baseUrl: String) {
    * Available security schemes:
    *   apikey (apiKey)
    * 
-   * @param cursor used for iteration throght resultset. Cursor identifies specific page in resultset.
-   * @param perPage Results per page. Used only if _page is used.
+   * @param cursor used for iteration through resultset. Cursor identifies specific page in resultset.
+   * @param perPage Results per page.
    */
   def getConversations(cursor: Option[String] = None, perPage: Option[Int] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[SlackConversation]] =
     ApiRequest[Seq[SlackConversation]](ApiMethods.GET, baseUrl, "/slack/conversations", "application/json")
@@ -123,8 +123,8 @@ class SlackApi(baseUrl: String) {
    * Available security schemes:
    *   apikey (apiKey)
    * 
-   * @param cursor used for iteration throght resultset. Cursor identifies specific page in resultset.
-   * @param perPage Results per page. Used only if _page is used.
+   * @param cursor used for iteration through resultset. Cursor identifies specific page in resultset.
+   * @param perPage Results per page.
    */
   def getUsers(cursor: Option[String] = None, perPage: Option[Int] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[SlackUser]] =
     ApiRequest[Seq[SlackUser]](ApiMethods.GET, baseUrl, "/slack/users", "application/json")

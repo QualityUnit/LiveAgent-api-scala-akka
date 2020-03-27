@@ -18,6 +18,7 @@ import com.liveagent.legacy.client.model.DepartmentRow
 import com.liveagent.legacy.client.model.ErrorResponse
 import com.liveagent.legacy.client.model.EventLogRow
 import com.liveagent.legacy.client.model.SlaLogRow
+import com.liveagent.legacy.client.model.TagRow
 import com.liveagent.legacy.client.model.TicketRow
 import com.liveagent.legacy.client.model.TimeReportRow
 import com.liveagent.legacy.client.core._
@@ -39,10 +40,10 @@ class GridApi(baseUrl: String) {
    * Available security schemes:
    *   apikey (apiKey)
    * 
-   * @param perPage Results per page. Used only if _page is used.
+   * @param perPage Results per page.
    * @param sortDir Sorting direction ASC or DESC
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
-   * @param cursor used for iteration throght resultset. Cursor identifies specific page in resultset.
+   * @param cursor used for iteration through resultset. Cursor identifies specific page in resultset.
    * @param sortField Sorting field
    */
   def getAgentsGridList(perPage: Option[Int] = None, sortDir: Option[String] = None, filters: Option[String] = None, cursor: Option[String] = None, sortField: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[AgentRow]] =
@@ -83,10 +84,10 @@ class GridApi(baseUrl: String) {
    * Available security schemes:
    *   apikey (apiKey)
    * 
-   * @param perPage Results per page. Used only if _page is used.
+   * @param perPage Results per page.
    * @param sortDir Sorting direction ASC or DESC
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
-   * @param cursor used for iteration throght resultset. Cursor identifies specific page in resultset.
+   * @param cursor used for iteration through resultset. Cursor identifies specific page in resultset.
    * @param sortField Sorting field
    * @param timezoneOffset difference between client and server time in seconds
    */
@@ -129,9 +130,9 @@ class GridApi(baseUrl: String) {
    * Available security schemes:
    *   apikey (apiKey)
    * 
-   * @param perPage Results per page. Used only if _page is used.
+   * @param perPage Results per page.
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
-   * @param cursor used for iteration throght resultset. Cursor identifies specific page in resultset.
+   * @param cursor used for iteration through resultset. Cursor identifies specific page in resultset.
    */
   def getChatsGridList(perPage: Option[Int] = None, filters: Option[String] = None, cursor: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[ChatRow]] =
     ApiRequest[Seq[ChatRow]](ApiMethods.GET, baseUrl, "/grid/chats", "application/json")
@@ -169,10 +170,10 @@ class GridApi(baseUrl: String) {
    * Available security schemes:
    *   apikey (apiKey)
    * 
-   * @param perPage Results per page. Used only if _page is used.
+   * @param perPage Results per page.
    * @param sortDir Sorting direction ASC or DESC
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
-   * @param cursor used for iteration throght resultset. Cursor identifies specific page in resultset.
+   * @param cursor used for iteration through resultset. Cursor identifies specific page in resultset.
    * @param sortField Sorting field
    * @param timezoneOffset difference between client and server time in seconds
    */
@@ -233,10 +234,10 @@ class GridApi(baseUrl: String) {
    * Available security schemes:
    *   apikey (apiKey)
    * 
-   * @param perPage Results per page. Used only if _page is used.
+   * @param perPage Results per page.
    * @param sortDir Sorting direction ASC or DESC
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
-   * @param cursor used for iteration throght resultset. Cursor identifies specific page in resultset.
+   * @param cursor used for iteration through resultset. Cursor identifies specific page in resultset.
    * @param sortField Sorting field
    */
   def getDepartmentsGridList(perPage: Option[Int] = None, sortDir: Option[String] = None, filters: Option[String] = None, cursor: Option[String] = None, sortField: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[DepartmentRow]] =
@@ -259,10 +260,10 @@ class GridApi(baseUrl: String) {
    * Available security schemes:
    *   apikey (apiKey)
    * 
-   * @param perPage Results per page. Used only if _page is used.
+   * @param perPage Results per page.
    * @param sortDir Sorting direction ASC or DESC
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
-   * @param cursor used for iteration throght resultset. Cursor identifies specific page in resultset.
+   * @param cursor used for iteration through resultset. Cursor identifies specific page in resultset.
    * @param sortField Sorting field
    * @param timezoneOffset difference between client and server time in seconds
    */
@@ -299,16 +300,60 @@ class GridApi(baseUrl: String) {
 
   /**
    * Expected answers:
+   *   code 200 : Seq[TagRow] (Tags grid response)
+   *   code 0 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   * 
+   * @param perPage Results per page.
+   * @param sortDir Sorting direction ASC or DESC
+   * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
+   * @param cursor used for iteration through resultset. Cursor identifies specific page in resultset.
+   * @param sortField Sorting field
+   */
+  def getTagsGridList(perPage: Option[Int] = None, sortDir: Option[String] = None, filters: Option[String] = None, cursor: Option[String] = None, sortField: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[TagRow]] =
+    ApiRequest[Seq[TagRow]](ApiMethods.GET, baseUrl, "/grid/tags", "application/json")
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
+      .withQueryParam("_perPage", perPage)
+      .withQueryParam("_sortDir", sortDir)
+      .withQueryParam("_filters", filters)
+      .withQueryParam("_cursor", cursor)
+      .withQueryParam("_sortField", sortField)
+      .withSuccessResponse[Seq[TagRow]](200)
+      .withDefaultErrorResponse[ErrorResponse]
+      
+
+  /**
+   * Expected answers:
+   *   code 200 : Count (Tags grid count response)
+   *   code 0 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   * 
+   * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
+   */
+  def getTagsGridListCount(filters: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Count] =
+    ApiRequest[Count](ApiMethods.GET, baseUrl, "/grid/tags/count", "application/json")
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
+      .withQueryParam("_filters", filters)
+      .withSuccessResponse[Count](200)
+      .withDefaultErrorResponse[ErrorResponse]
+      
+
+  /**
+   * Expected answers:
    *   code 200 : Seq[TicketRow] (Tickets grid response)
    *   code 0 : ErrorResponse (Error response)
    * 
    * Available security schemes:
    *   apikey (apiKey)
    * 
-   * @param perPage Results per page. Used only if _page is used.
+   * @param perPage Results per page.
    * @param sortDir Sorting direction ASC or DESC
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
-   * @param cursor used for iteration throght resultset. Cursor identifies specific page in resultset.
+   * @param cursor used for iteration through resultset. Cursor identifies specific page in resultset.
    * @param sortField Sorting field
    * @param timezoneOffset difference between client and server time in seconds
    */
@@ -334,11 +379,13 @@ class GridApi(baseUrl: String) {
    *   apikey (apiKey)
    * 
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
+   * @param timezoneOffset difference between client and server time in seconds
    */
-  def getTicketsGridListCount(filters: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Count] =
+  def getTicketsGridListCount(filters: Option[String] = None, timezoneOffset: Option[Int] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Count] =
     ApiRequest[Count](ApiMethods.GET, baseUrl, "/grid/tickets/count", "application/json")
       .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("_filters", filters)
+      .withHeaderParam("Timezone-Offset", timezoneOffset)
       .withSuccessResponse[Count](200)
       .withDefaultErrorResponse[ErrorResponse]
       
@@ -351,10 +398,10 @@ class GridApi(baseUrl: String) {
    * Available security schemes:
    *   apikey (apiKey)
    * 
-   * @param perPage Results per page. Used only if _page is used.
+   * @param perPage Results per page.
    * @param sortDir Sorting direction ASC or DESC
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
-   * @param cursor used for iteration throght resultset. Cursor identifies specific page in resultset.
+   * @param cursor used for iteration through resultset. Cursor identifies specific page in resultset.
    * @param sortField Sorting field
    * @param timezoneOffset difference between client and server time in seconds
    */
@@ -397,11 +444,11 @@ class GridApi(baseUrl: String) {
    * Available security schemes:
    *   apikey (apiKey)
    * 
-   * @param perPage Results per page. Used only if _page is used.
+   * @param perPage Results per page.
    * @param sortDir Sorting direction ASC or DESC
    * @param sortField Sorting field
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
-   * @param cursor used for iteration throght resultset. Cursor identifies specific page in resultset.
+   * @param cursor used for iteration through resultset. Cursor identifies specific page in resultset.
    */
   def getTimeReportsGridList(perPage: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None, cursor: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[TimeReportRow]] =
     ApiRequest[Seq[TimeReportRow]](ApiMethods.GET, baseUrl, "/grid/reports/time", "application/json")

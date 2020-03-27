@@ -29,7 +29,8 @@ case class CallListItem (
   viaNumber: Option[String] = None,
   dateCreated: Option[DateTime] = None,
   dateAnswered: Option[DateTime] = None,
-  dateFinished: Option[DateTime] = None
+  dateFinished: Option[DateTime] = None,
+  callDuration: Option[String] = None
 ) extends ApiModel
 
 object CallListItemEnums {

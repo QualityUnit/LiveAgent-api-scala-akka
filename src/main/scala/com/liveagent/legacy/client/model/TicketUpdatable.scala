@@ -23,6 +23,7 @@ case class TicketUpdatable (
   agentid: Option[String] = None,
   /* <br> I - init<br> N - new<br> T - chatting<br> P - calling<br> R - resolved<br> X - deleted<br> B - spam<br> A - answered<br> C - open<br> W - postponed */
   status: Option[TicketUpdatableEnums.Status] = None,
+  subject: Option[String] = None,
   tags: Option[Seq[String]] = None,
   customFields: Option[Seq[CustomFields]] = None
 ) extends ApiModel

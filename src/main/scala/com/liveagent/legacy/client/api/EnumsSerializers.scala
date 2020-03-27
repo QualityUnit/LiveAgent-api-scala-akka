@@ -59,6 +59,7 @@ object EnumsSerializers {
     new EnumNameSerializer[PhoneNumberEnums.`Type`](PhoneNumberEnums.`Type`.fromString) :+
     new EnumNameSerializer[PhoneNumberEnums.Status](PhoneNumberEnums.Status.fromString) :+
     new EnumNameSerializer[PredefinedAnswerEnums.Format](PredefinedAnswerEnums.Format.fromString) :+
+    new EnumNameSerializer[ReindexDataEnums.Truncate](ReindexDataEnums.Truncate.fromString) :+
     new EnumNameSerializer[RoleEnums.Role](RoleEnums.Role.fromString) :+
     new EnumNameSerializer[SettingEnums.Name](SettingEnums.Name.fromString) :+
     new EnumNameSerializer[SubscriptionEnums.Status](SubscriptionEnums.Status.fromString) :+
@@ -72,7 +73,9 @@ object EnumsSerializers {
     new EnumNameSerializer[TimeReportRowEnums.`Type`](TimeReportRowEnums.`Type`.fromString) :+
     new EnumNameSerializer[UpgradeEnums.BillingPeriod](UpgradeEnums.BillingPeriod.fromString) :+
     new EnumNameSerializer[UserEnums.Role](UserEnums.Role.fromString) :+
-    new EnumNameSerializer[VariationUpgradesEnums.Currency](VariationUpgradesEnums.Currency.fromString)
+    new EnumNameSerializer[VariationUpgradesEnums.Currency](VariationUpgradesEnums.Currency.fromString) :+
+    new EnumNameSerializer[ViberAccountEnums.Status](ViberAccountEnums.Status.fromString) :+
+    new EnumNameSerializer[ViberAccountListItemEnums.Status](ViberAccountListItemEnums.Status.fromString)
 
   private class EnumNameSerializer[E <: ApiEnum: ClassTag](deserializeMethod: String => E)
     extends Serializer[E] {

@@ -27,6 +27,7 @@ case class AgentRow (
   avatarUrl: Option[String] = None,
   roleid: Option[String] = None,
   rolename: Option[String] = None,
+  departmentid: Option[String] = None,
   twofa: Option[AgentRowEnums.Twofa] = None
 ) extends ApiModel
 

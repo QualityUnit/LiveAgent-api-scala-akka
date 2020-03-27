@@ -191,9 +191,9 @@ class ApiInvoker(formats: Formats)(implicit system: ActorSystem) extends CustomC
           case Some(c: Multipart.FormData) =>
             HttpRequest(m, uri, entity = c.toEntity)
           case Some(c: String) =>
-            HttpRequest(m, uri, entity = HttpEntity(normalizedContentType(request.contentType), ByteString(c)))
+            HttpRequest(m, uri, entity = HttpEntity(contentTypeToMediaType(request.contentType), ByteString(c)))
           case _ =>
-            HttpRequest(m, uri, entity = HttpEntity(normalizedContentType(request.contentType), ByteString(" ")))
+            HttpRequest(m, uri, entity = HttpEntity(contentTypeToMediaType(request.contentType), ByteString(" ")))
         }
       case m: HttpMethod => HttpRequest(m, uri)
     }
@@ -287,6 +287,14 @@ class ApiInvoker(formats: Formats)(implicit system: ActorSystem) extends CustomC
 }
 
 sealed trait CustomContentTypes {
+
+    protected def contentTypeToMediaType(contentType: String): ContentType =
+      contentType.split("/") match {
+        case Array(key: String, key2: String) =>
+          ContentType(MediaTypes.getForKey((key, key2)).getOrElse(MediaTypes.forExtension(contentType)), () => HttpCharsets.`UTF-8`)
+        case _ =>
+          normalizedContentType(contentType)
+      }
 
   protected def normalizedContentType(original: String): ContentType =
     ContentType(MediaTypes.forExtension(original), () => HttpCharsets.`UTF-8`)

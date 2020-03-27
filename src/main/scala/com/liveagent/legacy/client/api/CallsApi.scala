@@ -16,6 +16,7 @@ import com.liveagent.legacy.client.model.CallListItem
 import com.liveagent.legacy.client.model.CallMessage
 import com.liveagent.legacy.client.model.CallStatus
 import com.liveagent.legacy.client.model.CallTransferResult
+import com.liveagent.legacy.client.model.Count
 import com.liveagent.legacy.client.model.ErrorResponse
 import java.io.File
 import com.liveagent.legacy.client.model.Ivr
@@ -128,7 +129,7 @@ class CallsApi(baseUrl: String) {
       
 
   /**
-   * Creates new call (ingoing / outcoming / internal). Does not initiate the outgoing call
+   * Creates new call (incoming / outgoing / internal). Does not initiate the outgoing call
    * 
    * Expected answers:
    *   code 200 : Call (Call info)
@@ -499,6 +500,24 @@ class CallsApi(baseUrl: String) {
 
   /**
    * Expected answers:
+   *   code 200 : Count (Calls count response)
+   *   code 0 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   * 
+   * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
+   */
+  def getCallsCount(filters: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Count] =
+    ApiRequest[Count](ApiMethods.GET, baseUrl, "/calls/count", "application/json")
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
+      .withQueryParam("_filters", filters)
+      .withSuccessResponse[Count](200)
+      .withDefaultErrorResponse[ErrorResponse]
+      
+
+  /**
+   * Expected answers:
    *   code 200 : Seq[CallListItem] (Call response)
    *   code 206 : Seq[CallListItem] (Call response)
    *   code 0 : ErrorResponse (Error response)
@@ -506,24 +525,22 @@ class CallsApi(baseUrl: String) {
    * Available security schemes:
    *   apikey (apiKey)
    * 
-   * @param page Page to display. Not used if _from is defined.
-   * @param perPage Results per page. Used only if _page is used.
-   * @param from Result set start. Takes precedence over _page.
-   * @param to Result set end. Used only if _from is used.
-   * @param sortDir Sorting direction ASC or DESC
-   * @param sortField Sorting field
+   * @param perPage Results per page.
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
+   * @param cursor used for iteration through resultset. Cursor identifies specific page in resultset.
+   * @param sortField 
+   * @param sortDir Sorting direction ASC or DESC
+   * @param timezoneOffset difference between client and server time in seconds
    */
-  def getCallsList(page: Option[Int] = None, perPage: Option[Int] = None, from: Option[Int] = None, to: Option[Int] = None, sortDir: Option[String] = None, sortField: Option[String] = None, filters: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[CallListItem]] =
+  def getCallsList(perPage: Option[Int] = None, filters: Option[String] = None, cursor: Option[String] = None, sortField: Option[String] = None, sortDir: Option[String] = None, timezoneOffset: Option[Int] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[CallListItem]] =
     ApiRequest[Seq[CallListItem]](ApiMethods.GET, baseUrl, "/calls", "application/json")
       .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
-      .withQueryParam("_page", page)
       .withQueryParam("_perPage", perPage)
-      .withQueryParam("_from", from)
-      .withQueryParam("_to", to)
-      .withQueryParam("_sortDir", sortDir)
-      .withQueryParam("_sortField", sortField)
       .withQueryParam("_filters", filters)
+      .withQueryParam("_cursor", cursor)
+      .withQueryParam("_sortField", sortField)
+      .withQueryParam("_sortDir", sortDir)
+      .withHeaderParam("Timezone-Offset", timezoneOffset)
       .withSuccessResponse[Seq[CallListItem]](200)
       .withErrorResponse[Seq[CallListItem]](206)
       .withDefaultErrorResponse[ErrorResponse]
@@ -633,7 +650,7 @@ class CallsApi(baseUrl: String) {
    * @param callId 
    * @param channelId 
    */
-  def unholChannel(callId: String, channelId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
+  def unholdChannel(callId: String, channelId: String)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Any] =
     ApiRequest[Any](ApiMethods.POST, baseUrl, "/calls/{callId}/channels/{channelId}/_unhold", "application/json")
       .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withPathParam("callId", callId)

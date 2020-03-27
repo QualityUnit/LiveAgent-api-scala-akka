@@ -18,6 +18,7 @@ import com.liveagent.legacy.client.model.ApiKeyWithPrivileges
 import com.liveagent.legacy.client.model.ApiPrivilege
 import com.liveagent.legacy.client.model.Count
 import com.liveagent.legacy.client.model.ErrorResponse
+import com.liveagent.legacy.client.model.SSOKey
 import com.liveagent.legacy.client.core._
 import com.liveagent.legacy.client.core.CollectionFormats._
 import com.liveagent.legacy.client.core.ApiKeyLocations._
@@ -87,6 +88,23 @@ class ApiApi(baseUrl: String) {
       
 
   /**
+   * Generate Single Sign On key
+   * 
+   * Expected answers:
+   *   code 200 : SSOKey (Api keys response)
+   *   code 0 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   */
+  def generateSSOKey()(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[SSOKey] =
+    ApiRequest[SSOKey](ApiMethods.POST, baseUrl, "/sso", "application/json")
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
+      .withSuccessResponse[SSOKey](200)
+      .withDefaultErrorResponse[ErrorResponse]
+      
+
+  /**
    * Get information about api
    * 
    * Expected answers:
@@ -140,10 +158,10 @@ class ApiApi(baseUrl: String) {
    * Available security schemes:
    *   apikey (apiKey)
    * 
-   * @param perPage Results per page. Used only if _page is used.
+   * @param perPage Results per page.
    * @param sortDir Sorting direction ASC or DESC
    * @param filters Filters (json object {column:value, ...} or json array [[column,operator,value], ...])
-   * @param cursor used for iteration throght resultset. Cursor identifies specific page in resultset.
+   * @param cursor used for iteration through resultset. Cursor identifies specific page in resultset.
    * @param sortField 
    */
   def getApiKeys(perPage: Option[Int] = None, sortDir: Option[String] = None, filters: Option[String] = None, cursor: Option[String] = None, sortField: Option[String] = None)(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[Seq[ApiKey]] =
@@ -190,6 +208,23 @@ class ApiApi(baseUrl: String) {
       .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
       .withQueryParam("_filters", filters)
       .withSuccessResponse[Count](200)
+      .withDefaultErrorResponse[ErrorResponse]
+      
+
+  /**
+   * Get Single Sign On key
+   * 
+   * Expected answers:
+   *   code 200 : SSOKey (Api keys response)
+   *   code 0 : ErrorResponse (Error response)
+   * 
+   * Available security schemes:
+   *   apikey (apiKey)
+   */
+  def getSSOKey()(implicit apiKeyValueFromRequest: ApiKeyValueFromRequest): ApiRequest[SSOKey] =
+    ApiRequest[SSOKey](ApiMethods.GET, baseUrl, "/sso", "application/json")
+      .withApiKey(apiKeyValueFromRequest, "apikey", HEADER)
+      .withSuccessResponse[SSOKey](200)
       .withDefaultErrorResponse[ErrorResponse]
       
 

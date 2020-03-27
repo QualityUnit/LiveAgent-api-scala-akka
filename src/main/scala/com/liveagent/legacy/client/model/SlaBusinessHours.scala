@@ -20,7 +20,7 @@ import org.json4s.MappingException
 case class SlaBusinessHours (
   timezone: Option[String] = None,
   monday: Option[DayInterval] = None,
-  thuesday: Option[DayInterval] = None,
+  tuesday: Option[DayInterval] = None,
   wednesday: Option[DayInterval] = None,
   thursday: Option[DayInterval] = None,
   friday: Option[DayInterval] = None,
