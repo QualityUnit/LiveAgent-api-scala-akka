@@ -42,8 +42,8 @@ object IvrChoiceEnums {
         case object `7` extends Dtmf { val value = "7" }
         case object `8` extends Dtmf { val value = "8" }
         case object `9` extends Dtmf { val value = "9" }
-        case object `star` extends Dtmf { val value = "*" }
-        case object `hash` extends Dtmf { val value = "#" }
+        case object `*` extends Dtmf { val value = "*" }
+        case object `#` extends Dtmf { val value = "#" }
 
         def fromString(value: String): Dtmf = value match {
           case "0" =>
@@ -67,9 +67,9 @@ object IvrChoiceEnums {
           case "9" =>
             Dtmf.`9`
           case "*" =>
-            Dtmf.`star`
+            Dtmf.`*`
           case "#" =>
-            Dtmf.`hash`
+            Dtmf.`#`
           case unknown =>
             throw new MappingException(s"Can't convert $unknown to Dtmf")
         }

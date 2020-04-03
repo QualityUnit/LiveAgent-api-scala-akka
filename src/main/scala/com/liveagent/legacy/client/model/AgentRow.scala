@@ -37,7 +37,7 @@ object AgentRowEnums {
     object Twofa {
         case object `Y` extends Twofa { val value = "Y" }
         case object `N` extends Twofa { val value = "N" }
-        case object `empty` extends Twofa { val value = "" }
+        case object `U` extends Twofa { val value = "" }
 
         def fromString(value: String): Twofa = value match {
           case "Y" =>
@@ -45,7 +45,7 @@ object AgentRowEnums {
           case "N" =>
             Twofa.`N`
           case "" =>
-            Twofa.`empty`
+            Twofa.`U`
           case unknown =>
             throw new MappingException(s"Can't convert $unknown to Twofa")
         }

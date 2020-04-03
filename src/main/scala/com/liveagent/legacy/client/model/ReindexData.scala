@@ -17,32 +17,28 @@ import java.util.UUID
 
 import org.json4s.MappingException
 
-case class Tag (
-  id: Option[String] = None,
-  name: Option[String] = None,
-  color: Option[String] = None,
-  backgroundColor: Option[String] = None,
-  /* - Y - Public tag - N - Private tag */
-  isPublic: Option[TagEnums.IsPublic] = None
+case class ReindexData (
+  `type`: Option[String] = None,
+  /* N - No<br>Y - Yes<br> */
+  truncate: Option[ReindexDataEnums.Truncate] = None,
+  dateFrom: Option[DateTime] = None,
+  dateTo: Option[DateTime] = None
 ) extends ApiModel
 
-object TagEnums {
-    sealed trait IsPublic extends ApiEnum
+object ReindexDataEnums {
+    sealed trait Truncate extends ApiEnum
 
-    object IsPublic {
-        case object `Y` extends IsPublic { val value = "Y" }
-        case object `N` extends IsPublic { val value = "N" }
-        case object `U` extends IsPublic { val value = "" }
+    object Truncate {
+        case object `N` extends Truncate { val value = "N" }
+        case object `Y` extends Truncate { val value = "Y" }
 
-        def fromString(value: String): IsPublic = value match {
-          case "Y" =>
-            IsPublic.`Y`
+        def fromString(value: String): Truncate = value match {
           case "N" =>
-            IsPublic.`N`
-          case "" =>
-            IsPublic.`U`
+            Truncate.`N`
+          case "Y" =>
+            Truncate.`Y`
           case unknown =>
-            throw new MappingException(s"Can't convert $unknown to IsPublic")
+            throw new MappingException(s"Can't convert $unknown to Truncate")
         }
     }
 

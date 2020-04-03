@@ -17,32 +17,32 @@ import java.util.UUID
 
 import org.json4s.MappingException
 
-case class Tag (
+case class ViberAccountListItem (
   id: Option[String] = None,
+  viberAccountId: Option[String] = None,
+  departmentId: Option[String] = None,
   name: Option[String] = None,
-  color: Option[String] = None,
-  backgroundColor: Option[String] = None,
-  /* - Y - Public tag - N - Private tag */
-  isPublic: Option[TagEnums.IsPublic] = None
+  iconUrl: Option[String] = None,
+  viberUri: Option[String] = None,
+  /* A - Active (subscribed to events)<br>I - Inactive (unsubscribed from events) */
+  status: Option[ViberAccountListItemEnums.Status] = None,
+  departmentName: Option[String] = None
 ) extends ApiModel
 
-object TagEnums {
-    sealed trait IsPublic extends ApiEnum
+object ViberAccountListItemEnums {
+    sealed trait Status extends ApiEnum
 
-    object IsPublic {
-        case object `Y` extends IsPublic { val value = "Y" }
-        case object `N` extends IsPublic { val value = "N" }
-        case object `U` extends IsPublic { val value = "" }
+    object Status {
+        case object `A` extends Status { val value = "A" }
+        case object `I` extends Status { val value = "I" }
 
-        def fromString(value: String): IsPublic = value match {
-          case "Y" =>
-            IsPublic.`Y`
-          case "N" =>
-            IsPublic.`N`
-          case "" =>
-            IsPublic.`U`
+        def fromString(value: String): Status = value match {
+          case "A" =>
+            Status.`A`
+          case "I" =>
+            Status.`I`
           case unknown =>
-            throw new MappingException(s"Can't convert $unknown to IsPublic")
+            throw new MappingException(s"Can't convert $unknown to Status")
         }
     }
 
