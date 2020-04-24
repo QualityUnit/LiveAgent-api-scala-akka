@@ -12,16 +12,14 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class SlackUser (
   id: Option[String] = None,
   name: Option[String] = None,
-  realName: Option[String] = None,
-  displayName: Option[String] = None,
+  real_name: Option[String] = None,
+  display_name: Option[String] = None,
   image: Option[String] = None,
   color: Option[String] = None
 ) extends ApiModel

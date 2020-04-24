@@ -12,8 +12,6 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
@@ -23,19 +21,19 @@ case class TicketListItem (
   departmentid: String,
   recipient: String,
   message: String,
-  recipientName: Option[String] = None,
-  carbonCopy: Option[String] = None,
-  blindCarbonCopy: Option[String] = None,
+  recipient_name: Option[String] = None,
+  carbon_copy: Option[String] = None,
+  blind_carbon_copy: Option[String] = None,
   /* <br> N - new<br> T - chatting<br> P - calling<br> R - resolved<br> X - deleted<br> B - spam<br> A - answered<br> C - open<br> W - postponed */
   status: Option[TicketListItemEnums.Status] = None,
-  mailMessageId: Option[String] = None,
+  mail_message_id: Option[String] = None,
   /* Y - yes, N - no */
-  doNotSendMail: Option[TicketListItemEnums.DoNotSendMail] = None,
+  do_not_send_mail: Option[TicketListItemEnums.DoNotSendMail] = None,
   /* Y - yes, N - no */
-  useTemplate: Option[TicketListItemEnums.UseTemplate] = None,
+  use_template: Option[TicketListItemEnums.UseTemplate] = None,
   /* Y - yes, N - no */
-  isHtmlMessage: Option[TicketListItemEnums.IsHtmlMessage] = None,
-  customFields: Option[Seq[CustomFields]] = None,
+  is_html_message: Option[TicketListItemEnums.IsHtmlMessage] = None,
+  custom_fields: Option[Seq[CustomFields]] = None,
   /* array of tags id */
   tags: Option[Seq[String]] = None,
   attachments: Option[String] = None

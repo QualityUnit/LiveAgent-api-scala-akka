@@ -23,7 +23,7 @@ object TagsApi {
 }
 
 class TagsApi(baseUrl: String) {
-  
+
   /**
    * Create new tag
    * 

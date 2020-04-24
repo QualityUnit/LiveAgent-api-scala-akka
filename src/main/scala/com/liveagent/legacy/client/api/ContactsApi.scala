@@ -25,7 +25,7 @@ object ContactsApi {
 }
 
 class ContactsApi(baseUrl: String) {
-  
+
   /**
    * Expected answers:
    *   code 200 : Contact (Contact was created)

@@ -11,9 +11,8 @@
  */
 package com.liveagent.legacy.client.model
 
+    import java.time.OffsetDateTime
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
@@ -21,16 +20,16 @@ case class ChatInformation (
   id: Option[String] = None,
   subject: Option[String] = None,
   preview: Option[String] = None,
-  chatOrder: Option[DateTime] = None,
-  dateCreated: Option[DateTime] = None,
-  statusDateStarted: Option[DateTime] = None,
+  chat_order: Option[OffsetDateTime] = None,
+  date_created: Option[OffsetDateTime] = None,
+  status_date_started: Option[OffsetDateTime] = None,
   tags: Option[Seq[String]] = None,
   /* <br> I - Init<br> T - Chatting<br> R - Resolved */
   rstatus: Option[String] = None,
   firstname: Option[String] = None,
   lastname: Option[String] = None,
-  systemName: Option[String] = None,
-  avatarUrl: Option[String] = None,
+  system_name: Option[String] = None,
+  avatar_url: Option[String] = None,
   countrycode: Option[String] = None,
   city: Option[String] = None,
   departmentId: Option[String] = None,

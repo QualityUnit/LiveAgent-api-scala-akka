@@ -25,7 +25,7 @@ object ElasticApi {
 }
 
 class ElasticApi(baseUrl: String) {
-  
+
   /**
    * Expected answers:
    *   code 200 : IndexStatusData (Index status data)

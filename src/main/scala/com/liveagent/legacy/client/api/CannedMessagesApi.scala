@@ -23,7 +23,7 @@ object CannedMessagesApi {
 }
 
 class CannedMessagesApi(baseUrl: String) {
-  
+
   /**
    * Create new canned message
    * 

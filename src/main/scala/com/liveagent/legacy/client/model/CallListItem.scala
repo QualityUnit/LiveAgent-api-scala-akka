@@ -11,9 +11,8 @@
  */
 package com.liveagent.legacy.client.model
 
+    import java.time.OffsetDateTime
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
@@ -27,9 +26,9 @@ case class CallListItem (
   toNumber: Option[String] = None,
   toName: Option[String] = None,
   viaNumber: Option[String] = None,
-  dateCreated: Option[DateTime] = None,
-  dateAnswered: Option[DateTime] = None,
-  dateFinished: Option[DateTime] = None,
+  dateCreated: Option[OffsetDateTime] = None,
+  dateAnswered: Option[OffsetDateTime] = None,
+  dateFinished: Option[OffsetDateTime] = None,
   callDuration: Option[String] = None
 ) extends ApiModel
 

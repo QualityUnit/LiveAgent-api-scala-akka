@@ -23,7 +23,7 @@ object HostingApi {
 }
 
 class HostingApi(baseUrl: String) {
-  
+
   /**
    * Used hosting system info
    * 

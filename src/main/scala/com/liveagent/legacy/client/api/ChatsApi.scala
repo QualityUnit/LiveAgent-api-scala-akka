@@ -23,7 +23,7 @@ object ChatsApi {
 }
 
 class ChatsApi(baseUrl: String) {
-  
+
   /**
    * Expected answers:
    *   code 200 : Seq[ChatInformation] (Call response)

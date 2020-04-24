@@ -11,19 +11,18 @@
  */
 package com.liveagent.legacy.client.model
 
+    import java.time.OffsetDateTime
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class TicketSla (
   conversationid: Option[String] = None,
-  slaLevelId: Option[String] = None,
-  firstAnswer: Option[DateTime] = None,
-  firstAssign: Option[DateTime] = None,
-  firstResolve: Option[DateTime] = None,
-  nextAnswer: Option[DateTime] = None
+  sla_level_id: Option[String] = None,
+  first_answer: Option[OffsetDateTime] = None,
+  first_assign: Option[OffsetDateTime] = None,
+  first_resolve: Option[OffsetDateTime] = None,
+  next_answer: Option[OffsetDateTime] = None
 ) extends ApiModel
 
 

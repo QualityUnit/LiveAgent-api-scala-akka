@@ -12,21 +12,19 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class TicketHistory (
   id: Option[String] = None,
-  conversationId: Option[String] = None,
-  conversationCode: Option[String] = None,
-  departmentId: Option[String] = None,
-  agentId: Option[String] = None,
+  conversation_id: Option[String] = None,
+  conversation_code: Option[String] = None,
+  department_id: Option[String] = None,
+  agent_id: Option[String] = None,
   status: Option[String] = None,
-  dateFrom: Option[String] = None,
-  dateTo: Option[String] = None,
-  elapsedTime: Option[String] = None
+  date_from: Option[String] = None,
+  date_to: Option[String] = None,
+  elapsed_time: Option[String] = None
 ) extends ApiModel
 
 

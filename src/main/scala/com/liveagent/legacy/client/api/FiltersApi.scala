@@ -23,7 +23,7 @@ object FiltersApi {
 }
 
 class FiltersApi(baseUrl: String) {
-  
+
   /**
    * Create new filter
    * 

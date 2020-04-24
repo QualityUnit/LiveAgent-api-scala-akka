@@ -12,22 +12,20 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class MailAccount (
-  mailaccountId: Option[String] = None,
+  mailaccount_id: Option[String] = None,
   /* I - Imap, 3 - POP3, P - piping, B - built-in, F - forwarding  */
-  fetchType: Option[String] = None,
+  fetch_type: Option[String] = None,
   email: Option[String] = None,
-  departmentId: Option[String] = None,
+  department_id: Option[String] = None,
   /* A - active, I - inactive, P - pending, S - skipping  */
   status: Option[String] = None,
   provider: Option[String] = None,
-  lastMailDate: Option[String] = None,
-  lastFetchDate: Option[String] = None
+  last_mail_date: Option[String] = None,
+  last_fetch_date: Option[String] = None
 ) extends ApiModel
 
 

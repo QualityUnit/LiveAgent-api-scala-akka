@@ -12,14 +12,12 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class IndexStatusData (
-  esActive: Option[String] = None,
-  indexStatus: Option[Seq[IndexStatus]] = None
+  es_active: Option[String] = None,
+  index_status: Option[Seq[IndexStatus]] = None
 ) extends ApiModel
 
 

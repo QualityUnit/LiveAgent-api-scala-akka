@@ -12,15 +12,13 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class Batch (
   id: Option[String] = None,
-  isCommitted: Option[Boolean] = None,
-  itemCount: Option[Int] = None
+  is_committed: Option[Boolean] = None,
+  item_count: Option[Int] = None
 ) extends ApiModel
 
 

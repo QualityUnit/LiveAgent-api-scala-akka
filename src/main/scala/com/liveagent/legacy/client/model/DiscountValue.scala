@@ -12,15 +12,13 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class DiscountValue (
   name: Option[String] = None,
   `type`: Option[DiscountValueEnums.`Type`] = None,
-  valueType: Option[DiscountValueEnums.ValueType] = None,
+  value_type: Option[DiscountValueEnums.ValueType] = None,
   value: Option[Int] = None
 ) extends ApiModel
 

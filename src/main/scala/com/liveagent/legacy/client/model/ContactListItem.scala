@@ -11,33 +11,32 @@
  */
 package com.liveagent.legacy.client.model
 
+    import java.time.OffsetDateTime
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class ContactListItem (
   id: Option[String] = None,
-  companyId: Option[String] = None,
+  company_id: Option[String] = None,
   firstname: Option[String] = None,
   lastname: Option[String] = None,
-  systemName: Option[String] = None,
+  system_name: Option[String] = None,
   description: Option[String] = None,
-  avatarUrl: Option[String] = None,
+  avatar_url: Option[String] = None,
   /* V - visitor, R - registered visitor */
   `type`: Option[ContactListItemEnums.`Type`] = None,
   /* M - Male, F - Female, X - Unspecified */
   gender: Option[String] = None,
   /* Set automatically */
-  dateCreated: Option[DateTime] = None,
+  date_created: Option[OffsetDateTime] = None,
   /* Set automatically */
-  dateChanged: Option[DateTime] = None,
+  date_changed: Option[OffsetDateTime] = None,
   language: Option[String] = None,
   city: Option[String] = None,
   countrycode: Option[String] = None,
   ip: Option[String] = None,
-  registrationEmail: Option[String] = None,
+  registration_email: Option[String] = None,
   emails: Option[Seq[String]] = None,
   phones: Option[Seq[String]] = None,
   groups: Option[Seq[String]] = None

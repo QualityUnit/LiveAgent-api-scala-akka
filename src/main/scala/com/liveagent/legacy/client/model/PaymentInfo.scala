@@ -12,15 +12,13 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class PaymentInfo (
-  paymentType: String,
+  payment_type: String,
   detail: Option[String] = None,
-  cardExpire: Option[String] = None
+  card_expire: Option[String] = None
 ) extends ApiModel
 
 

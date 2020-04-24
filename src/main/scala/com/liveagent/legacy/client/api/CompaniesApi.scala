@@ -25,7 +25,7 @@ object CompaniesApi {
 }
 
 class CompaniesApi(baseUrl: String) {
-  
+
   /**
    * Expected answers:
    *   code 200 : Company (Company was created)

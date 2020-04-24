@@ -11,23 +11,22 @@
  */
 package com.liveagent.legacy.client.model
 
+    import java.time.OffsetDateTime
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class BillingStatus (
   /* N - No billing A - Billing active S = Billing stopped  */
   status: Option[BillingStatusEnums.Status] = None,
-  validToDate: Option[DateTime] = None,
-  nextBillingDate: Option[DateTime] = None,
+  valid_to_date: Option[OffsetDateTime] = None,
+  next_billing_date: Option[OffsetDateTime] = None,
   /* Number of charge errors since last successful billing or account unsuspend. */
   errors: Option[Int] = None,
   /* Time an date of the last failed charge attempt. Only present if number or errors is greater than 0. */
-  lastErrorDate: Option[DateTime] = None,
+  last_error_date: Option[OffsetDateTime] = None,
   /* True if used payment method is fully compatible with selected country, false otherwise. False when either payment method or country is not set. */
-  paymentCompatible: Option[Boolean] = None
+  payment_compatible: Option[Boolean] = None
 ) extends ApiModel
 
 object BillingStatusEnums {

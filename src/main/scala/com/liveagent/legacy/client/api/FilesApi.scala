@@ -24,7 +24,7 @@ object FilesApi {
 }
 
 class FilesApi(baseUrl: String) {
-  
+
   /**
    * Expected answers:
    *   code 200 : StoredFile (File response)

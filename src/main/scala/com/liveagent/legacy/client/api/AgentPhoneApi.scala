@@ -23,7 +23,7 @@ object AgentPhoneApi {
 }
 
 class AgentPhoneApi(baseUrl: String) {
-  
+
   /**
    * Expected answers:
    *   code 200 : PhoneDevice (PhoneDevices response)

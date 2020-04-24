@@ -12,14 +12,12 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class FilterCondition (
-  fieldId: Option[String] = None,
-  sectionCode: Option[String] = None,
+  field_id: Option[String] = None,
+  section_code: Option[String] = None,
   code: Option[String] = None,
   operator: Option[String] = None,
   value: Option[String] = None

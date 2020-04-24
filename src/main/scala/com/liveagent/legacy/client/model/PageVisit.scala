@@ -11,15 +11,14 @@
  */
 package com.liveagent.legacy.client.model
 
+    import java.time.OffsetDateTime
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class PageVisit (
   browser: Option[String] = None,
-  dateVisit: Option[DateTime] = None,
+  date_visit: Option[OffsetDateTime] = None,
   title: Option[String] = None,
   url: Option[String] = None,
   referrerurl: Option[String] = None

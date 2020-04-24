@@ -11,9 +11,8 @@
  */
 package com.liveagent.legacy.client.model
 
+    import java.time.OffsetDateTime
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
@@ -21,26 +20,26 @@ case class SlaLogRow (
   id: Option[String] = None,
   conversationid: Option[String] = None,
   code: Option[String] = None,
-  slaTicketId: Option[String] = None,
+  sla_ticket_id: Option[String] = None,
   departmentid: Option[String] = None,
-  departmentName: Option[String] = None,
+  department_name: Option[String] = None,
   levelid: Option[String] = None,
-  slaLevelName: Option[String] = None,
+  sla_level_name: Option[String] = None,
   sla: Option[String] = None,
-  dateCreated: Option[String] = None,
-  dateClosed: Option[String] = None,
-  dateDue: Option[String] = None,
-  slaLevelId: Option[String] = None,
-  slaType: Option[DateTime] = None,
+  date_created: Option[String] = None,
+  date_closed: Option[String] = None,
+  date_due: Option[String] = None,
+  sla_level_id: Option[String] = None,
+  sla_type: Option[OffsetDateTime] = None,
   agentid: Option[String] = None,
-  agentFirstname: Option[String] = None,
-  agentLastname: Option[String] = None,
-  agentAvatarUrl: Option[String] = None,
-  reqContactid: Option[String] = None,
-  reqFirstname: Option[String] = None,
-  reqLastname: Option[String] = None,
-  reqSystemname: Option[String] = None,
-  reqAvatarUrl: Option[String] = None
+  agent_firstname: Option[String] = None,
+  agent_lastname: Option[String] = None,
+  agent_avatar_url: Option[String] = None,
+  req_contactid: Option[String] = None,
+  req_firstname: Option[String] = None,
+  req_lastname: Option[String] = None,
+  req_systemname: Option[String] = None,
+  req_avatar_url: Option[String] = None
 ) extends ApiModel
 
 

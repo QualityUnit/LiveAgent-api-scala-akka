@@ -12,8 +12,6 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
@@ -21,7 +19,7 @@ case class CallMessage (
   /* T (text), H (html), A (audio - url to audio file or fileId), S (system), N (note), NF (note file) */
   `type`: CallMessageEnums.`Type`,
   message: String,
-  fromNumber: Option[String] = None
+  from_number: Option[String] = None
 ) extends ApiModel
 
 object CallMessageEnums {

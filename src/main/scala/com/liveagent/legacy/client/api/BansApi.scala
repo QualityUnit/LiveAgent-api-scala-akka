@@ -24,7 +24,7 @@ object BansApi {
 }
 
 class BansApi(baseUrl: String) {
-  
+
   /**
    * Create new ban record
    * 

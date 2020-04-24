@@ -12,25 +12,23 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class TicketInformation (
   id: Option[String] = None,
   ownerid: Option[String] = None,
-  ownerContactid: Option[String] = None,
+  owner_contactid: Option[String] = None,
   departmentid: Option[String] = None,
   agentid: Option[String] = None,
   status: Option[String] = None,
   tags: Option[String] = None,
   code: Option[String] = None,
-  channelType: Option[String] = None,
-  dateCreated: Option[String] = None,
-  publicAccessUrlcode: Option[String] = None,
+  channel_type: Option[String] = None,
+  date_created: Option[String] = None,
+  public_access_urlcode: Option[String] = None,
   subject: Option[String] = None,
-  customFields: Option[Seq[CustomFields]] = None
+  custom_fields: Option[Seq[CustomFields]] = None
 ) extends ApiModel
 
 

@@ -26,7 +26,7 @@ object AgentsApi {
 }
 
 class AgentsApi(baseUrl: String) {
-  
+
   /**
    * Convert registered visitor to agent
    * 

@@ -12,18 +12,16 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class DeviceDepartment (
-  deviceId: Option[Double] = None,
-  departmentId: Option[String] = None,
-  userId: Option[String] = None,
-  departmentName: Option[String] = None,
-  onlineStatus: Option[String] = None,
-  presetStatus: Option[String] = None
+  device_id: Option[Double] = None,
+  department_id: Option[String] = None,
+  user_id: Option[String] = None,
+  department_name: Option[String] = None,
+  online_status: Option[String] = None,
+  preset_status: Option[String] = None
 ) extends ApiModel
 
 

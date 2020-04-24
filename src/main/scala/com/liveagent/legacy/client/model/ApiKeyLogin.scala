@@ -11,17 +11,16 @@
  */
 package com.liveagent.legacy.client.model
 
+    import java.time.OffsetDateTime
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class ApiKeyLogin (
   login: String,
   password: String,
-  twoFactorToken: Option[String] = None,
-  validToDate: Option[DateTime] = None,
+  two_factor_token: Option[String] = None,
+  valid_to_date: Option[OffsetDateTime] = None,
   name: Option[String] = None,
   /* - A - API (default) - C - Chat - P - Phone - T - Ticket - W - Web (Agent Panel) */
   `type`: Option[ApiKeyLoginEnums.`Type`] = None,

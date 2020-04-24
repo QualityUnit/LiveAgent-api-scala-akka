@@ -23,7 +23,7 @@ object VariationsApi {
 }
 
 class VariationsApi(baseUrl: String) {
-  
+
   /**
    * Get variation
    * 

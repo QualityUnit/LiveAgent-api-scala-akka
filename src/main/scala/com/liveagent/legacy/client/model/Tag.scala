@@ -12,8 +12,6 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
@@ -21,9 +19,9 @@ case class Tag (
   id: Option[String] = None,
   name: Option[String] = None,
   color: Option[String] = None,
-  backgroundColor: Option[String] = None,
+  background_color: Option[String] = None,
   /* - Y - Public tag - N - Private tag */
-  isPublic: Option[TagEnums.IsPublic] = None
+  is_public: Option[TagEnums.IsPublic] = None
 ) extends ApiModel
 
 object TagEnums {

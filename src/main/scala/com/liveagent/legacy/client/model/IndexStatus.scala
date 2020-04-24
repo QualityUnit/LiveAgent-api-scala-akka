@@ -11,16 +11,15 @@
  */
 package com.liveagent.legacy.client.model
 
+    import java.time.OffsetDateTime
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class IndexStatus (
   id: Option[String] = None,
-  indexCount: Option[String] = None,
-  datechanged: Option[DateTime] = None
+  index_count: Option[String] = None,
+  datechanged: Option[OffsetDateTime] = None
 ) extends ApiModel
 
 

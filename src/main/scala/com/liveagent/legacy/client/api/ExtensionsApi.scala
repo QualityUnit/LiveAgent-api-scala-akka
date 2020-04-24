@@ -24,7 +24,7 @@ object ExtensionsApi {
 }
 
 class ExtensionsApi(baseUrl: String) {
-  
+
   /**
    * Expected answers:
    *   code 200 : Extension (Extension response)

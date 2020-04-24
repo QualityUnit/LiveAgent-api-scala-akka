@@ -11,25 +11,24 @@
  */
 package com.liveagent.legacy.client.model
 
+    import java.time.OffsetDateTime
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class BanListItem (
   id: Option[Int] = None,
-  dateCreated: Option[DateTime] = None,
-  agentId: Option[String] = None,
-  startIp: Option[Double] = None,
-  endIp: Option[Double] = None,
-  dateValid: Option[DateTime] = None,
-  contactId: Option[String] = None,
-  conversationId: Option[String] = None,
+  date_created: Option[OffsetDateTime] = None,
+  agent_id: Option[String] = None,
+  start_ip: Option[Double] = None,
+  end_ip: Option[Double] = None,
+  date_valid: Option[OffsetDateTime] = None,
+  contact_id: Option[String] = None,
+  conversation_id: Option[String] = None,
   reason: Option[String] = None,
-  agentName: Option[String] = None,
-  contactName: Option[String] = None,
-  conversationCode: Option[String] = None
+  agent_name: Option[String] = None,
+  contact_name: Option[String] = None,
+  conversation_code: Option[String] = None
 ) extends ApiModel
 
 

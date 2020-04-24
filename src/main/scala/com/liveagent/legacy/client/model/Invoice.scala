@@ -11,23 +11,22 @@
  */
 package com.liveagent.legacy.client.model
 
+    import java.time.OffsetDateTime
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class Invoice (
-  subscriptionId: Option[String] = None,
+  subscription_id: Option[String] = None,
   number: Option[String] = None,
   /* Invoice issued date */
-  createdDate: Option[DateTime] = None,
-  fromDate: Option[DateTime] = None,
-  toDate: Option[DateTime] = None,
-  paidDate: Option[DateTime] = None,
+  created_date: Option[OffsetDateTime] = None,
+  from_date: Option[OffsetDateTime] = None,
+  to_date: Option[OffsetDateTime] = None,
+  paid_date: Option[OffsetDateTime] = None,
   price: Option[Double] = None,
-  priceBilled: Option[Double] = None,
-  vatRate: Option[Double] = None,
+  price_billed: Option[Double] = None,
+  vat_rate: Option[Double] = None,
   currency: Option[InvoiceEnums.Currency] = None,
   customer: Option[Customer] = None,
   items: Option[Seq[InvoiceItem]] = None

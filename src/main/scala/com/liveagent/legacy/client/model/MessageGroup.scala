@@ -11,26 +11,25 @@
  */
 package com.liveagent.legacy.client.model
 
+    import java.time.OffsetDateTime
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class MessageGroup (
   id: Option[String] = None,
-  parentId: Option[String] = None,
+  parent_id: Option[String] = None,
   userid: Option[String] = None,
-  userFullName: Option[String] = None,
+  user_full_name: Option[String] = None,
   /* M - OFFLINE C - CHAT P - CALL V - OUTGOING_CALL 1 - INTERNAL_CALL I - INTERNAL U - INTERNAL_OFFLINE Z - INTERNAL_COLLAPSED S - STARTINFO T - TRANSFER R - RESOLVE J - POSTPONE X - DELETE B - SPAM G - TAG F - FACEBOOK W - TWITTER H - WEIBO E - WEIBO_COMMENT D - TENCENT N - TENCENT_COMMENT Y - RETWEET A - KNOWLEDGEBASE_START K - KNOWLEDGEBASE O - FORWARD Q - FORWARD_REPLY L - SPLITTED 2 - MERGED */
   `type`: Option[MessageGroupEnums.`Type`] = None,
   /* D - DELETED P - PROMOTED V - VISIBLE S - SPLITTED M - MERGED I - INITIALIZING R - CONNECTING C - CALLING */
   status: Option[MessageGroupEnums.Status] = None,
-  datecreated: Option[DateTime] = None,
-  datefinished: Option[DateTime] = None,
-  sortOrder: Option[Int] = None,
-  mailMsgId: Option[String] = None,
-  pop3MsgId: Option[String] = None,
+  datecreated: Option[OffsetDateTime] = None,
+  datefinished: Option[OffsetDateTime] = None,
+  sort_order: Option[Int] = None,
+  mail_msg_id: Option[String] = None,
+  pop3_msg_id: Option[String] = None,
   messages: Option[Seq[Message]] = None
 ) extends ApiModel
 

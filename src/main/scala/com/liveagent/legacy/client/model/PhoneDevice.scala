@@ -12,8 +12,6 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
@@ -23,13 +21,13 @@ case class PhoneDevice (
   `type`: PhoneDeviceEnums.`Type`,
   number: Option[String] = None,
   name: Option[String] = None,
-  regStatus: Option[String] = None,
-  connectionHost: Option[String] = None,
-  connectionUser: Option[String] = None,
-  connectionPass: Option[String] = None,
-  lastModified: Option[String] = None,
-  userAgent: Option[String] = None,
-  agentId: Option[String] = None,
+  reg_status: Option[String] = None,
+  connection_host: Option[String] = None,
+  connection_user: Option[String] = None,
+  connection_pass: Option[String] = None,
+  last_modified: Option[String] = None,
+  user_agent: Option[String] = None,
+  agent_id: Option[String] = None,
   /* Additional params column with no specific meaning */
   params: Option[String] = None
 ) extends ApiModel

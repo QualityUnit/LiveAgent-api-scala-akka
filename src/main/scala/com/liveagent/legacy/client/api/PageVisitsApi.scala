@@ -23,7 +23,7 @@ object PageVisitsApi {
 }
 
 class PageVisitsApi(baseUrl: String) {
-  
+
   /**
    * Gets a page visits for user contact id. If elastic search is enabled and it throws exception, error is logged and empty array is returned. 
    * 

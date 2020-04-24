@@ -12,16 +12,14 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class Ticket (
   id: Option[String] = None,
-  ownerContactid: Option[String] = None,
-  ownerEmail: Option[String] = None,
-  ownerName: Option[String] = None,
+  owner_contactid: Option[String] = None,
+  owner_email: Option[String] = None,
+  owner_name: Option[String] = None,
   departmentid: Option[String] = None,
   agentid: Option[String] = None,
   /* <br> I - init<br> N - new<br> T - chatting<br> P - calling<br> R - resolved<br> X - deleted<br> B - spam<br> A - answered<br> C - open<br> W - postponed */
@@ -29,17 +27,17 @@ case class Ticket (
   tags: Option[Seq[String]] = None,
   code: Option[String] = None,
   /* <br> E - email<br> B - contact button<br> M - contact form<br> I - invitation<br> C - call<br> W - call button<br> F - facebook<br> A - facebook message<br> T - twitter<br> H - weibo<br> J - weibo private<br> D - tencent<br> N - tencent private<br> Q - forum<br> S - suggestion */
-  channelType: Option[String] = None,
-  dateCreated: Option[String] = None,
-  dateChanged: Option[String] = None,
-  dateResolved: Option[String] = None,
-  dateDue: Option[String] = None,
-  dateDeleted: Option[String] = None,
-  lastActivity: Option[String] = None,
-  lastActivityPublic: Option[String] = None,
-  publicAccessUrlcode: Option[String] = None,
+  channel_type: Option[String] = None,
+  date_created: Option[String] = None,
+  date_changed: Option[String] = None,
+  date_resolved: Option[String] = None,
+  date_due: Option[String] = None,
+  date_deleted: Option[String] = None,
+  last_activity: Option[String] = None,
+  last_activity_public: Option[String] = None,
+  public_access_urlcode: Option[String] = None,
   subject: Option[String] = None,
-  customFields: Option[Seq[CustomFields]] = None
+  custom_fields: Option[Seq[CustomFields]] = None
 ) extends ApiModel
 
 object TicketEnums {

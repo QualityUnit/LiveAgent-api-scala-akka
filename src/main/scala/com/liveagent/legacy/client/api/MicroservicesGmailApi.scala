@@ -26,7 +26,7 @@ object MicroservicesGmailApi {
 }
 
 class MicroservicesGmailApi(baseUrl: String) {
-  
+
   /**
    * Expected answers:
    *   code 200 : Any (OK response)

@@ -23,7 +23,7 @@ object CustomButtonsApi {
 }
 
 class CustomButtonsApi(baseUrl: String) {
-  
+
   /**
    * Expected answers:
    *   code 200 : CustomButton (Custom button response)

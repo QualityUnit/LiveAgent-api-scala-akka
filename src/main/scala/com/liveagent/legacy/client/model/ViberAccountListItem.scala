@@ -12,21 +12,19 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class ViberAccountListItem (
   id: Option[String] = None,
-  viberAccountId: Option[String] = None,
-  departmentId: Option[String] = None,
+  viber_account_id: Option[String] = None,
+  department_id: Option[String] = None,
   name: Option[String] = None,
-  iconUrl: Option[String] = None,
-  viberUri: Option[String] = None,
+  icon_url: Option[String] = None,
+  viber_uri: Option[String] = None,
   /* A - Active (subscribed to events)<br>I - Inactive (unsubscribed from events) */
   status: Option[ViberAccountListItemEnums.Status] = None,
-  departmentName: Option[String] = None
+  department_name: Option[String] = None
 ) extends ApiModel
 
 object ViberAccountListItemEnums {

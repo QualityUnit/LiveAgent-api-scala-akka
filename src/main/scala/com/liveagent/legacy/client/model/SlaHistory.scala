@@ -12,20 +12,18 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class SlaHistory (
   id: Option[String] = None,
-  slaLevelId: Option[String] = None,
-  slaType: Option[String] = None,
-  dateCreated: Option[String] = None,
-  dateDue: Option[String] = None,
-  dateClosed: Option[String] = None,
-  totalTime: Option[Int] = None,
-  elapsedTime: Option[Int] = None
+  sla_level_id: Option[String] = None,
+  sla_type: Option[String] = None,
+  date_created: Option[String] = None,
+  date_due: Option[String] = None,
+  date_closed: Option[String] = None,
+  total_time: Option[Int] = None,
+  elapsed_time: Option[Int] = None
 ) extends ApiModel
 
 

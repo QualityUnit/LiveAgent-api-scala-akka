@@ -12,8 +12,6 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
@@ -21,10 +19,10 @@ case class Variation (
   id: String,
   billable: Option[Boolean] = None,
   name: Option[String] = None,
-  productId: Option[String] = None,
-  productName: Option[String] = None,
+  product_id: Option[String] = None,
+  product_name: Option[String] = None,
   /* Full name in format Product - Variation */
-  fullName: Option[String] = None,
+  full_name: Option[String] = None,
   description: Option[String] = None
 ) extends ApiModel
 

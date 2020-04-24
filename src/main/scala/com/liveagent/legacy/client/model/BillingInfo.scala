@@ -12,8 +12,6 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
@@ -29,9 +27,9 @@ case class BillingInfo (
   state: Option[String] = None,
   country: String,
   zip: String,
-  vatId: Option[String] = None,
-  icoSk: Option[String] = None,
-  dicSk: Option[String] = None
+  vat_id: Option[String] = None,
+  ico_sk: Option[String] = None,
+  dic_sk: Option[String] = None
 ) extends ApiModel
 
 

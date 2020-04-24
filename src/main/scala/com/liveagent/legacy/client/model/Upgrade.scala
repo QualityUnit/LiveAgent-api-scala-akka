@@ -12,15 +12,13 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class Upgrade (
-  variationId: String,
+  variation_id: String,
   addons: Option[Seq[String]] = None,
-  billingPeriod: Option[UpgradeEnums.BillingPeriod] = None,
+  billing_period: Option[UpgradeEnums.BillingPeriod] = None,
   coupon: Option[String] = None
 ) extends ApiModel
 

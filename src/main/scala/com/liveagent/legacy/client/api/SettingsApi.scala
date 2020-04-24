@@ -23,7 +23,7 @@ object SettingsApi {
 }
 
 class SettingsApi(baseUrl: String) {
-  
+
   /**
    * Expected answers:
    *   code 200 : Seq[Setting] (A list of settings values)

@@ -11,24 +11,23 @@
  */
 package com.liveagent.legacy.client.model
 
+    import java.time.OffsetDateTime
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class TicketRow (
   conversationid: Option[String] = None,
   code: Option[String] = None,
-  datecreated: Option[DateTime] = None,
-  datechanged: Option[DateTime] = None,
-  dateresolved: Option[DateTime] = None,
-  statuschanged: Option[DateTime] = None,
+  datecreated: Option[OffsetDateTime] = None,
+  datechanged: Option[OffsetDateTime] = None,
+  dateresolved: Option[OffsetDateTime] = None,
+  statuschanged: Option[OffsetDateTime] = None,
   rorder: Option[Double] = None,
-  datedue: Option[DateTime] = None,
-  datereopen: Option[DateTime] = None,
+  datedue: Option[OffsetDateTime] = None,
+  datereopen: Option[OffsetDateTime] = None,
   status: Option[String] = None,
-  channelType: Option[String] = None,
+  channel_type: Option[String] = None,
   departmentid: Option[String] = None,
   agentid: Option[String] = None,
   preview: Option[String] = None,
@@ -36,26 +35,26 @@ case class TicketRow (
   departmentname: Option[String] = None,
   agentname: Option[String] = None,
   tags: Option[Seq[String]] = None,
-  messagegroupsIn: Option[Double] = None,
-  messagegroupsOut: Option[Double] = None,
+  messagegroups_in: Option[Double] = None,
+  messagegroups_out: Option[Double] = None,
   contactid: Option[String] = None,
-  parentContactid: Option[String] = None,
+  parent_contactid: Option[String] = None,
   firstname: Option[String] = None,
   lastname: Option[String] = None,
-  systemName: Option[String] = None,
+  system_name: Option[String] = None,
   emails: Option[Seq[String]] = None,
   phones: Option[Seq[String]] = None,
-  jobPosition: Option[String] = None,
-  contactType: Option[String] = None,
+  job_position: Option[String] = None,
+  contact_type: Option[String] = None,
   city: Option[String] = None,
   countrycode: Option[String] = None,
-  timeOffset: Option[Double] = None,
+  time_offset: Option[Double] = None,
   gender: Option[String] = None,
   levelid: Option[String] = None,
   groups: Option[Seq[String]] = None,
-  contactStatus: Option[String] = None,
+  contact_status: Option[String] = None,
   company: Option[String] = None,
-  avatarUrl: Option[String] = None,
+  avatar_url: Option[String] = None,
   userid: Option[String] = None,
   roleid: Option[String] = None,
   roleName: Option[String] = None,

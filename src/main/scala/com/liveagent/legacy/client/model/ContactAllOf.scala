@@ -11,9 +11,8 @@
  */
 package com.liveagent.legacy.client.model
 
+    import java.time.OffsetDateTime
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
@@ -21,9 +20,9 @@ case class ContactAllOf (
   /* V - visitor, R - registered visitor */
   `type`: Option[ContactAllOfEnums.`Type`] = None,
   /* Set automatically */
-  dateCreated: Option[DateTime] = None,
+  date_created: Option[OffsetDateTime] = None,
   /* Set automatically */
-  dateChanged: Option[DateTime] = None
+  date_changed: Option[OffsetDateTime] = None
 ) extends ApiModel
 
 object ContactAllOfEnums {

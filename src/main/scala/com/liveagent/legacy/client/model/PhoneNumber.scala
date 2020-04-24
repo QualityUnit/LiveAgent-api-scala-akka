@@ -12,8 +12,6 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
@@ -22,19 +20,19 @@ case class PhoneNumber (
   /* A - API controlled number, T - Twilio number, T-O - Twilio outgoing number, D - Digitale, S - Asterisk */
   `type`: Option[PhoneNumberEnums.`Type`] = None,
   /* Prefix needed to originate call using this number */
-  dialOutPrefix: Option[Int] = None,
+  dial_out_prefix: Option[Int] = None,
   /* Dial out prefix in 2 or 3 digits string format according to application settings */
-  dialOutPrefixFormatted: Option[String] = None,
-  recordCall: Option[Boolean] = None,
+  dial_out_prefix_formatted: Option[String] = None,
+  record_call: Option[Boolean] = None,
   number: String,
   name: Option[String] = None,
   departmentid: Option[String] = None,
   department: Option[Department] = None,
   /* A - Active, I - Inactive */
   status: Option[PhoneNumberEnums.Status] = None,
-  statusMessage: Option[String] = None,
+  status_message: Option[String] = None,
   /* json encoded host settings */
-  hostSettings: Option[String] = None,
+  host_settings: Option[String] = None,
   host: Option[String] = None,
   port: Option[String] = None,
   user: Option[String] = None,

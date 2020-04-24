@@ -11,21 +11,20 @@
  */
 package com.liveagent.legacy.client.model
 
+    import java.time.OffsetDateTime
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class ActiveTicket (
-  ticketId: Option[String] = None,
-  ticketCode: Option[String] = None,
-  dateJoined: Option[DateTime] = None,
-  departmentId: Option[String] = None,
+  ticket_id: Option[String] = None,
+  ticket_code: Option[String] = None,
+  date_joined: Option[OffsetDateTime] = None,
+  department_id: Option[String] = None,
   /* V - Viewing / J - Replying, Chatting / R - Ringing / C - Calling  */
   status: Option[String] = None,
   /* C - Opened / R - Resolved / A - Answered / X - Deleted / T - Chat / P - Call  */
-  ticketStatus: Option[String] = None
+  ticket_status: Option[String] = None
 ) extends ApiModel
 
 

@@ -12,8 +12,6 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
@@ -22,9 +20,9 @@ case class Agent (
   name: String,
   email: String,
   role: Option[AgentEnums.Role] = None,
-  avatarUrl: Option[String] = None,
+  avatar_url: Option[String] = None,
   /* F - offline, N - online, P - paused, C - mobile  */
-  onlineStatus: Option[String] = None,
+  online_status: Option[String] = None,
   /* A - active, X - deleted  */
   status: Option[String] = None,
   /* M - male, F - female, X - unspecified  */

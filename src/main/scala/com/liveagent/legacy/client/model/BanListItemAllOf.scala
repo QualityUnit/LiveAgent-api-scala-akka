@@ -12,15 +12,13 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class BanListItemAllOf (
-  agentName: Option[String] = None,
-  contactName: Option[String] = None,
-  conversationCode: Option[String] = None
+  agent_name: Option[String] = None,
+  contact_name: Option[String] = None,
+  conversation_code: Option[String] = None
 ) extends ApiModel
 
 

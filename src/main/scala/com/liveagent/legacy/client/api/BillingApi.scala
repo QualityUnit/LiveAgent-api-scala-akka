@@ -23,7 +23,7 @@ object BillingApi {
 }
 
 class BillingApi(baseUrl: String) {
-  
+
   /**
    * Vat validity check
    * 

@@ -12,8 +12,6 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
@@ -21,8 +19,8 @@ case class VariationUpgrades (
   current: Option[VariationUpgrade] = None,
   upgrades: Option[Seq[VariationUpgrade]] = None,
   currency: Option[VariationUpgradesEnums.Currency] = None,
-  taxPerCent: Option[Float] = None,
-  taxIncluded: Option[Boolean] = None
+  tax_per_cent: Option[Float] = None,
+  tax_included: Option[Boolean] = None
 ) extends ApiModel
 
 object VariationUpgradesEnums {

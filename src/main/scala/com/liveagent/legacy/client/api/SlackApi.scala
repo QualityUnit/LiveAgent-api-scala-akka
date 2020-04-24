@@ -25,7 +25,7 @@ object SlackApi {
 }
 
 class SlackApi(baseUrl: String) {
-  
+
   /**
    * Expected answers:
    *   code 200 : SlackConversation (A slack channel)

@@ -24,7 +24,7 @@ object PhoneNumbersApi {
 }
 
 class PhoneNumbersApi(baseUrl: String) {
-  
+
   /**
    * Expected answers:
    *   code 200 : PhoneNumber (Number response)

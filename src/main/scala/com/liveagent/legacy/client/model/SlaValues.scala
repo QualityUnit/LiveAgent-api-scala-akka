@@ -12,18 +12,16 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class SlaValues (
-  firstAnswer: Option[Int] = None,
-  firstAssign: Option[Int] = None,
-  firstResolve: Option[Int] = None,
-  nextAnswer: Option[Int] = None,
-  chatAnswer: Option[Int] = None,
-  callAnswer: Option[Int] = None
+  first_answer: Option[Int] = None,
+  first_assign: Option[Int] = None,
+  first_resolve: Option[Int] = None,
+  next_answer: Option[Int] = None,
+  chat_answer: Option[Int] = None,
+  call_answer: Option[Int] = None
 ) extends ApiModel
 
 

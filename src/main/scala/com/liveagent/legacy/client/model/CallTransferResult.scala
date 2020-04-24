@@ -12,18 +12,16 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class CallTransferResult (
   /* O - online, F - offline */
-  calleeStatus: CallTransferResultEnums.CalleeStatus,
+  callee_status: CallTransferResultEnums.CalleeStatus,
   /* Callee number */
-  toNumber: Option[String] = None,
+  to_number: Option[String] = None,
   /* trunk number via which call was made / received (if applicable) */
-  viaNumber: Option[String] = None
+  via_number: Option[String] = None
 ) extends ApiModel
 
 object CallTransferResultEnums {

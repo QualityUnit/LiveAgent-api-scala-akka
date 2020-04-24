@@ -23,7 +23,7 @@ object MessagesApi {
 }
 
 class MessagesApi(baseUrl: String) {
-  
+
   /**
    * Expected answers:
    *   code 200 : Message (Message)

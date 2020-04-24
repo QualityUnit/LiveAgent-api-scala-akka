@@ -23,7 +23,7 @@ object QueueApi {
 }
 
 class QueueApi(baseUrl: String) {
-  
+
   /**
    * Retrieves the batch status and remaining items to process
    * 

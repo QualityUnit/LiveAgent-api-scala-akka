@@ -24,7 +24,7 @@ object InvoicesApi {
 }
 
 class InvoicesApi(baseUrl: String) {
-  
+
   /**
    * Download invoice
    * 

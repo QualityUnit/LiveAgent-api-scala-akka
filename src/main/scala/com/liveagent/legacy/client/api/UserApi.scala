@@ -23,7 +23,7 @@ object UserApi {
 }
 
 class UserApi(baseUrl: String) {
-  
+
   /**
    * Retrieves a user(users)
    * 

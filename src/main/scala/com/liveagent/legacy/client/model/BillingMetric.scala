@@ -12,17 +12,15 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class BillingMetric (
   name: Option[String] = None,
-  amountInPrice: Option[Int] = None,
+  amount_in_price: Option[Int] = None,
   limit: Option[Int] = None,
-  unitPrice: Option[Int] = None,
-  unitSize: Option[Int] = None
+  unit_price: Option[Int] = None,
+  unit_size: Option[Int] = None
 ) extends ApiModel
 
 

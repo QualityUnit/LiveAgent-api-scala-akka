@@ -23,7 +23,7 @@ object TokenApi {
 }
 
 class TokenApi(baseUrl: String) {
-  
+
   /**
    * Returns access token
    * 

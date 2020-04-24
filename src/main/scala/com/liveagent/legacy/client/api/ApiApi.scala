@@ -29,7 +29,7 @@ object ApiApi {
 }
 
 class ApiApi(baseUrl: String) {
-  
+
   /**
    * Create api key
    * 

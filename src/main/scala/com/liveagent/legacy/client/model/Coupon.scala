@@ -12,23 +12,21 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class Coupon (
   code: Option[String] = None,
-  subscriptionId: Option[String] = None,
+  subscription_id: Option[String] = None,
   discount: Int,
   credit: Option[Int] = None,
   reusable: Option[Boolean] = None,
-  dateValid: Option[String] = None,
+  date_valid: Option[String] = None,
   note: Option[String] = None,
-  createdBy: Option[String] = None,
-  dateCreated: Option[String] = None,
-  endedBy: Option[String] = None,
-  dateExpired: Option[String] = None
+  created_by: Option[String] = None,
+  date_created: Option[String] = None,
+  ended_by: Option[String] = None,
+  date_expired: Option[String] = None
 ) extends ApiModel
 
 

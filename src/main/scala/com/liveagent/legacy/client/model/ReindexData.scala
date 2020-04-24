@@ -11,9 +11,8 @@
  */
 package com.liveagent.legacy.client.model
 
+    import java.time.OffsetDateTime
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
@@ -21,8 +20,8 @@ case class ReindexData (
   `type`: Option[String] = None,
   /* N - No<br>Y - Yes<br> */
   truncate: Option[ReindexDataEnums.Truncate] = None,
-  dateFrom: Option[DateTime] = None,
-  dateTo: Option[DateTime] = None
+  date_from: Option[OffsetDateTime] = None,
+  date_to: Option[OffsetDateTime] = None
 ) extends ApiModel
 
 object ReindexDataEnums {

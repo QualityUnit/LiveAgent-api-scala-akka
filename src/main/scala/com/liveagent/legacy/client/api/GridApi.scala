@@ -31,7 +31,7 @@ object GridApi {
 }
 
 class GridApi(baseUrl: String) {
-  
+
   /**
    * Expected answers:
    *   code 200 : Seq[AgentRow] (Agents grid response)

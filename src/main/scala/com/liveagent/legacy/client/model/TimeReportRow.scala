@@ -12,8 +12,6 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
@@ -23,17 +21,17 @@ case class TimeReportRow (
   agent: Option[String] = None,
   conversationid: Option[String] = None,
   ticket: Option[String] = None,
-  parentContactid: Option[String] = None,
+  parent_contactid: Option[String] = None,
   company: Option[String] = None,
   contactid: Option[String] = None,
   customer: Option[String] = None,
-  customerFirstname: Option[String] = None,
-  customerLastname: Option[String] = None,
-  customerSystemname: Option[String] = None,
-  agentTicket: Option[String] = None,
+  customer_firstname: Option[String] = None,
+  customer_lastname: Option[String] = None,
+  customer_systemname: Option[String] = None,
+  agent_ticket: Option[String] = None,
   reportdate: Option[String] = None,
   reportedtime: Option[String] = None,
-  reportedtimeHhmmss: Option[String] = None,
+  reportedtime_hhmmss: Option[String] = None,
   spenttime: Option[String] = None,
   dateinvoiced: Option[String] = None,
   note: Option[String] = None,

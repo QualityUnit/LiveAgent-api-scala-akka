@@ -40,7 +40,7 @@ object SubscriptionsApi {
 }
 
 class SubscriptionsApi(baseUrl: String) {
-  
+
   /**
    * Change active subscription addons
    * 

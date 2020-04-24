@@ -23,7 +23,7 @@ object DepartmentsApi {
 }
 
 class DepartmentsApi(baseUrl: String) {
-  
+
   /**
    * Expected answers:
    *   code 200 : Seq[Department] (Department response)

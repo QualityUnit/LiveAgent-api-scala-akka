@@ -24,7 +24,7 @@ object MailAccountApi {
 }
 
 class MailAccountApi(baseUrl: String) {
-  
+
   /**
    * Gets mail account
    * 

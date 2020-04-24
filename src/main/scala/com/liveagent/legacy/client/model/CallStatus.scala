@@ -12,8 +12,6 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
@@ -21,7 +19,7 @@ case class CallStatus (
   /* O (callee offline), Q (waiting in queue), R (ringing to an agent), C (calling with an agent), F (finished) */
   status: CallStatusEnums.Status,
   agent: Option[CallAgent] = None,
-  queuePosition: Option[Double] = None
+  queue_position: Option[Double] = None
 ) extends ApiModel
 
 object CallStatusEnums {

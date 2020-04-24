@@ -24,7 +24,7 @@ object SlasApi {
 }
 
 class SlasApi(baseUrl: String) {
-  
+
   /**
    * Gets sla
    * 

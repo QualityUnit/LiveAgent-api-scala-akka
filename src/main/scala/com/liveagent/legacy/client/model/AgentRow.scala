@@ -12,8 +12,6 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
@@ -21,10 +19,10 @@ case class AgentRow (
   agentid: Option[String] = None,
   firstname: Option[String] = None,
   lastname: Option[String] = None,
-  systemName: Option[String] = None,
+  system_name: Option[String] = None,
   username: Option[String] = None,
   countrycode: Option[String] = None,
-  avatarUrl: Option[String] = None,
+  avatar_url: Option[String] = None,
   roleid: Option[String] = None,
   rolename: Option[String] = None,
   departmentid: Option[String] = None,

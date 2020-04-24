@@ -23,7 +23,7 @@ object CountriesApi {
 }
 
 class CountriesApi(baseUrl: String) {
-  
+
   /**
    * List of available countries
    * 

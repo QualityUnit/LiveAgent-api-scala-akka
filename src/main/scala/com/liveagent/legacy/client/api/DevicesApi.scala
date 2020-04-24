@@ -27,7 +27,7 @@ object DevicesApi {
 }
 
 class DevicesApi(baseUrl: String) {
-  
+
   /**
    * Expected answers:
    *   code 200 : Device (Device response)

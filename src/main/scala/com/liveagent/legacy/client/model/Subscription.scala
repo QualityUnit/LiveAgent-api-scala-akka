@@ -11,9 +11,8 @@
  */
 package com.liveagent.legacy.client.model
 
+    import java.time.OffsetDateTime
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
@@ -22,21 +21,21 @@ case class Subscription (
   /* Default domain assigned to subscription when created (e.g. example.ladesk.com) */
   domain: Option[String] = None,
   /* Additional domain parked to this subscription (e.g. support.example.com) */
-  customDomain: Option[String] = None,
-  customerEmail: Option[String] = None,
-  customerName: Option[String] = None,
+  custom_domain: Option[String] = None,
+  customer_email: Option[String] = None,
+  customer_name: Option[String] = None,
   company: Option[String] = None,
-  dateCreated: Option[DateTime] = None,
-  dateValidity: Option[DateTime] = None,
+  date_created: Option[OffsetDateTime] = None,
+  date_validity: Option[OffsetDateTime] = None,
   /* I - installing A - active S - suspended T - terminated D - deleted  */
   status: Option[SubscriptionEnums.Status] = None,
-  accountId: Option[String] = None,
-  clusterId: Option[String] = None,
-  taskId: Option[String] = None,
+  account_id: Option[String] = None,
+  cluster_id: Option[String] = None,
+  task_id: Option[String] = None,
   version: Option[String] = None,
-  isLatest: Option[Boolean] = None,
-  productId: Option[String] = None,
-  variationId: Option[String] = None
+  is_latest: Option[Boolean] = None,
+  product_id: Option[String] = None,
+  variation_id: Option[String] = None
 ) extends ApiModel
 
 object SubscriptionEnums {

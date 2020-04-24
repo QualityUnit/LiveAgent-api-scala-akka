@@ -12,37 +12,35 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class Call (
   id: String,
-  ticketId: String,
+  ticket_id: String,
   /* incoming call ('in' - default), outgoing call ('out'), internal call('int') */
   direction: Option[CallEnums.Direction] = None,
   /* O - online, F - offline, U - unknown */
-  calleeStatus: Option[CallEnums.CalleeStatus] = None,
+  callee_status: Option[CallEnums.CalleeStatus] = None,
   ivrs: Option[Seq[Ivr]] = None,
-  recordCall: Option[Boolean] = None,
-  rerouteTime: Option[Double] = None,
-  maxQueueTime: Option[Double] = None,
-  maxRingTime: Option[Double] = None,
+  record_call: Option[Boolean] = None,
+  reroute_time: Option[Double] = None,
+  max_queue_time: Option[Double] = None,
+  max_ring_time: Option[Double] = None,
   /* Name of IVR in case the service is online. If empty, call starts ringing to agents */
-  onlineIvr: Option[String] = None,
+  online_ivr: Option[String] = None,
   /* Name of IVR in case the service is offline. If empty, call hangs up with not available tone */
-  offlineIvr: Option[String] = None,
+  offline_ivr: Option[String] = None,
   /* Name of IVR while waiting in queue. If empty, default in queue music is played */
-  queueIvr: Option[String] = None,
+  queue_ivr: Option[String] = None,
   /* Caller number */
-  fromNumber: Option[String] = None,
+  from_number: Option[String] = None,
   /* Name of the caller in case it is known */
-  callerName: Option[String] = None,
+  caller_name: Option[String] = None,
   /* Callee number */
-  toNumber: Option[String] = None,
+  to_number: Option[String] = None,
   /* trunk number via which call was made / received (if applicable) */
-  viaNumber: Option[String] = None
+  via_number: Option[String] = None
 ) extends ApiModel
 
 object CallEnums {

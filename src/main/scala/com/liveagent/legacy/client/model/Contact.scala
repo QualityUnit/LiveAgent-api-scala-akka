@@ -11,20 +11,19 @@
  */
 package com.liveagent.legacy.client.model
 
+    import java.time.OffsetDateTime
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class Contact (
   id: Option[String] = None,
-  companyId: Option[String] = None,
+  company_id: Option[String] = None,
   firstname: Option[String] = None,
   lastname: Option[String] = None,
-  systemName: Option[String] = None,
+  system_name: Option[String] = None,
   description: Option[String] = None,
-  avatarUrl: Option[String] = None,
+  avatar_url: Option[String] = None,
   /* M - Male, F - Female, X - Unspecified */
   gender: Option[String] = None,
   language: Option[String] = None,
@@ -34,20 +33,20 @@ case class Contact (
   emails: Option[Seq[String]] = None,
   phones: Option[Seq[String]] = None,
   groups: Option[Seq[String]] = None,
-  jobPosition: Option[String] = None,
+  job_position: Option[String] = None,
   note: Option[String] = None,
   useragent: Option[String] = None,
   screen: Option[String] = None,
-  timeOffset: Option[Double] = None,
+  time_offset: Option[Double] = None,
   latitude: Option[Double] = None,
   longitude: Option[Double] = None,
-  customFields: Option[Seq[CustomFields]] = None,
+  custom_fields: Option[Seq[CustomFields]] = None,
   /* V - visitor, R - registered visitor */
   `type`: Option[ContactEnums.`Type`] = None,
   /* Set automatically */
-  dateCreated: Option[DateTime] = None,
+  date_created: Option[OffsetDateTime] = None,
   /* Set automatically */
-  dateChanged: Option[DateTime] = None
+  date_changed: Option[OffsetDateTime] = None
 ) extends ApiModel
 
 object ContactEnums {

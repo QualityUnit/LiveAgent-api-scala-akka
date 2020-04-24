@@ -12,15 +12,13 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class ApiKey (
   id: Option[Double] = None,
   key: Option[String] = None,
-  validToDate: Option[String] = None,
+  valid_to_date: Option[String] = None,
   role: Option[String] = None,
   name: Option[String] = None,
   /* - A - API - C - Chat - P - Phone - T - Ticket - W - Web (Agent Panel) */

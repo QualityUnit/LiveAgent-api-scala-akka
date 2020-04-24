@@ -11,9 +11,8 @@
  */
 package com.liveagent.legacy.client.model
 
+    import java.time.OffsetDateTime
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
@@ -26,7 +25,7 @@ case class SlaBusinessHours (
   friday: Option[DayInterval] = None,
   saturday: Option[DayInterval] = None,
   sunday: Option[DayInterval] = None,
-  excludeHolidays: Option[Seq[DateTime]] = None
+  exclude_holidays: Option[Seq[OffsetDateTime]] = None
 ) extends ApiModel
 
 

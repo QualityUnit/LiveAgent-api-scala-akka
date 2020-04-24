@@ -11,15 +11,14 @@
  */
 package com.liveagent.legacy.client.model
 
+    import java.time.OffsetDateTime
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class ChatRow (
   conversationid: Option[String] = None,
-  datechanged: Option[DateTime] = None,
+  datechanged: Option[OffsetDateTime] = None,
   status: Option[String] = None,
   preview: Option[String] = None,
   subject: Option[String] = None,
@@ -28,14 +27,14 @@ case class ChatRow (
   tags: Option[Seq[String]] = None,
   firstname: Option[String] = None,
   lastname: Option[String] = None,
-  systemName: Option[String] = None,
+  system_name: Option[String] = None,
   emails: Option[Seq[String]] = None,
   city: Option[String] = None,
   countrycode: Option[String] = None,
-  avatarUrl: Option[String] = None,
+  avatar_url: Option[String] = None,
   rstatus: Option[String] = None,
-  statusdatestarted: Option[DateTime] = None,
-  chatOrder: Option[Int] = None
+  statusdatestarted: Option[OffsetDateTime] = None,
+  chat_order: Option[Int] = None
 ) extends ApiModel
 
 

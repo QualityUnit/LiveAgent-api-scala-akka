@@ -23,7 +23,7 @@ object PredefinedAnswersApi {
 }
 
 class PredefinedAnswersApi(baseUrl: String) {
-  
+
   /**
    * Create new predefined answer
    * 

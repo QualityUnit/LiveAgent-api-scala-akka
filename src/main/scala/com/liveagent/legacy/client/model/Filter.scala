@@ -12,22 +12,20 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class Filter (
-  filterId: Option[String] = None,
+  filter_id: Option[String] = None,
   name: Option[String] = None,
   description: Option[String] = None,
-  filterType: Option[String] = None,
-  userId: Option[String] = None,
+  filter_type: Option[String] = None,
+  user_id: Option[String] = None,
   /* C - Custom, S - System, P - Preset */
   rtype: Option[FilterEnums.Rtype] = None,
-  isPublic: Option[Boolean] = None,
-  userIds: Option[Seq[String]] = None,
-  departmentIds: Option[Seq[String]] = None,
+  is_public: Option[Boolean] = None,
+  user_ids: Option[Seq[String]] = None,
+  department_ids: Option[Seq[String]] = None,
   conditions: Option[Seq[FilterCondition]] = None
 ) extends ApiModel
 

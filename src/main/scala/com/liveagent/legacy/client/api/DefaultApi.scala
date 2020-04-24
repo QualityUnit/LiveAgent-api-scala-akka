@@ -22,7 +22,7 @@ object DefaultApi {
 }
 
 class DefaultApi(baseUrl: String) {
-  
+
   /**
    * Expected answers:
    *   code 200 : Any (OK response)

@@ -31,7 +31,7 @@ object CallsApi {
 }
 
 class CallsApi(baseUrl: String) {
-  
+
   /**
    * Expected answers:
    *   code 200 : Any (OK response)

@@ -11,9 +11,8 @@
  */
 package com.liveagent.legacy.client.model
 
+    import java.time.OffsetDateTime
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
@@ -21,8 +20,8 @@ case class InvoiceItem (
   `type`: Option[String] = None,
   price: Option[Double] = None,
   description: Option[String] = None,
-  fromDate: Option[DateTime] = None,
-  toDate: Option[DateTime] = None
+  from_date: Option[OffsetDateTime] = None,
+  to_date: Option[OffsetDateTime] = None
 ) extends ApiModel
 
 

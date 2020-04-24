@@ -12,15 +12,13 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class PaymentProcessorType (
-  processorType: Option[PaymentProcessorTypeEnums.ProcessorType] = None,
+  processor_type: Option[PaymentProcessorTypeEnums.ProcessorType] = None,
   token: Option[String] = None,
-  initToken: Option[String] = None
+  init_token: Option[String] = None
 ) extends ApiModel
 
 object PaymentProcessorTypeEnums {

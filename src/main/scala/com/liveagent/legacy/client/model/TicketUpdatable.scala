@@ -12,20 +12,18 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class TicketUpdatable (
-  ownerContactid: Option[String] = None,
+  owner_contactid: Option[String] = None,
   departmentid: Option[String] = None,
   agentid: Option[String] = None,
   /* <br> I - init<br> N - new<br> T - chatting<br> P - calling<br> R - resolved<br> X - deleted<br> B - spam<br> A - answered<br> C - open<br> W - postponed */
   status: Option[TicketUpdatableEnums.Status] = None,
   subject: Option[String] = None,
   tags: Option[Seq[String]] = None,
-  customFields: Option[Seq[CustomFields]] = None
+  custom_fields: Option[Seq[CustomFields]] = None
 ) extends ApiModel
 
 object TicketUpdatableEnums {

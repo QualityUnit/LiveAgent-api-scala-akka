@@ -12,8 +12,6 @@
 package com.liveagent.legacy.client.model
 
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
@@ -21,7 +19,7 @@ case class CallAgent (
   id: String,
   device: Option[PhoneDevice] = None,
   /* Alternative devices for an agent */
-  alternativeDevices: Option[Seq[PhoneDevice]] = None
+  alternative_devices: Option[Seq[PhoneDevice]] = None
 ) extends ApiModel
 
 

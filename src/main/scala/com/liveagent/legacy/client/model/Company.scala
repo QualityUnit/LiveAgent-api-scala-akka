@@ -11,18 +11,17 @@
  */
 package com.liveagent.legacy.client.model
 
+    import java.time.OffsetDateTime
 import com.liveagent.legacy.client.core.{ApiEnum, ApiModel}
-import org.joda.time.DateTime
-import java.util.UUID
 
 import org.json4s.MappingException
 
 case class Company (
   id: Option[String] = None,
   name: Option[String] = None,
-  systemName: Option[String] = None,
+  system_name: Option[String] = None,
   description: Option[String] = None,
-  avatarUrl: Option[String] = None,
+  avatar_url: Option[String] = None,
   language: Option[String] = None,
   city: Option[String] = None,
   countrycode: Option[String] = None,
@@ -33,15 +32,15 @@ case class Company (
   note: Option[String] = None,
   useragent: Option[String] = None,
   screen: Option[String] = None,
-  timeOffset: Option[Double] = None,
+  time_offset: Option[Double] = None,
   latitude: Option[Double] = None,
   longitude: Option[Double] = None,
-  customFields: Option[Seq[CustomFields]] = None,
+  custom_fields: Option[Seq[CustomFields]] = None,
   /* V - visitor, R - registered visitor */
   `type`: Option[CompanyEnums.`Type`] = None,
-  dateCreated: Option[DateTime] = None,
+  date_created: Option[OffsetDateTime] = None,
   /* Set automatically */
-  dateChanged: Option[DateTime] = None
+  date_changed: Option[OffsetDateTime] = None
 ) extends ApiModel
 
 object CompanyEnums {

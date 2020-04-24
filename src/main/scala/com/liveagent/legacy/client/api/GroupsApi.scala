@@ -23,7 +23,7 @@ object GroupsApi {
 }
 
 class GroupsApi(baseUrl: String) {
-  
+
   /**
    * Create new contact group
    * 

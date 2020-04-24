@@ -31,7 +31,7 @@ object TicketsApi {
 }
 
 class TicketsApi(baseUrl: String) {
-  
+
   /**
    * Create new ticket
    * 
