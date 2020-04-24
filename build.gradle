@@ -44,7 +44,8 @@ openApiGenerate {
     version = "6.18.2"
     configOptions = [
             dateLibrary: "java8",
-            mainPackage: "com.liveagent.legacy.client"
+            mainPackage: "com.liveagent.legacy.client",
+            modelPropertyNaming: "original"
     ]
     systemProperties = [
             modelDocs: "false"
