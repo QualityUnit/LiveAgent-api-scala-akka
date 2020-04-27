@@ -6,7 +6,7 @@
 
   <groupId>com.liveagent.legacy</groupId>
   <artifactId>api-client</artifactId>
-  <version>6.18.2</version>
+  <version>6.19.1</version>
 
   <packaging>jar</packaging>
 
